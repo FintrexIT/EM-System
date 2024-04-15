@@ -308,17 +308,20 @@
                                 <h5 id="main_name_tag">File Movement Register - File Pending Details</h5>
                                 <hr>
                                 <div id="table_card">
-                                    <table class="table table-bordered table-sm" id="filep_table" style="width: 100%; font-size: small">
+                                    <table class="table table-bordered table-sm" id="main_table" style="width: 100%; font-size: small">
                                         <thead>
                                             <tr>
-                                                <th style="display: none">ID</th>
                                                 <th>Reference Number</th>
                                                 <th>Customer Name</th>
                                                 <th>Product</th>
                                                 <th>Finance Amount</th>
+                                                <th style="display: none">ID</th>
                                                 <th>Branch</th>
+                                                <th>ENT User</th>
                                                 <th>ENT Date</th>
-                                                <th>Status</th>
+                                                <th>MOD User</th>
+                                                <th>MOD Date</th>
+
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -553,7 +556,7 @@
                     </div>
                     <div class="form-group">
                         <label for="customer_name">Customer's Name<span class="text-danger">*</span></label>
-                        <input id="customer_names" type="text" name="customer_name" class="form-control" required autocomplete="off" >
+                        <input id="customer_names" type="text" name="customer_name" class="form-control" required autocomplete="off">
                     </div>
                     <div class="form-group" style="padding-bottom: 2rem">
                         <label for="product" class="col-sm-4 col-form-label allFontByCustomerEdit">Choose Product Type</label>
@@ -584,83 +587,6 @@
                     <div class="card-footer d-flex justify-content-end" style="background-color: white;">
                         <button id="saveBtnin" class="btn btn-sm waves-effect waves-light btn-primary" style="margin-right: 10px"><i class="icon feather icon-save"></i>Save</button>
                         <button id="closeBtnin" class="btn btn-sm btn-danger"><i class="icon feather icon-x-circle"></i>Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <!--File Pending details-->
-        <div class="" id="formSectionFilePending" style="display: none;padding-top: 1rem;">
-            <div class="card" style="width: 80%;padding: 1em;">
-                <div class="card-block p-b-0">
-                    <div class="card-header">
-                        <ul class="list-unstyled card-option">
-                            <li><i class="feather icon-x cls-card"></i></li>
-                        </ul>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="ref_number">Agreement Number / Vehicle Number<span class="text-danger">*</span></label>
-                                <input id="ref_numberp" type="text" name="ref_number" class="form-control" required autocomplete="off" disabled="">
-                            </div>  
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="customer_name">Customer's Name<span class="text-danger">*</span></label>
-                                <input id="customer_namep" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="customer_name">Product<span class="text-danger">*</span></label>
-                                <input id="productp" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
-                            </div>  
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="amount">Amount<span class="text-danger">*</span></label>
-                                <input id="amountp" type="number" name="amount" class="form-control" required autocomplete="off" disabled="">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-md-12">
-
-                        <div class="ttt" style="display: flex;flex-direction: row;">
-                            <div class="table-responsive">
-                                <table class="table table-hover table-bordered m-b-0" id="tbladdAtt" >
-                                    <thead>
-                                        <tr>
-                                            <th>Pending Files </th>
-                                            <th style="width:1px;">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- Your table body content goes here -->
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </div>
-                        <div class="row justify-content-end" style="padding: 2em;">
-                            <div class="col-lg-6 col-md-12">
-                                <div class="text">
-                                    <button id="addBtnFile" class="btn btn-sm waves-effect waves-light btn-danger">
-                                        <i class="icon feather icon-plus"></i>Add File
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card-footer d-flex justify-content-end" style="background-color: white;">
-                        <button id="saveBtnfile" class="btn btn-sm waves-effect waves-light btn-primary" style="margin-right: 10px"><i class="icon feather icon-save"></i>Save</button>
-                        <button id="closeBtnfile" class="btn btn-sm btn-danger"><i class="icon feather icon-x-circle"></i>Close</button>
                     </div>
                 </div>
             </div>
@@ -730,7 +656,6 @@
             const tableSection = document.getElementById('tableSection');
             const closeBtn = document.getElementById('closeBtn');
             const closeBtnin = document.getElementById('closeBtnin');
-            const closeBtnfile = document.getElementById('closeBtnfile');
 
             closeBtn.addEventListener('click', function () {
                 formSection.style.display = 'none';
@@ -740,14 +665,7 @@
                 formSectionInprogress.style.display = 'none';
                 tableSection.style.display = 'block';
             });
-            closeBtnfile.addEventListener('click', function () {
-                formSectionFilePending.style.display = 'none';
-                tableSection.style.display = 'block';
-            });
-        </script>
 
-
-        <script>
             var facility_status = new SlimSelect(
                     {select: '#facility_status',
                         placeholder: "Facility Type",
@@ -959,7 +877,7 @@
 
 
 
-            // Acknowledgment Pending
+            // In Progress
 
             $.fn.dataTable.ext.errMode = 'none';
             var dtable = $('#ackn_table').DataTable({
@@ -1009,180 +927,6 @@
                 }
 
             });
-
-
-
-
-
-
-
-            //            File Pending
-            $.fn.dataTable.ext.errMode = 'none';
-            var dtable = $('#filep_table').DataTable({
-                "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
-                "pageLength": 5,
-                "ordering": true,
-                "autoWidth": false,
-                "processing": true,
-                "serverSide": true,
-                "order": [[0, "desc"]],
-                "searchHighlight": true,
-                "searchDelay": 350,
-                "ajax": {
-                    "url": "fmr/fmrtable-file",
-                    "contentType": "application/json",
-                    "type": "POST",
-                    "data": function (d) {
-                        return JSON.stringify(d);
-                    },
-                    error: function (xhr, error, code) {
-                        console.log(xhr);
-                        console.log(code);
-                    }
-                },
-                "columns": [
-                    {"data": "id", className: "text-right", "visible": false},
-                    {"data": "ref_number"},
-                    {"data": "customer_name"},
-                    {"data": "product"},
-                    {"data": "amount"},
-                    {"data": "branch"},
-                    {"data": "ent_on"},
-
-                    {"data": "status"}
-                ], "language": {
-                    'loadingRecords': '&nbsp;',
-                    'processing': '<div class="loader2"></div>'
-                },
-                "createdRow": function (row, data) {
-                    let action_td = document.createElement('td');
-                    $(action_td).addClass('text-center');
-
-                    $(action_td).append('<a href="javascript:void(0)" id="update-filepending" class="editrecfile"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
-
-                    $(row).append(action_td);
-                    $(row).data('id', data['id']);
-                }
-
-            });
-
-
-            $(document).on('click', '.editrecfile', function () {
-
-                loadDiv($('#tableSection'));
-                let id = $(this).parents('tr').data('id');
-                fetch('fmr/details-file/' + id)
-                        .then(resp => resp.json())
-                        .then((resp) => {
-                            let data = resp.data;
-                            $('#ref_numberp').val(data.ref_number);
-                            $('#customer_namep').val(data.customer_name);
-                            $('#amountp').val(data.amount);
-                            $('#productp').val(data.productTxt);
-                            $('#saveBtnfile').data('mode', 'update-filepending');
-                            $('#saveBtnfile').data('id', id);
-                            $('#saveBtnfile').html('<i class="icon feather icon-save"></i>Update'); // Change button text to 'Update'
-                            $('#formSectionFilePending').fadeIn();
-                            $('#tableSection').hide();
-                            finishLoadDiv($('#tableSection'));
-                        });
-            });
-
-
-
-            document.getElementById('addBtnFile').addEventListener('click', function () {
-                // Get the table body
-                var tableBody = document.querySelector('#tbladdAtt tbody');
-
-                // Create a new row
-                var newRow = tableBody.insertRow();
-
-                // Create cells in the new row
-                var fileNameCell = newRow.insertCell(0);
-                var actionCell = newRow.insertCell(1);
-
-                // Create input for "File Name" in cell 1
-                var fileNameInput = document.createElement('input');
-                fileNameInput.type = 'text';
-                fileNameInput.name = 'fileName';
-                fileNameInput.classList.add('form-control');
-                fileNameInput.required = true;
-                fileNameInput.autocomplete = 'off';
-
-
-                // Append input elements to respective cells
-                fileNameCell.appendChild(fileNameInput);
-
-                // Create a delete button in the action cell
-                var deleteButton = document.createElement('button');
-                deleteButton.classList.add('btn', 'btn-sm', 'btn-danger');
-                deleteButton.textContent = 'Remove';
-                deleteButton.name = 'dele';
-
-                // Add a click event listener to the delete button
-                deleteButton.addEventListener('click', function () {
-                    // Remove the row when the delete button is clicked
-                    tableBody.removeChild(newRow);
-                });
-
-                // Append the delete button to the action cell
-                actionCell.appendChild(deleteButton);
-
-                // Call the addAttachmentRow function with the input values
-//                addAttachmentRow(fileNameInput.value);
-            });
-
-
-
-            document.getElementById('saveBtnfile').addEventListener('click', function () {
-                let mode = $('#saveBtnfile').data('mode');
-                if (mode === 'update-filepending') {
-                    let id = $('#saveBtnfile').data('id');
-                    let tableRows = document.querySelectorAll('#tbladdAtt tbody tr');
-                    let attachmentData = [];
-                    let formData = {};
-
-                    let i = 1;
-                    tableRows.forEach((row, index) => {
-                        let fileName = row.querySelector('input[name="fileName"]').value;
-
-                        attachmentData.push({
-                            name: fileName
-                        });
-                    });
-                    let desclist = JSON.stringify(attachmentData);
-
-                    formData.desclist = desclist;
-                    formData.id = id;
-                    fetch('fmr/save-filePendings', {
-                        method: 'POST',
-                        body: new URLSearchParams(formData)
-                    }).then(response => {
-                        if (!response.ok) {
-                            throw new Error(response.statusText);
-                        } else {
-                            Swal.fire('Successful!', 'Pending Files has been successfully saved', 'success');
-                            clearForms();
-                            $('#formSectionFilePending').hide();
-                            $('#tableSection').fadeIn();
-                            dtable.ajax.reload();
-                            clearForms();
-                        }
-                        return response.json();
-                    });
-                }
-            });
-            function clearForms() {
-
-                // Clear table rows
-                var tableBody = document.querySelector('#tbladdAtt tbody');
-                tableBody.innerHTML = '';
-            }
-
-
-
-
-
         </script>
     </body>
 </html>

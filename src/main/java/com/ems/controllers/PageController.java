@@ -19,4 +19,9 @@ public class PageController {
         return "admin_dashboard";
     }
 
+    @GetMapping("/dashbaord")
+    public String dashboard() {
+        return "branch_dashbaord";
+    }
+
 }
