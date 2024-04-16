@@ -57,6 +57,16 @@ public class FmrController {
         return service.getFmrfile(param);
     }
 
+    @PostMapping("/fmrtable-clearance")
+    public DataTablesResponse<FmrDTO> getFmrclearance(@RequestBody DataTableRequest param) throws Exception {
+        return service.getFmrclearance(param);
+    }
+
+    @PostMapping("/fmrtable-payment")
+    public DataTablesResponse<FmrDTO> getFmrpayment(@RequestBody DataTableRequest param) throws Exception {
+        return service.getFmrpayment(param);
+    }
+
     @PostMapping("/facility-status")
     public Iterable<SlimSelectDTO> getStatus(@RequestParam String search) throws Exception {
         return service.getStatus(search);
@@ -97,6 +107,27 @@ public class FmrController {
     @ResponseBody
     public Fmr uploadFiles(@RequestParam Integer id, @RequestParam("desclist") String desclist) throws Exception {
         return service.uploadFiles(id, desclist);
+    }
+
+    @GetMapping("/clearance-details/{id}")
+    public ResponseEntity<CommonResponse> getClearance(@PathVariable Integer id) throws Exception {
+        CommonResponse response = new CommonResponse("Success!", service.getClearance(id), 200);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PostMapping("/update-fileclearance")
+    @ResponseBody
+    public Fmr updateClearance(String id, String desclist, @RequestParam(value = "deleteIds", required = false) String deleteIds, @RequestParam String statusclr, @RequestParam(required = false) String approver) throws Exception {
+        Integer idd = Integer.parseInt(id);
+        // Pass deleteIds to the service method
+        System.out.println(deleteIds);
+        return service.updateClearance(idd, desclist, deleteIds, statusclr, approver);
+
+    }
+
+    @PostMapping("/approver")
+    public Iterable<SlimSelectDTO> getApprover(@RequestParam String search) throws Exception {
+        return service.getApprover(search);
     }
 //
 //    @GetMapping("/content")

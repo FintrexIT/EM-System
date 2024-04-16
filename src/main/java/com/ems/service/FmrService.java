@@ -14,11 +14,16 @@ import com.ems.model.Fmr;
 import com.ems.repo.FacilityTypeRepo;
 import com.ems.repo.FilePendingRepo;
 import com.ems.repo.FmrRepo;
+import com.ems.repo.UserRepo;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.nio.file.Path;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -39,20 +44,32 @@ public class FmrService {
     @Autowired
     private FacilityTypeRepo repor;
     @Autowired
+    private UserRepo repors;
+    @Autowired
     private FilePendingRepo fmrrepo;
 
     public DataTablesResponse<FmrDTO> getFmrs(DataTableRequest param) throws Exception {
-        return userDt.getData(FmrDTO.class, param, "SELECT x.`id`,x.`customer_name`,x.`status`,x.`ref_number`,(SELECT `description` FROM `loan`.`product`  WHERE `id` = x.`product`) AS product,(SELECT `name` FROM `loan`.`branch`  WHERE `id` = x.`branch`) AS branch ,x.`amount`,x.`pendings`,x.`comment`,x.`approved_by`,x.`facility_status`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`ent_by`) AS `ent_by`,`ent_on`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`mod_by`) AS `mod_by`,`mod_on` FROM `fmr` X WHERE TRUE");
+        return userDt.getData(FmrDTO.class, param, "SELECT x.`id`,x.`customer_name`,x.`status`,x.`ref_number`,(SELECT `description` FROM `loan`.`product`  WHERE `id` = x.`product`) AS product,(SELECT `name` FROM `loan`.`branch`  WHERE `id` = x.`branch`) AS branch ,x.`amount`,x.`pendings`,x.`comment`,x.`approver`,x.`facility_status`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`ent_by`) AS `ent_by`,`ent_on`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`mod_by`) AS `mod_by`,`mod_on` FROM `fmr` X WHERE TRUE");
 
     }
 
     public DataTablesResponse<FmrDTO> getFmrPending(DataTableRequest param) throws Exception {
-        return userDt.getData(FmrDTO.class, param, "SELECT x.`id`,x.`customer_name`,x.`status`,x.`ref_number`,(SELECT `description` FROM `loan`.`product`  WHERE `id` = x.`product`) AS product,(SELECT `name` FROM `loan`.`branch`  WHERE `id` = x.`branch`) AS branch ,x.`amount`,x.`pendings`,x.`comment`,x.`approved_by`,x.`facility_status`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`ent_by`) AS `ent_by`,`ent_on`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`mod_by`) AS `mod_by`,`mod_on` FROM `fmr` X WHERE `status`='Acknowledgment Pending'");
+        return userDt.getData(FmrDTO.class, param, "SELECT x.`id`,x.`customer_name`,x.`status`,x.`ref_number`,(SELECT `description` FROM `loan`.`product`  WHERE `id` = x.`product`) AS product,(SELECT `name` FROM `loan`.`branch`  WHERE `id` = x.`branch`) AS branch ,x.`amount`,x.`pendings`,x.`comment`,x.`approver`,x.`facility_status`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`ent_by`) AS `ent_by`,`ent_on`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`mod_by`) AS `mod_by`,`mod_on` FROM `fmr` X WHERE `status`='Acknowledgment Pending'");
 
     }
 
     public DataTablesResponse<FmrDTO> getFmrfile(DataTableRequest param) throws Exception {
-        return userDt.getData(FmrDTO.class, param, "SELECT x.`id`,x.`customer_name`,x.`status`,x.`ref_number`,(SELECT `description` FROM `loan`.`product`  WHERE `id` = x.`product`) AS product,(SELECT `name` FROM `loan`.`branch`  WHERE `id` = x.`branch`) AS branch ,x.`amount`,x.`pendings`,x.`comment`,x.`approved_by`,x.`facility_status`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`ent_by`) AS `ent_by`,`ent_on`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`mod_by`) AS `mod_by`,`mod_on` FROM `fmr` X WHERE `status`='File Pending Details'");
+        return userDt.getData(FmrDTO.class, param, "SELECT x.`id`,x.`customer_name`,x.`status`,x.`ref_number`,(SELECT `description` FROM `loan`.`product`  WHERE `id` = x.`product`) AS product,(SELECT `name` FROM `loan`.`branch`  WHERE `id` = x.`branch`) AS branch ,x.`amount`,x.`pendings`,x.`comment`,x.`approver`,x.`facility_status`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`ent_by`) AS `ent_by`,`ent_on`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`mod_by`) AS `mod_by`,`mod_on` FROM `fmr` X WHERE `status`='File Pending Details'");
+
+    }
+
+    public DataTablesResponse<FmrDTO> getFmrclearance(DataTableRequest param) throws Exception {
+        return userDt.getData(FmrDTO.class, param, "SELECT x.`id`,x.`customer_name`,x.`status`,x.`ref_number`,(SELECT `description` FROM `loan`.`product`  WHERE `id` = x.`product`) AS product,(SELECT `name` FROM `loan`.`branch`  WHERE `id` = x.`branch`) AS branch ,x.`amount`,x.`pendings`,x.`comment`,x.`approver`,x.`facility_status`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`ent_by`) AS `ent_by`,`ent_on`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`mod_by`) AS `mod_by`,`mod_on` FROM `fmr` X WHERE `status`='File Pending Clearance'");
+
+    }
+
+    public DataTablesResponse<FmrDTO> getFmrpayment(DataTableRequest param) throws Exception {
+        return userDt.getData(FmrDTO.class, param, "SELECT x.`id`,x.`customer_name`,x.`status`,x.`ref_number`,(SELECT `description` FROM `loan`.`product`  WHERE `id` = x.`product`) AS product,(SELECT `name` FROM `loan`.`branch`  WHERE `id` = x.`branch`) AS branch ,x.`amount`,x.`pendings`,x.`comment`,x.`approver`,x.`facility_status`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`ent_by`) AS `ent_by`,`ent_on`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`mod_by`) AS `mod_by`,`mod_on` FROM `fmr` X WHERE `status`='Payment Voucher Hand Over To Finance'");
 
     }
 
@@ -145,6 +162,85 @@ public class FmrService {
         }
 
         return repo.save(system);
+    }
+
+    public Object getClearance(Integer id) throws Exception {
+        Fmr sys = repo.findById(id).get();
+
+        Map<String, Object> data = jdbc.queryForMap("SELECT `description` as product_txt FROM `loan`.`product`  WHERE `id` = ?", sys.getProduct());
+        System.out.println(data);
+        sys.setProductTxt((String) data.get("product_txt"));
+
+        Fmr content = repo.findById(id).get();
+        List<FilePendings> videos = fmrrepo.findByPendingsAndStatus(id, "active");
+        data.put("content", content);
+        data.put("videos", videos);
+        return data;
+    }
+
+    public Fmr updateClearance(Integer id, String desclist, String deleteIds, String statusclr, String approver) {
+        try {
+            Fmr system = repo.findById(id).orElseThrow(() -> new Exception("FMR not found"));
+
+            // Handle deleteIds
+            if (deleteIds != null) {
+                JsonNode toBeDeleted = mapper.readTree(deleteIds);
+                for (JsonNode jsonNode : toBeDeleted) {
+                    Optional<FilePendings> optionalMembers = fmrrepo.findById(Integer.parseInt(jsonNode.asText()));
+                    if (optionalMembers.isPresent()) {
+                        FilePendings attachmentToDelete = optionalMembers.get();
+                        attachmentToDelete.setStatus("deactivate");
+                        fmrrepo.save(attachmentToDelete);
+                    } else {
+                        throw new Exception("FMR with ID " + jsonNode.asText() + " not found");
+                    }
+                }
+            }
+
+            // Handle desclist
+            if (desclist != null && !desclist.isEmpty()) {
+                JsonNode fileList = mapper.readTree(desclist);
+                for (int i = 0; i < fileList.size(); i++) {
+                    JsonNode fileItem = fileList.get(i);
+                    String fileName = fileItem.get("name").asText();
+
+                    FilePendings attachment = new FilePendings();
+                    attachment.setPendings(system.getId());
+                    attachment.setName(fileName);
+                    attachment.setStatus("active");
+                    fmrrepo.save(attachment);
+                }
+            }
+
+            // Handle statusclr
+            if ("approve".equals(statusclr)) {
+                system.setApprover(approver);
+                system.setStatus("Undertaking Approval Pending");
+            } else if ("cleared".equals(statusclr)) {
+                system.setStatus("Payment Voucher Hand Over To Finance");
+            }
+
+            return repo.save(system);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Failed to update FMR with File Pendings", e);
+        }
+    }
+
+    private boolean containsMembersId(String desclist, Integer attachmentId) throws JsonProcessingException {
+        JsonNode fileList = mapper.readTree(desclist);
+        for (int i = 0; i < fileList.size(); i++) {
+            JsonNode fileItem = fileList.get(i);
+            Integer fileId = fileItem.get("fileId").asInt();
+            if (fileId.equals(attachmentId)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Iterable<SlimSelectDTO> getApprover(String search) {
+        return repors.getApprover("%" + search.trim() + "%");
     }
 //
 //    public Fmr deactivateFmrs(Integer id) throws Exception {

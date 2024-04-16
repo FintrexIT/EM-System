@@ -28,23 +28,14 @@ import org.springframework.data.relational.core.mapping.Table;
 @Setter
 @Getter
 @ToString
-@Table("fmr")
-public class Fmr {
+@Table("users")
+public class Users {
 
     @Id
     private Integer id;
-    private String ref_number;
-    private String customer_name;
-    private String product;
-    @Transient
-    private String productTxt;
-    private String amount;
-    private String branch;
-    private Integer pendings;
-    private String comment;
-    private String reason;
-    private String approver;
-    private String facility_status;
+    private String username;
+    private String name;
+    private String user_type;
     private String status;
     @CreatedBy
     private Integer ent_by;

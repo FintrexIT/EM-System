@@ -339,20 +339,17 @@
                                 <h5 id="main_name_tag">File Movement Register - File Pending Clearance</h5>
                                 <hr>
                                 <div id="table_card">
-                                    <table class="table table-bordered table-sm" id="main_table" style="width: 100%; font-size: small">
+                                    <table class="table table-bordered table-sm" id="clear_table" style="width: 100%; font-size: small">
                                         <thead>
                                             <tr>
+                                                <th style="display: none">ID</th>
                                                 <th>Reference Number</th>
                                                 <th>Customer Name</th>
                                                 <th>Product</th>
                                                 <th>Finance Amount</th>
-                                                <th style="display: none">ID</th>
                                                 <th>Branch</th>
-                                                <th>ENT User</th>
                                                 <th>ENT Date</th>
-                                                <th>MOD User</th>
-                                                <th>MOD Date</th>
-
+                                                <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -665,6 +662,99 @@
                 </div>
             </div>
         </div>
+
+
+        <!--File Pending Clearance-->
+        <div class="" id="formSectionFileClearance" style="display: none;padding-top: 1rem;">
+            <div class="card" style="width: 80%;padding: 1em;">
+                <div class="card-block p-b-0">
+                    <div class="card-header">
+                        <ul class="list-unstyled card-option">
+                            <li><i class="feather icon-x cls-card"></i></li>
+                        </ul>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="ref_number">Agreement Number / Vehicle Number<span class="text-danger">*</span></label>
+                                <input id="ref_numberc" type="text" name="ref_number" class="form-control" required autocomplete="off" disabled="">
+                            </div>  
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="customer_name">Customer's Name<span class="text-danger">*</span></label>
+                                <input id="customer_namec" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="customer_name">Product<span class="text-danger">*</span></label>
+                                <input id="productc" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
+                            </div>  
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="amount">Amount<span class="text-danger">*</span></label>
+                                <input id="amountc" type="number" name="amount" class="form-control" required autocomplete="off" disabled="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-12">
+
+                        <div class="ttt" style="display: flex;flex-direction: row;">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-bordered m-b-0" id="tbladdAtts" >
+                                    <thead>
+                                        <tr>
+                                            <th>Pending Files </th>
+                                            <th style="width:1px;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Your table body content goes here -->
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="row justify-content-end" style="padding: 2em;display: none;">
+                        <div class="col-lg-6 col-md-12">
+                            <div class="text">
+                                <button id="addBtnClr" class="btn btn-sm waves-effect waves-light btn-danger">
+                                    <i class="icon feather icon-plus"></i>Add File
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="padding-bottom: 2rem">
+                        <label for="status" class="col-sm-4 col-form-label allFontByCustomerEdit">Choose Status </label>
+                        <div class="col-sm-6">
+                            <select class="form-control-sm pull-right" id="statusclr" style="width: 20rem;margin-right: 15rem;">
+                                <option value="" disabled selected>Select Status</option>
+                                <option value="approve">Need Undertaking Approval</option>
+                                <option value="cleared">File Pending Cleared</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" id="approve_section" style="display: none;">
+                        <div class="col-sm-6">
+                            <label for="reason">Approver<span class="text-danger">*</span></label>
+                            <select class="form-control-sm pull-right" id="approver"></select> 
+                        </div>
+                    </div>
+
+                    <div class="card-footer d-flex justify-content-end" style="background-color: white;">
+                        <button id="saveBtnclr" class="btn btn-sm waves-effect waves-light btn-primary" style="margin-right: 10px"><i class="icon feather icon-save"></i>Save</button>
+                        <button id="closeBtnclr" class="btn btn-sm btn-danger"><i class="icon feather icon-x-circle"></i>Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <%@include file="jspf/scripts.jspf" %>
         <script type="text/javascript" src="files/js/slimselect.js"></script>
         <script type="text/javascript" src="files/js/datatables.min.js"></script>
@@ -731,6 +821,7 @@
             const closeBtn = document.getElementById('closeBtn');
             const closeBtnin = document.getElementById('closeBtnin');
             const closeBtnfile = document.getElementById('closeBtnfile');
+            const closeBtnclr = document.getElementById('closeBtnclr');
 
             closeBtn.addEventListener('click', function () {
                 formSection.style.display = 'none';
@@ -742,6 +833,10 @@
             });
             closeBtnfile.addEventListener('click', function () {
                 formSectionFilePending.style.display = 'none';
+                tableSection.style.display = 'block';
+            });
+            closeBtnclr.addEventListener('click', function () {
+                formSectionFileClearance.style.display = 'none';
                 tableSection.style.display = 'block';
             });
         </script>
@@ -1182,7 +1277,274 @@
 
 
 
+//File Pending Clearance
+            $.fn.dataTable.ext.errMode = 'none';
+            var dtable = $('#clear_table').DataTable({
+                "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
+                "pageLength": 5,
+                "ordering": true,
+                "autoWidth": false,
+                "processing": true,
+                "serverSide": true,
+                "order": [[0, "desc"]],
+                "searchHighlight": true,
+                "searchDelay": 350,
+                "ajax": {
+                    "url": "fmr/fmrtable-clearance",
+                    "contentType": "application/json",
+                    "type": "POST",
+                    "data": function (d) {
+                        return JSON.stringify(d);
+                    },
+                    error: function (xhr, error, code) {
+                        console.log(xhr);
+                        console.log(code);
+                    }
+                },
+                "columns": [
+                    {"data": "id", className: "text-right", "visible": false},
+                    {"data": "ref_number"},
+                    {"data": "customer_name"},
+                    {"data": "product"},
+                    {"data": "amount"},
+                    {"data": "branch"},
+                    {"data": "ent_on"},
 
+                    {"data": "status"}
+                ], "language": {
+                    'loadingRecords': '&nbsp;',
+                    'processing': '<div class="loader2"></div>'
+                },
+                "createdRow": function (row, data) {
+                    let action_td = document.createElement('td');
+                    $(action_td).addClass('text-center');
+
+                    $(action_td).append('<a href="javascript:void(0)" id="update-fileclear" class="editrecfileclr"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
+
+                    $(row).append(action_td);
+                    $(row).data('id', data['id']);
+                }
+
+            });
+
+
+
+            let deleted = [];
+            $(document).on('click', '.editrecfileclr', function () {
+                loadDiv($('#tableSection'));
+                let id = $(this).parents('tr').data('id');
+
+                // Fetch team and attachment details
+                fetch('fmr/clearance-details/' + id)
+                        .then(resp => resp.json())
+                        .then((resp) => {
+                            let content = resp.data.content;
+                            $('#ref_numberc').val(content.ref_number);
+                            $('#customer_namec').val(content.customer_name);
+                            $('#amountc').val(content.amount);
+                            $('#productc').val(content.product_txt);
+                            let attachments = resp.data.videos;
+
+                            // Clear existing rows in the attachment table
+                            $('#tbladdAtts tbody').empty();
+
+                            // Populate the attachment table with fetched data
+                            attachments.forEach((attachment) => {
+                                // Get the table body
+                                var tableBody = document.querySelector('#tbladdAtts tbody');
+
+                                // Create a new row
+                                var newRow = tableBody.insertRow();
+
+                                // Create cells in the new row
+                                var fileNameCell = newRow.insertCell(0);
+                                var actionCell = newRow.insertCell(1);
+
+                                // Set the text content of the cells with the fetched values
+                                fileNameCell.textContent = attachment.name;
+
+                                // Create a delete button in the action cell
+                                var deleteButton = document.createElement('button');
+                                deleteButton.classList.add('btn', 'btn-sm', 'btn-danger');
+                                deleteButton.textContent = 'Remove';
+                                deleteButton.name = 'dele';
+
+                                // Add a click event listener to the delete button
+
+                                let videoId = attachment.id;
+                                deleteButton.addEventListener('click', function () {
+
+                                    deleted.push(videoId + "");
+
+                                    // Remove the row when the delete button is clicked
+                                    tableBody.removeChild(newRow);
+                                });
+
+                                // Append the delete button to the action cell
+                                actionCell.appendChild(deleteButton);
+                            });
+
+                            // Show the form section
+                            $('#saveBtnclr').data('mode', 'update-fileclear');
+                            $('#saveBtnclr').data('id', id);
+                            $('#saveBtnclr').html('<i class="icon feather icon-save"></i>Update'); // Change button text to 'Update'
+                            $('#formSectionFileClearance').fadeIn();
+                            $('#tableSection').hide();
+                            finishLoadDiv($('#tableSection'));
+
+                        });
+            });
+
+
+            function handleAttachmentDeletion() {
+                let deleteIds = [];
+
+                $('#tbladdAtts').on('click', '.btn-danger', function () {
+                    let deleteRowId = $(this).closest('tr').attr('id');
+                    deleteIds.push(deleteRowId);
+                    $(this).closest('tr').remove();
+                });
+
+                return deleteIds;
+            }
+
+
+            document.getElementById('saveBtnclr').addEventListener('click', function () {
+                let mode = $('#saveBtnclr').data('mode');
+                if (mode === 'update-fileclear') {
+                    let id = $('#saveBtnclr').data('id');//
+                    let deleteIds = handleAttachmentDeletion();
+                    let tableRows = document.querySelectorAll('#tbladdAtts tbody tr');
+                    let attachmentData = [];
+                    let formData = {};
+
+                    tableRows.forEach((row, index) => {
+                        let fileNameInput = row.querySelector('input[name="fileName"]');
+                        if (fileNameInput) {
+                            let fileName = fileNameInput.value;
+
+                            attachmentData.push({
+                                name: fileName
+                            });
+                        }
+                    });
+
+                    let desclist = JSON.stringify(attachmentData);
+
+                    formData.desclist = desclist;
+                    formData.id = id;
+                    formData.deleteIds = JSON.stringify(deleted);
+
+                    // Get the selected value of statusclr
+                    let statusclr = document.getElementById('statusclr').value;
+
+                    // Add statusclr to formData
+                    formData.statusclr = statusclr;
+
+                    // If statusclr is 'approve', add the selected approver to formData
+                    if (statusclr === 'approve') {
+                        let approver = document.getElementById('approver').value;
+                        formData.approver = approver;
+                    }
+
+                    fetch('fmr/update-fileclearance', {
+                        method: 'POST',
+                        body: new URLSearchParams(formData)
+                    }).then(response => {
+                        if (!response.ok) {
+                            throw new Error(response.statusText);
+                        } else {
+                            Swal.fire('Successful!', 'Pending File details updated successfully', 'success');
+                            clearForms();
+                            $('#formSectionFileClearance').hide();
+                            $('#tableSection').fadeIn();
+                            dtable.ajax.reload();
+                        }
+                        return response.json();
+                    }).catch(error => {
+                        console.error('Error updating Pending File details:', error);
+                        Swal.fire('Error!', 'Failed to update Pending File details', 'error');
+                    });
+                }
+            });
+
+
+            document.addEventListener("DOMContentLoaded", function () {
+                var clearanceStatusSelect = document.getElementById("statusclr");
+                var approveSelect = document.getElementById("approve_section");
+
+                // Add event listener to the select element
+                clearanceStatusSelect.addEventListener("change", function () {
+                    // Check if the selected value is "approve"
+                    if (this.value === "approve") {
+                        // Show the comment section
+                        approveSelect.style.display = "block";
+                    } else {
+                        // Hide the comment section
+                        approveSelect.style.display = "none";
+                    }
+                });
+            });
+            var approv = new SlimSelect(
+                    {select: '#approver',
+                        placeholder: "Select Approver",
+                        ajax: function (search, callback) {
+                            fetch('fmr/approver', {
+                                method: 'POST',
+                                body: new URLSearchParams({search: search || ''})
+                            }).then(res => res.json()).then((data) => {
+                                callback(data);
+                            });
+                        },
+                        allowDeselect: true,
+                        deselectLabel: '<span class="red">✖</span>'
+                    });
+            document.getElementById('addBtnClr').addEventListener('click', function () {
+                // Get the table body
+                var tableBody = document.querySelector('#tbladdAtts tbody');
+
+                // Create a new row
+                var newRow = tableBody.insertRow();
+
+                // Create cells in the new row
+                var fileNameCell = newRow.insertCell(0);
+                var actionCell = newRow.insertCell(1);
+
+                // Create input for "File Name" in cell 1
+                var fileNameInput = document.createElement('input');
+                fileNameInput.type = 'text';
+                fileNameInput.name = 'fileName';
+                fileNameInput.classList.add('form-control');
+                fileNameInput.required = true;
+                fileNameInput.autocomplete = 'off';
+
+
+                // Append input elements to respective cells
+                fileNameCell.appendChild(fileNameInput);
+
+                // Create a delete button in the action cell
+                var deleteButton = document.createElement('button');
+                deleteButton.classList.add('btn', 'btn-sm', 'btn-danger');
+                deleteButton.textContent = 'Remove';
+                deleteButton.name = 'dele';
+
+                // Add a click event listener to the delete button
+                deleteButton.addEventListener('click', function () {
+                    // Remove the row when the delete button is clicked
+                    tableBody.removeChild(newRow);
+                });
+
+                // Append the delete button to the action cell
+                actionCell.appendChild(deleteButton);
+
+                // Call the addAttachmentRow function with the input values
+//                addAttachmentRow(fileNameInput.value);
+            });
+
+
+
+
+//            Payment Voucher Hand Over To finance
         </script>
     </body>
 </html>
