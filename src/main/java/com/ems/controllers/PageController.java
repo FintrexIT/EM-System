@@ -24,4 +24,14 @@ public class PageController {
         return "branch_dashbaord";
     }
 
+    @GetMapping("/IT-Dashbaord")
+    public String dashboardIT() {
+        return "it_dashbaord";
+    }
+
+    @GetMapping("/users")
+    public String users() {
+        return "users";
+    }
+
 }

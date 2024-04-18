@@ -62,9 +62,29 @@ public class FmrController {
         return service.getFmrclearance(param);
     }
 
+    @PostMapping("/fmrtable-approve")
+    public DataTablesResponse<FmrDTO> getFmrapproval(@RequestBody DataTableRequest param) throws Exception {
+        return service.getFmrapproval(param);
+    }
+
     @PostMapping("/fmrtable-payment")
     public DataTablesResponse<FmrDTO> getFmrpayment(@RequestBody DataTableRequest param) throws Exception {
         return service.getFmrpayment(param);
+    }
+
+    @PostMapping("/fmrtable-paymentua")
+    public DataTablesResponse<FmrDTO> getFmrpaymentUA(@RequestBody DataTableRequest param) throws Exception {
+        return service.getFmrpaymentUA(param);
+    }
+
+    @PostMapping("/fmrtable-completed")
+    public DataTablesResponse<FmrDTO> getFmrCompleted(@RequestBody DataTableRequest param) throws Exception {
+        return service.getFmrCompleted(param);
+    }
+
+    @PostMapping("/fmrtable-reject")
+    public DataTablesResponse<FmrDTO> getFmrReject(@RequestBody DataTableRequest param) throws Exception {
+        return service.getFmrReject(param);
     }
 
     @PostMapping("/facility-status")
@@ -129,13 +149,34 @@ public class FmrController {
     public Iterable<SlimSelectDTO> getApprover(@RequestParam String search) throws Exception {
         return service.getApprover(search);
     }
+
+    @PostMapping("/update-undertakingap")
+    @ResponseBody
+    public Fmr updateUndertaking(String id, @RequestParam String statusund, @RequestParam(required = false) String returncomment) throws Exception {
+        Integer idd = Integer.parseInt(id);
+        return service.updateUndertaking(idd, statusund, returncomment);
+
+    }
+
+    @GetMapping("/paymentv-details/{id}")
+    public ResponseEntity<CommonResponse> getPayment(@PathVariable Integer id) throws Exception {
+        CommonResponse response = new CommonResponse("Success!", service.getPayment(id), 200);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PostMapping("/update-payvoucher")
+    @ResponseBody
+    public Fmr updateVoucher(String id, @RequestParam String statusvoucher) throws Exception {
+        Integer idd = Integer.parseInt(id);
+        return service.updateVoucher(idd, statusvoucher);
+
+    }
 //
 //    @GetMapping("/content")
 //    public Iterable<Fmr> getAllActiveImages() {
 //        return service.findAllActiveImages();
 //    }
 //
-
 //
 //    @PostMapping("/deactivate-fmr")
 //    public ResponseEntity<CommonResponse> deactivateFmrs(@RequestParam Integer id) throws Exception {

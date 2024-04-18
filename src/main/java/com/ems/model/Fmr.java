@@ -38,10 +38,13 @@ public class Fmr {
     private String product;
     @Transient
     private String productTxt;
+    @Transient
+    private String approverName;
     private String amount;
     private String branch;
     private Integer pendings;
     private String comment;
+    private String returncomment;
     private String reason;
     private String approver;
     private String facility_status;

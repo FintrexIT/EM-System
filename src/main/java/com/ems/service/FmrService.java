@@ -68,8 +68,28 @@ public class FmrService {
 
     }
 
+    public DataTablesResponse<FmrDTO> getFmrapproval(DataTableRequest param) throws Exception {
+        return userDt.getData(FmrDTO.class, param, "SELECT x.`id`,x.`customer_name`,x.`status`,x.`ref_number`,(SELECT `description` FROM `loan`.`product`  WHERE `id` = x.`product`) AS product,(SELECT `name` FROM `loan`.`branch`  WHERE `id` = x.`branch`) AS branch ,x.`amount`,x.`pendings`,x.`comment`,x.`approver`,x.`facility_status`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`ent_by`) AS `ent_by`,`ent_on`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`mod_by`) AS `mod_by`,`mod_on` FROM `fmr` X WHERE `status`='Undertaking Approval Pending'");
+
+    }
+
     public DataTablesResponse<FmrDTO> getFmrpayment(DataTableRequest param) throws Exception {
         return userDt.getData(FmrDTO.class, param, "SELECT x.`id`,x.`customer_name`,x.`status`,x.`ref_number`,(SELECT `description` FROM `loan`.`product`  WHERE `id` = x.`product`) AS product,(SELECT `name` FROM `loan`.`branch`  WHERE `id` = x.`branch`) AS branch ,x.`amount`,x.`pendings`,x.`comment`,x.`approver`,x.`facility_status`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`ent_by`) AS `ent_by`,`ent_on`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`mod_by`) AS `mod_by`,`mod_on` FROM `fmr` X WHERE `status`='Payment Voucher Hand Over To Finance'");
+
+    }
+
+    public DataTablesResponse<FmrDTO> getFmrpaymentUA(DataTableRequest param) throws Exception {
+        return userDt.getData(FmrDTO.class, param, "SELECT x.`id`,x.`customer_name`,x.`status`,x.`ref_number`,(SELECT `description` FROM `loan`.`product`  WHERE `id` = x.`product`) AS product,(SELECT `name` FROM `loan`.`branch`  WHERE `id` = x.`branch`) AS branch ,x.`amount`,x.`pendings`,x.`comment`,x.`approver`,x.`facility_status`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`ent_by`) AS `ent_by`,`ent_on`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`mod_by`) AS `mod_by`,`mod_on` FROM `fmr` X WHERE `status`='Payment Voucher Hand Over To Finance(Undertaking Approval)'");
+
+    }
+
+    public DataTablesResponse<FmrDTO> getFmrCompleted(DataTableRequest param) throws Exception {
+        return userDt.getData(FmrDTO.class, param, "SELECT x.`id`,x.`customer_name`,x.`status`,x.`ref_number`,(SELECT `description` FROM `loan`.`product`  WHERE `id` = x.`product`) AS product,(SELECT `name` FROM `loan`.`branch`  WHERE `id` = x.`branch`) AS branch ,x.`amount`,x.`pendings`,x.`comment`,x.`approver`,x.`facility_status`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`ent_by`) AS `ent_by`,`ent_on`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`mod_by`) AS `mod_by`,`mod_on` FROM `fmr` X WHERE `status`='Completed'");
+
+    }
+
+    public DataTablesResponse<FmrDTO> getFmrReject(DataTableRequest param) throws Exception {
+        return userDt.getData(FmrDTO.class, param, "SELECT x.`id`,x.`customer_name`,x.`status`,x.`ref_number`,(SELECT `description` FROM `loan`.`product`  WHERE `id` = x.`product`) AS product,(SELECT `name` FROM `loan`.`branch`  WHERE `id` = x.`branch`) AS branch ,x.`amount`,x.`pendings`,x.`comment`,x.`approver`,x.`facility_status`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`ent_by`) AS `ent_by`,`ent_on`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`mod_by`) AS `mod_by`,`mod_on` FROM `fmr` X WHERE `status`='Rejected'");
 
     }
 
@@ -242,6 +262,64 @@ public class FmrService {
     public Iterable<SlimSelectDTO> getApprover(String search) {
         return repors.getApprover("%" + search.trim() + "%");
     }
+
+    public Fmr updateUndertaking(Integer id, String statusund, String returncomment) throws Exception {
+        Fmr updatefmr = repo.findById(id).get();
+
+        switch (statusund) {
+            case "returned":
+                updatefmr.setStatus("File Pending Clearance");
+                updatefmr.setReturncomment(returncomment);
+                break;
+            case "approved":
+                updatefmr.setStatus("Payment Voucher Hand Over To Finance(Undertaking Approval)");
+                break;
+
+            default:
+                // Handle default case if necessary
+                break;
+        }
+
+        updatefmr = repo.save(updatefmr);
+        return updatefmr;
+    }
+
+    public Map<String, Object> getPayment(Integer id) throws Exception {
+        Fmr sys = repo.findById(id).get();
+
+        Map<String, Object> data = jdbc.queryForMap("SELECT `description` as product_txt FROM `loan`.`product`  WHERE `id` = ?", sys.getProduct());
+        sys.setProductTxt((String) data.get("product_txt"));
+        System.out.println(data);
+
+        Map<String, Object> datas = jdbc.queryForMap("SELECT `name` as approvername FROM `users` WHERE `id` = ?", sys.getApprover());
+        sys.setApproverName((String) datas.get("approvername"));
+        System.out.println(datas);
+
+        Map<String, Object> combinedData = new HashMap<>();
+        combinedData.put("d1", data);
+        combinedData.put("d2", datas);
+        combinedData.put("obj", sys);
+
+        return combinedData;
+    }
+
+    public Fmr updateVoucher(Integer id, String statusvoucher) throws Exception {
+        Fmr updatefmr = repo.findById(id).get();
+
+        switch (statusvoucher) {
+            case "completed":
+                updatefmr.setStatus("Completed");
+                break;
+
+            default:
+                // Handle default case if necessary
+                break;
+        }
+
+        updatefmr = repo.save(updatefmr);
+        return updatefmr;
+    }
+
 //
 //    public Fmr deactivateFmrs(Integer id) throws Exception {
 //        Fmr syst = repo.findById(id).get();
@@ -257,7 +335,6 @@ public class FmrService {
 //        return systems;
 //    }
 //
-
 //   
 //    public Fmr update(Integer id, String name, String type, MultipartFile file) throws Exception {
 //        Fmr system = repo.findById(id).get();

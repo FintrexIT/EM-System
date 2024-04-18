@@ -370,20 +370,17 @@
                                 <h5 id="main_name_tag">File Movement Register - Undertaking Approval Pending</h5>
                                 <hr>
                                 <div id="table_card">
-                                    <table class="table table-bordered table-sm" id="main_table" style="width: 100%; font-size: small">
+                                    <table class="table table-bordered table-sm" id="approval_table" style="width: 100%; font-size: small">
                                         <thead>
                                             <tr>
+                                                <th style="display: none">ID</th>
                                                 <th>Reference Number</th>
                                                 <th>Customer Name</th>
                                                 <th>Product</th>
                                                 <th>Finance Amount</th>
-                                                <th style="display: none">ID</th>
                                                 <th>Branch</th>
-                                                <th>ENT User</th>
                                                 <th>ENT Date</th>
-                                                <th>MOD User</th>
-                                                <th>MOD Date</th>
-
+                                                <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -396,41 +393,73 @@
                     </div>
                 </div>
             </section>
-
-            <section class="tab-details"style="padding: 0rem 1rem;"> 
+            <section class="tab-details" style="padding: 0rem 1rem;"> 
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card" id="tableCard">
-                            <div class="card-body" >
-                                <h5 id="main_name_tag">File Movement Register - Payment Voucher Hand Over To Finance(Undertaking Approval)</h5>
-                                <hr>
-                                <div id="table_card">
-                                    <table class="table table-bordered table-sm" id="main_table" style="width: 100%; font-size: small">
-                                        <thead>
-                                            <tr>
-                                                <th>Reference Number</th>
-                                                <th>Customer Name</th>
-                                                <th>Product</th>
-                                                <th>Finance Amount</th>
-                                                <th style="display: none">ID</th>
-                                                <th>Branch</th>
-                                                <th>ENT User</th>
-                                                <th>ENT Date</th>
-                                                <th>MOD User</th>
-                                                <th>MOD Date</th>
-
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody></tbody>
-                                    </table>
+                            <div class="card-body">
+                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="first-tab" data-toggle="tab" href="#first" role="tab" aria-controls="first" aria-selected="true">Payment Voucher Hand Over To Finance</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="second-tab" data-toggle="tab" href="#second" role="tab" aria-controls="second" aria-selected="false">Payment Voucher Hand Over To Finance (Undertaking Approval)</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="first" role="tabpanel" aria-labelledby="first-tab">
+                                        <hr>
+                                        <div id="table_card_first">
+                                            <table class="table table-bordered table-sm" id="pay_table" style="width: 100%; font-size: small">
+                                                <!-- Table Content for the first tab -->
+                                                <thead>
+                                                    <tr>
+                                                        <th style="display: none">ID</th>
+                                                        <th>Reference Number</th>
+                                                        <th>Customer Name</th>
+                                                        <th>Product</th>
+                                                        <th>Finance Amount</th>
+                                                        <th>Branch</th>
+                                                        <th>ENT Date</th>
+                                                        <th>Status</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="second" role="tabpanel" aria-labelledby="second-tab">
+                                        <hr>
+                                        <div id="table_card_second">
+                                            <table class="table table-bordered table-sm" id="payUn_table" style="width: 100%; font-size: small">
+                                                <!-- Table Content for the second tab -->
+                                                <thead>
+                                                    <tr>
+                                                        <th style="display: none">ID</th>
+                                                        <th>Reference Number</th>
+                                                        <th>Customer Name</th>
+                                                        <th>Product</th>
+                                                        <th>Finance Amount</th>
+                                                        <th>Branch</th>
+                                                        <th>ENT Date</th>
+                                                        <th>Status</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </section>
+
+
+
             <section class="tab-details"style="padding: 0rem 1rem;"> 
                 <div class="row">
                     <div class="col-sm-12">
@@ -439,20 +468,17 @@
                                 <h5 id="main_name_tag">File Movement Register - Completed</h5>
                                 <hr>
                                 <div id="table_card">
-                                    <table class="table table-bordered table-sm" id="main_table" style="width: 100%; font-size: small">
+                                    <table class="table table-bordered table-sm" id="complete_table" style="width: 100%; font-size: small">
                                         <thead>
                                             <tr>
+                                                <th style="display: none">ID</th>
                                                 <th>Reference Number</th>
                                                 <th>Customer Name</th>
                                                 <th>Product</th>
                                                 <th>Finance Amount</th>
-                                                <th style="display: none">ID</th>
                                                 <th>Branch</th>
-                                                <th>ENT User</th>
                                                 <th>ENT Date</th>
-                                                <th>MOD User</th>
-                                                <th>MOD Date</th>
-
+                                                <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -473,20 +499,17 @@
                                 <h5 id="main_name_tag">File Movement Register - Rejected</h5>
                                 <hr>
                                 <div id="table_card">
-                                    <table class="table table-bordered table-sm" id="main_table" style="width: 100%; font-size: small">
+                                    <table class="table table-bordered table-sm" id="reject_table" style="width: 100%; font-size: small">
                                         <thead>
                                             <tr>
+                                                <th style="display: none">ID</th>
                                                 <th>Reference Number</th>
                                                 <th>Customer Name</th>
                                                 <th>Product</th>
                                                 <th>Finance Amount</th>
-                                                <th style="display: none">ID</th>
                                                 <th>Branch</th>
-                                                <th>ENT User</th>
                                                 <th>ENT Date</th>
-                                                <th>MOD User</th>
-                                                <th>MOD Date</th>
-
+                                                <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -755,6 +778,158 @@
                 </div>
             </div>
         </div>
+
+        <!--Undertaking Approval Pending-->
+        <div class="" id="formSectionApprovalPending" style="display: none;padding-top: 1rem;">
+            <div class="card" style="width: 80%;padding: 1em;">
+                <div class="card-block p-b-0">
+                    <div class="card-header">
+                        <ul class="list-unstyled card-option">
+                            <li><i class="feather icon-x cls-card"></i></li>
+                        </ul>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="ref_number">Agreement Number / Vehicle Number<span class="text-danger">*</span></label>
+                                <input id="ref_numberu" type="text" name="ref_number" class="form-control" required autocomplete="off" disabled="">
+                            </div>  
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="customer_name">Customer's Name<span class="text-danger">*</span></label>
+                                <input id="customer_nameu" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="customer_name">Product<span class="text-danger">*</span></label>
+                                <input id="productu" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
+                            </div>  
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="amount">Amount<span class="text-danger">*</span></label>
+                                <input id="amountu" type="number" name="amount" class="form-control" required autocomplete="off" disabled="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-12">
+
+                        <div class="ttt" style="display: flex;flex-direction: row;">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-bordered m-b-0" id="tbladdAttu" >
+                                    <thead>
+                                        <tr>
+                                            <th>Pending Files </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Your table body content goes here -->
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="row justify-content-end" style="padding: 2em;display: none;">
+                        <div class="col-lg-6 col-md-12">
+                            <div class="text">
+                                <button id="addBtnund" class="btn btn-sm waves-effect waves-light btn-danger">
+                                    <i class="icon feather icon-plus"></i>Add File
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="padding-bottom: 2rem">
+                        <label for="status" class="col-sm-4 col-form-label allFontByCustomerEdit">Choose Status </label>
+                        <div class="col-sm-6">
+                            <select class="form-control-sm pull-right" id="statusund" style="width: 20rem;margin-right: 15rem;">
+                                <option value="" disabled selected>Select Status</option>
+                                <option value="approved">Approve</option>
+                                <option value="returned">Return to File Pending Clearance</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" id="return_section" style="display: none;">
+                        <label for="return">Return Comment<span class="text-danger">*</span></label>
+                        <textarea id="return_textarea" name="return" class="form-control" required></textarea>
+                    </div>
+
+                    <div class="card-footer d-flex justify-content-end" style="background-color: white;">
+                        <button id="saveBtnund" class="btn btn-sm waves-effect waves-light btn-primary" style="margin-right: 10px"><i class="icon feather icon-save"></i>Save</button>
+                        <button id="closeBtnund" class="btn btn-sm btn-danger"><i class="icon feather icon-x-circle"></i>Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--Payment Voucher Hand Over To Finance-->
+        <div class="" id="formSectionPaymentVoucher" style="display: none;padding-top: 1rem;">
+            <div class="card" style="width: 80%;padding: 1em;">
+                <div class="card-block p-b-0">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="ref_number">Agreement Number / Vehicle Number<span class="text-danger">*</span></label>
+                                <input id="ref_numberv" type="text" name="ref_number" class="form-control" required autocomplete="off" disabled="">
+                            </div>  
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="customer_name">Customer's Name<span class="text-danger">*</span></label>
+                                <input id="customer_namev" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="customer_name">Product<span class="text-danger">*</span></label>
+                                <input id="productv" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
+                            </div>  
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="amount">Amount<span class="text-danger">*</span></label>
+                                <input id="amountv" type="number" name="amount" class="form-control" required autocomplete="off" disabled="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="approverRow" style="display: none;">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="approver">Approved By<span class="text-danger">*</span></label>
+                                <input id="approvername" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
+                            </div>  
+                        </div>
+                        <div class="col">
+                            <!-- Additional column content if needed -->
+                        </div>
+                    </div>
+                    <div class="form-group" style="padding-bottom: 2rem">
+                        <label for="status" class="col-sm-4 col-form-label allFontByCustomerEdit">Choose Status </label>
+                        <div class="col-sm-6">
+                            <select class="form-control-sm pull-right" id="statusvoucher" style="width: 20rem;margin-right: 15rem;">
+                                <option value="" disabled selected>Select Status</option>
+                                <option value="completed">Completed</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="card-footer d-flex justify-content-end" style="background-color: white;">
+                        <button id="saveBtnpv" class="btn btn-sm waves-effect waves-light btn-primary" style="margin-right: 10px"><i class="icon feather icon-save"></i>Save</button>
+                        <button id="closeBtnpv" class="btn btn-sm btn-danger"><i class="icon feather icon-x-circle"></i>Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <%@include file="jspf/scripts.jspf" %>
         <script type="text/javascript" src="files/js/slimselect.js"></script>
         <script type="text/javascript" src="files/js/datatables.min.js"></script>
@@ -822,6 +997,8 @@
             const closeBtnin = document.getElementById('closeBtnin');
             const closeBtnfile = document.getElementById('closeBtnfile');
             const closeBtnclr = document.getElementById('closeBtnclr');
+            const closeBtnund = document.getElementById('closeBtnund');
+            const closeBtnpv = document.getElementById('closeBtnpv');
 
             closeBtn.addEventListener('click', function () {
                 formSection.style.display = 'none';
@@ -839,6 +1016,31 @@
                 formSectionFileClearance.style.display = 'none';
                 tableSection.style.display = 'block';
             });
+            closeBtnund.addEventListener('click', function () {
+                formSectionApprovalPending.style.display = 'none';
+                tableSection.style.display = 'block';
+            });
+            closeBtnpv.addEventListener('click', function () {
+                formSectionPaymentVoucher.style.display = 'none';
+                tableSection.style.display = 'block';
+            });
+
+
+
+            $(document).ready(function () {
+                // Show/hide tables based on active tab
+                $('#myTab a').on('shown.bs.tab', function (e) {
+                    var target = $(e.target).attr("href"); // activated tab
+                    if (target === "#first") {
+                        $('#table_card_first').show();
+                        $('#table_card_second').hide();
+                    } else if (target === "#second") {
+                        $('#table_card_first').hide();
+                        $('#table_card_second').show();
+                    }
+                });
+            });
+
         </script>
 
 
@@ -1273,6 +1475,18 @@
                 var tableBody = document.querySelector('#tbladdAtt tbody');
                 tableBody.innerHTML = '';
             }
+            function clearFormsf() {
+
+                // Clear table rows
+                var tableBody = document.querySelector('#tbladdAtts tbody');
+                tableBody.innerHTML = '';
+            }
+            function clearFormsu() {
+
+                // Clear table rows
+                var tableBody = document.querySelector('#tbladdAttu tbody');
+                tableBody.innerHTML = '';
+            }
 
 
 
@@ -1339,6 +1553,7 @@
                         .then(resp => resp.json())
                         .then((resp) => {
                             let content = resp.data.content;
+
                             $('#ref_numberc').val(content.ref_number);
                             $('#customer_namec').val(content.customer_name);
                             $('#amountc').val(content.amount);
@@ -1455,7 +1670,7 @@
                             throw new Error(response.statusText);
                         } else {
                             Swal.fire('Successful!', 'Pending File details updated successfully', 'success');
-                            clearForms();
+                            clearFormsf();
                             $('#formSectionFileClearance').hide();
                             $('#tableSection').fadeIn();
                             dtable.ajax.reload();
@@ -1544,7 +1759,469 @@
 
 
 
+//UnderTaking Approval Pending
+
+            $.fn.dataTable.ext.errMode = 'none';
+            var dtable = $('#approval_table').DataTable({
+                "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
+                "pageLength": 5,
+                "ordering": true,
+                "autoWidth": false,
+                "processing": true,
+                "serverSide": true,
+                "order": [[0, "desc"]],
+                "searchHighlight": true,
+                "searchDelay": 350,
+                "ajax": {
+                    "url": "fmr/fmrtable-approve",
+                    "contentType": "application/json",
+                    "type": "POST",
+                    "data": function (d) {
+                        return JSON.stringify(d);
+                    },
+                    error: function (xhr, error, code) {
+                        console.log(xhr);
+                        console.log(code);
+                    }
+                },
+                "columns": [
+                    {"data": "id", className: "text-right", "visible": false},
+                    {"data": "ref_number"},
+                    {"data": "customer_name"},
+                    {"data": "product"},
+                    {"data": "amount"},
+                    {"data": "branch"},
+                    {"data": "ent_on"},
+
+                    {"data": "status"}
+                ], "language": {
+                    'loadingRecords': '&nbsp;',
+                    'processing': '<div class="loader2"></div>'
+                },
+                "createdRow": function (row, data) {
+                    let action_td = document.createElement('td');
+                    $(action_td).addClass('text-center');
+
+                    $(action_td).append('<a href="javascript:void(0)" id="update-undertaking" class="editrecunder"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
+
+                    $(row).append(action_td);
+                    $(row).data('id', data['id']);
+                }
+
+            });
+
+            $(document).on('click', '.editrecunder', function () {
+                loadDiv($('#tableSection'));
+                let id = $(this).parents('tr').data('id');
+
+                // Fetch team and attachment details
+                fetch('fmr/clearance-details/' + id)
+                        .then(resp => resp.json())
+                        .then((resp) => {
+                            let content = resp.data.content;
+                            $('#ref_numberu').val(content.ref_number);
+                            $('#customer_nameu').val(content.customer_name);
+                            $('#amountu').val(content.amount);
+                            $('#productu').val(content.product_txt);
+                            let attachments = resp.data.videos;
+
+                            // Clear existing rows in the attachment table
+                            $('#tbladdAttu tbody').empty();
+
+                            // Populate the attachment table with fetched data
+                            attachments.forEach((attachment) => {
+                                // Get the table body
+                                var tableBody = document.querySelector('#tbladdAttu tbody');
+
+                                // Create a new row
+                                var newRow = tableBody.insertRow();
+
+                                // Create cells in the new row
+                                var fileNameCell = newRow.insertCell(0);
+
+
+                                // Set the text content of the cells with the fetched values
+                                fileNameCell.textContent = attachment.name;
+
+
+                            });
+
+                            // Show the form section
+                            $('#saveBtnund').data('mode', 'update-undertaking');
+                            $('#saveBtnund').data('id', id);
+                            $('#saveBtnund').html('<i class="icon feather icon-save"></i>Update'); // Change button text to 'Update'
+                            $('#formSectionApprovalPending').fadeIn();
+                            $('#tableSection').hide();
+                            finishLoadDiv($('#tableSection'));
+
+                        });
+            });
+
+
+            function handleAttachmentDeletionu() {
+                let deleteIds = [];
+
+                $('#tbladdAttu').on('click', '.btn-danger', function () {
+                    let deleteRowId = $(this).closest('tr').attr('id');
+                    deleteIds.push(deleteRowId);
+                    $(this).closest('tr').remove();
+                });
+
+                return deleteIds;
+            }
+
+
+            document.getElementById('saveBtnund').addEventListener('click', function () {
+                let mode = $('#saveBtnund').data('mode');
+                if (mode === 'update-undertaking') {
+                    let id = $('#saveBtnund').data('id');//
+
+                    let formData = {};
+                    formData.id = id;
+
+                    // Get the selected value of statusund
+                    let statusund = document.getElementById('statusund').value;
+
+                    // Add statusclr to formData
+                    formData.statusund = statusund;
+
+                    // If statusclr is 'approve', add the selected approver to formData
+                    if (statusund === 'returned') {
+                        let returncomment = document.getElementById('return_textarea').value;
+                        formData.returncomment = returncomment;
+                    }
+
+                    fetch('fmr/update-undertakingap', {
+                        method: 'POST',
+                        body: new URLSearchParams(formData)
+                    }).then(response => {
+                        if (!response.ok) {
+                            throw new Error(response.statusText);
+                        } else {
+                            Swal.fire('Successful!', 'Undertaking Approval details updated successfully', 'success');
+                            clearFormsu();
+                            $('#formSectionApprovalPending').hide();
+                            $('#tableSection').fadeIn();
+                            dtable.ajax.reload();
+                        }
+                        return response.json();
+                    }).catch(error => {
+                        console.error('Error updating Undertaking Approval details:', error);
+                        Swal.fire('Error!', 'Failed to update Undertaking Approval details', 'error');
+                    });
+                }
+            });
+
+
+            document.addEventListener("DOMContentLoaded", function () {
+                var approveStatusSelect = document.getElementById("statusund");
+                var returncom = document.getElementById("return_section");
+
+                // Add event listener to the select element
+                approveStatusSelect.addEventListener("change", function () {
+                    // Check if the selected value is "approve"
+                    if (this.value === "returned") {
+                        // Show the comment section
+                        returncom.style.display = "block";
+                    } else {
+                        // Hide the comment section
+                        returncom.style.display = "none";
+                    }
+                });
+            });
+
+
+
+
+
+
+
+
+
+
+
 //            Payment Voucher Hand Over To finance
+            $.fn.dataTable.ext.errMode = 'none';
+            var dtable = $('#pay_table').DataTable({
+                "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
+                "pageLength": 5,
+                "ordering": true,
+                "autoWidth": false,
+                "processing": true,
+                "serverSide": true,
+                "order": [[0, "desc"]],
+                "searchHighlight": true,
+                "searchDelay": 350,
+                "ajax": {
+                    "url": "fmr/fmrtable-payment",
+                    "contentType": "application/json",
+                    "type": "POST",
+                    "data": function (d) {
+                        return JSON.stringify(d);
+                    },
+                    error: function (xhr, error, code) {
+                        console.log(xhr);
+                        console.log(code);
+                    }
+                },
+                "columns": [
+                    {"data": "id", className: "text-right", "visible": false},
+                    {"data": "ref_number"},
+                    {"data": "customer_name"},
+                    {"data": "product"},
+                    {"data": "amount"},
+                    {"data": "branch"},
+                    {"data": "ent_on"},
+
+                    {"data": "status"}
+                ], "language": {
+                    'loadingRecords': '&nbsp;',
+                    'processing': '<div class="loader2"></div>'
+                },
+                "createdRow": function (row, data) {
+                    let action_td = document.createElement('td');
+                    $(action_td).addClass('text-center');
+
+                    $(action_td).append('<a href="javascript:void(0)" id="update-paymentvoucher" class="editrecpayvou"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
+
+                    $(row).append(action_td);
+                    $(row).data('id', data['id']);
+                }
+
+            });
+//            Payment Voucher Hand Over To finance(Undertaking Approved)
+            $.fn.dataTable.ext.errMode = 'none';
+            var dtable = $('#payUn_table').DataTable({
+                "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
+                "pageLength": 5,
+                "ordering": true,
+                "autoWidth": false,
+                "processing": true,
+                "serverSide": true,
+                "order": [[0, "desc"]],
+                "searchHighlight": true,
+                "searchDelay": 350,
+                "ajax": {
+                    "url": "fmr/fmrtable-paymentua",
+                    "contentType": "application/json",
+                    "type": "POST",
+                    "data": function (d) {
+                        return JSON.stringify(d);
+                    },
+                    error: function (xhr, error, code) {
+                        console.log(xhr);
+                        console.log(code);
+                    }
+                },
+                "columns": [
+                    {"data": "id", className: "text-right", "visible": false},
+                    {"data": "ref_number"},
+                    {"data": "customer_name"},
+                    {"data": "product"},
+                    {"data": "amount"},
+                    {"data": "branch"},
+                    {"data": "ent_on"},
+
+                    {"data": "status"}
+                ], "language": {
+                    'loadingRecords': '&nbsp;',
+                    'processing': '<div class="loader2"></div>'
+                },
+                "createdRow": function (row, data) {
+                    let action_td = document.createElement('td');
+                    $(action_td).addClass('text-center');
+
+                    $(action_td).append('<a href="javascript:void(0)" id="update-paymentvoucher" class="editrecpayvou"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
+
+                    $(row).append(action_td);
+                    $(row).data('id', data['id']);
+                }
+
+            });
+            $(document).on('click', '.editrecpayvou', function () {
+                loadDiv($('#tableSection'));
+
+//                if ($(this).parents('tr').data('status') === 'A') {
+//
+//                } else if (expr) {
+//
+//                }
+
+                let id = $(this).parents('tr').data('id');
+                fetch('fmr/paymentv-details/' + id)
+                        .then(resp => resp.json())
+                        .then((resp) => {
+                            let data = resp.data;
+                            let d1 = data.d1;
+                            let d2 = data.d2;
+                            let obj = data.obj;
+
+
+                            $('#ref_numberv').val(obj.ref_number);
+                            $('#customer_namev').val(obj.customer_name);
+                            $('#amountv').val(obj.amount);
+                            $('#productv').val(d1.product_txt);
+                            $('#saveBtnpv').data('mode', 'update-paymentvoucher');
+                            $('#saveBtnpv').data('id', id);
+                            $('#saveBtnpv').html('<i class="icon feather icon-save"></i>Update'); // Change button text to 'Update'
+                            $('#formSectionPaymentVoucher').fadeIn();
+                            $('#tableSection').hide();
+                            finishLoadDiv($('#tableSection'));
+
+                            // Check if datas object exists and has the 'approvername' property
+                            if (d2 && d2.approvername) {
+                                // Show the hidden row
+                                $('#approverRow').show();
+                                // Assign the approvername to the input field
+                                $('#approvername').val(d2.approvername);
+                            }
+                        })
+                        .catch(error => {
+                            // Handle fetch error
+                            console.error('Error fetching payment details:', error);
+                        });
+            });
+
+
+
+            document.getElementById('saveBtnpv').addEventListener('click', function () {
+                let mode = $('#saveBtnpv').data('mode');
+                if (mode === 'update-paymentvoucher') {
+                    let id = $('#saveBtnpv').data('id');//
+
+                    let formData = {};
+                    formData.id = id;
+
+                    // Get the selected value of statusund
+                    let statusvoucher = document.getElementById('statusvoucher').value;
+
+                    // Add statusclr to formData
+                    formData.statusvoucher = statusvoucher;
+
+
+                    fetch('fmr/update-payvoucher', {
+                        method: 'POST',
+                        body: new URLSearchParams(formData)
+                    }).then(response => {
+                        if (!response.ok) {
+                            throw new Error(response.statusText);
+                        } else {
+                            Swal.fire('Successful!', 'Payment Voucher Hand Over details updated successfully', 'success');
+                            clearFormsu();
+                            $('#formSectionPaymentVoucher').hide();
+                            $('#tableSection').fadeIn();
+                            dtable.ajax.reload();
+                        }
+                        return response.json();
+                    }).catch(error => {
+                        console.error('Error updating Payment Voucher Hand Over details:', error);
+                        Swal.fire('Error!', 'Failed to update Payment Voucher Hand Over details', 'error');
+                    });
+                }
+            });
+
+
+//            Completed
+            $.fn.dataTable.ext.errMode = 'none';
+            var dtable = $('#complete_table').DataTable({
+                "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
+                "pageLength": 5,
+                "ordering": true,
+                "autoWidth": false,
+                "processing": true,
+                "serverSide": true,
+                "order": [[0, "desc"]],
+                "searchHighlight": true,
+                "searchDelay": 350,
+                "ajax": {
+                    "url": "fmr/fmrtable-completed",
+                    "contentType": "application/json",
+                    "type": "POST",
+                    "data": function (d) {
+                        return JSON.stringify(d);
+                    },
+                    error: function (xhr, error, code) {
+                        console.log(xhr);
+                        console.log(code);
+                    }
+                },
+                "columns": [
+                    {"data": "id", className: "text-right", "visible": false},
+                    {"data": "ref_number"},
+                    {"data": "customer_name"},
+                    {"data": "product"},
+                    {"data": "amount"},
+                    {"data": "branch"},
+                    {"data": "ent_on"},
+
+                    {"data": "status"}
+                ], "language": {
+                    'loadingRecords': '&nbsp;',
+                    'processing': '<div class="loader2"></div>'
+                },
+                "createdRow": function (row, data) {
+                    let action_td = document.createElement('td');
+                    $(action_td).addClass('text-center');
+
+                    $(action_td).append('<a href="javascript:void(0)" id="update-paymentvoucher" class="editrecpayvou"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
+                    $(row).append(action_td);
+                    $(row).data('id', data['id']);
+                    $(row).data('status', data['status']);
+                }
+
+            });
+
+
+            //            Rejected
+            $.fn.dataTable.ext.errMode = 'none';
+            var dtable = $('#reject_table').DataTable({
+                "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
+                "pageLength": 5,
+                "ordering": true,
+                "autoWidth": false,
+                "processing": true,
+                "serverSide": true,
+                "order": [[0, "desc"]],
+                "searchHighlight": true,
+                "searchDelay": 350,
+                "ajax": {
+                    "url": "fmr/fmrtable-reject",
+                    "contentType": "application/json",
+                    "type": "POST",
+                    "data": function (d) {
+                        return JSON.stringify(d);
+                    },
+                    error: function (xhr, error, code) {
+                        console.log(xhr);
+                        console.log(code);
+                    }
+                },
+                "columns": [
+                    {"data": "id", className: "text-right", "visible": false},
+                    {"data": "ref_number"},
+                    {"data": "customer_name"},
+                    {"data": "product"},
+                    {"data": "amount"},
+                    {"data": "branch"},
+                    {"data": "ent_on"},
+
+                    {"data": "status"}
+                ], "language": {
+                    'loadingRecords': '&nbsp;',
+                    'processing': '<div class="loader2"></div>'
+                },
+                "createdRow": function (row, data) {
+                    let action_td = document.createElement('td');
+                    $(action_td).addClass('text-center');
+
+                    $(action_td).append('<a href="javascript:void(0)" id="update-paymentvoucher" class="editrecpayvou"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
+
+                    $(row).append(action_td);
+                    $(row).data('id', data['id']);
+                }
+
+            });
+
         </script>
     </body>
 </html>
