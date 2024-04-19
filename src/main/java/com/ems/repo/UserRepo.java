@@ -10,6 +10,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import com.ems.model.Users;
+import java.util.Optional;
 
 /**
  *
@@ -21,4 +22,8 @@ public interface UserRepo extends CrudRepository<Users, Integer> {
     @Query("SELECT `id` AS `value`, `name` AS `text` FROM `users` WHERE `user_type` = '2'")
     Iterable<SlimSelectDTO> getApprover(@Param("search") String search);
 
+    @Query("SELECT `id` AS `value`, `type` AS `text` FROM `user_type` WHERE TRUE")
+    Iterable<SlimSelectDTO> getUsertype(@Param("search") String search);
+
+    Optional<Users> findByUsername(String username);
 }

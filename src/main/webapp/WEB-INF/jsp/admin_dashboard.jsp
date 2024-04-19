@@ -111,7 +111,7 @@
     </head>
     <body>
         <%@include file="jspf/navbar.jspf" %>
-
+        operation
         <div class="main" id="tableSection">
 
             <section class="navi-card" style="padding: 0rem 2rem;">
@@ -219,19 +219,7 @@
                         </div>
                     </div>
                     <br>
-                    <div class="text-right" style="margin-top: 1rem;">
-                        <button id="addFmrBtn" class="btn btn-sm waves-effect waves-light btn-danger" style="width: 10rem;">
-                            <div class="row" style="margin-top: 2px;">
-                                <div class="col-3">
-                                    <i class="icon feather icon-plus" style="font-size: 1.5rem;"></i>
-                                </div> 
-                                <div class="col-9">
-                                    <h5>Add FMR</h5>  
-                                </div>   
-                            </div>
 
-                        </button>
-                    </div>
 
 
                 </div>
@@ -257,7 +245,7 @@
                                                 <th>Branch</th>
                                                 <th>ENT Date</th>
                                                 <th>Status</th>
-                                                <th>Action</th>
+                                                <!--<th>Action</th>-->
                                             </tr>
                                         </thead>
                                         <tbody></tbody>
@@ -1113,6 +1101,10 @@
                     }
                 });
             }
+        </script>
+
+
+        <script>
             $('#saveBtn').click(function () {
 
                 return fetch((($('#saveBtn').data('mode') === 'save') ? 'fmr/save' : 'fmr/update'), {
@@ -1138,9 +1130,13 @@
                     return response.json();
                 });
             });
+        </script>
 
 
 
+
+
+        <script>
             $('#saveBtnin').click(function () {
                 // Get the value of the facility status select element
                 var statustype = document.getElementById('statustype').value;
@@ -1219,15 +1215,15 @@
                     'loadingRecords': '&nbsp;',
                     'processing': '<div class="loader2"></div>'
                 },
-                "createdRow": function (row, data) {
-                    let action_td = document.createElement('td');
-                    $(action_td).addClass('text-center');
-
-                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
-
-                    $(row).append(action_td);
-                    $(row).data('id', data['id']);
-                }
+//                "createdRow": function (row, data) {
+//                    let action_td = document.createElement('td');
+//                    $(action_td).addClass('text-center');
+//
+//                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
+//
+//                    $(row).append(action_td);
+//                    $(row).data('id', data['id']);
+//                }
 
             });
 
@@ -1253,10 +1249,10 @@
             });
 
 
+        </script>
 
-
-
-            // Acknowledgment Pending
+        <!--Acknowledgement Pending-->
+        <script>
 
             $.fn.dataTable.ext.errMode = 'none';
             var dtable = $('#ackn_table').DataTable({
@@ -1308,7 +1304,10 @@
             });
 
 
+        </script>
 
+        <!--File Pending--> 
+        <script>
 
 
 
@@ -1487,11 +1486,11 @@
                 var tableBody = document.querySelector('#tbladdAttu tbody');
                 tableBody.innerHTML = '';
             }
+        </script>
 
+        <!--File Pending Clearance-->
+        <script>
 
-
-
-//File Pending Clearance
             $.fn.dataTable.ext.errMode = 'none';
             var dtable = $('#clear_table').DataTable({
                 "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
@@ -1759,8 +1758,11 @@
 
 
 
-//UnderTaking Approval Pending
 
+        </script>
+
+        <!--Approval Pending-->
+        <script>
             $.fn.dataTable.ext.errMode = 'none';
             var dtable = $('#approval_table').DataTable({
                 "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
@@ -1937,10 +1939,11 @@
 
 
 
+        </script>
 
+        <!--Payment Voucher Hand Over To finance-->
+        <script>
 
-
-//            Payment Voucher Hand Over To finance
             $.fn.dataTable.ext.errMode = 'none';
             var dtable = $('#pay_table').DataTable({
                 "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
@@ -1989,7 +1992,14 @@
                 }
 
             });
-//            Payment Voucher Hand Over To finance(Undertaking Approved)
+
+
+
+        </script>
+
+        <!--Payment Voucher Hand Over To finance(Undertaking Approved)-->
+        <script>
+
             $.fn.dataTable.ext.errMode = 'none';
             var dtable = $('#payUn_table').DataTable({
                 "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
@@ -2040,12 +2050,6 @@
             });
             $(document).on('click', '.editrecpayvou', function () {
                 loadDiv($('#tableSection'));
-
-//                if ($(this).parents('tr').data('status') === 'A') {
-//
-//                } else if (expr) {
-//
-//                }
 
                 let id = $(this).parents('tr').data('id');
                 fetch('fmr/paymentv-details/' + id)
@@ -2120,8 +2124,11 @@
                 }
             });
 
+        </script>
 
-//            Completed
+        <!--Completed-->
+        <script>
+
             $.fn.dataTable.ext.errMode = 'none';
             var dtable = $('#complete_table').DataTable({
                 "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
@@ -2170,9 +2177,12 @@
                 }
 
             });
+        </script>
+
+        <!-- Rejected-->
+        <script>
 
 
-            //            Rejected
             $.fn.dataTable.ext.errMode = 'none';
             var dtable = $('#reject_table').DataTable({
                 "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],

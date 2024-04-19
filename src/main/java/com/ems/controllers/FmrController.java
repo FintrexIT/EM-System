@@ -11,6 +11,7 @@ import com.ems.dto.FmrDTO;
 import com.ems.model.Fmr;
 import com.ems.service.FmrService;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -90,6 +91,57 @@ public class FmrController {
     @PostMapping("/facility-status")
     public Iterable<SlimSelectDTO> getStatus(@RequestParam String search) throws Exception {
         return service.getStatus(search);
+    }
+
+//    branch
+    @PostMapping("/fmrtable-all-branch")
+    public DataTablesResponse<FmrDTO> getFmrsBranch(@RequestBody DataTableRequest param, HttpSession session) throws Exception {
+        return service.getFmrsBranch(param, (Integer) session.getAttribute("uid"));
+    }
+
+    @PostMapping("/fmrtable-pending-branch")
+    public DataTablesResponse<FmrDTO> getFmrPendingBranch(@RequestBody DataTableRequest param, HttpSession session) throws Exception {
+        return service.getFmrPendingBranch(param, (Integer) session.getAttribute("uid"));
+    }
+
+    @PostMapping("/fmrtable-file-branch")
+    public DataTablesResponse<FmrDTO> getFmrfileBranch(@RequestBody DataTableRequest param, HttpSession session) throws Exception {
+        return service.getFmrfileBranch(param, (Integer) session.getAttribute("uid"));
+    }
+
+    @PostMapping("/fmrtable-clearance-branch")
+    public DataTablesResponse<FmrDTO> getFmrclearanceBranch(@RequestBody DataTableRequest param, HttpSession session) throws Exception {
+        return service.getFmrclearanceBranch(param, (Integer) session.getAttribute("uid"));
+    }
+
+    @PostMapping("/fmrtable-approve-branch")
+    public DataTablesResponse<FmrDTO> getFmrapprovalBranch(@RequestBody DataTableRequest param, HttpSession session) throws Exception {
+        return service.getFmrapprovalBranch(param, (Integer) session.getAttribute("uid"));
+    }
+
+    @PostMapping("/fmrtable-payment-branch")
+    public DataTablesResponse<FmrDTO> getFmrpaymentBranch(@RequestBody DataTableRequest param, HttpSession session) throws Exception {
+        return service.getFmrpaymentBranch(param, (Integer) session.getAttribute("uid"));
+    }
+
+    @PostMapping("/fmrtable-paymentua-branch")
+    public DataTablesResponse<FmrDTO> getFmrpaymentUABranch(@RequestBody DataTableRequest param, HttpSession session) throws Exception {
+        return service.getFmrpaymentUABranch(param, (Integer) session.getAttribute("uid"));
+    }
+
+    @PostMapping("/fmrtable-completed-branch")
+    public DataTablesResponse<FmrDTO> getFmrCompletedBranch(@RequestBody DataTableRequest param, HttpSession session) throws Exception {
+        return service.getFmrCompletedBranch(param, (Integer) session.getAttribute("uid"));
+    }
+
+    @PostMapping("/fmrtable-reject-branch")
+    public DataTablesResponse<FmrDTO> getFmrRejectBranch(@RequestBody DataTableRequest param, HttpSession session) throws Exception {
+        return service.getFmrRejectBranch(param, (Integer) session.getAttribute("uid"));
+    }
+
+    @PostMapping("/search-branch")
+    public Iterable<SlimSelectDTO> getBranches(@RequestParam String search) throws Exception {
+        return service.getBranches(search);
     }
 
     @PostMapping("/product")

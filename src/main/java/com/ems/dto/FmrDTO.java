@@ -25,7 +25,7 @@ public class FmrDTO {
     private String branch;
     private String pendings;
     private String comment;
-    private String approved_by;
+    private String approver;
     private String facility_status;
     private String status;
     public String ent_by;

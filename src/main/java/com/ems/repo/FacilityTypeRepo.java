@@ -26,4 +26,7 @@ public interface FacilityTypeRepo extends CrudRepository<FacilityType, Integer> 
     @Query("SELECT `id` AS `value`, `description` AS `text` FROM `loan`.`product`")
     Iterable<SlimSelectDTO> getProduct(@Param("search") String search);
 
+    @Query("SELECT `id` AS `value`, `name` AS `text` FROM `loan`.`branch`")
+    Iterable<SlimSelectDTO> getBranches(@Param("search") String search);
+
 }

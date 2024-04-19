@@ -110,8 +110,8 @@
         </style>
     </head>
     <body>
-        <%@include file="jspf/navbar.jspf" %>
-
+        <%@include file="jspf/navIT.jspf" %>
+        it
         <div class="main" id="tableSection">
 
             <section class="navi-card" style="padding: 0rem 2rem;">
@@ -257,7 +257,7 @@
                                                 <th>Branch</th>
                                                 <th>ENT Date</th>
                                                 <th>Status</th>
-                                                <th>Action</th>
+                                                <!--<th>Action</th>-->
                                             </tr>
                                         </thead>
                                         <tbody></tbody>
@@ -1219,15 +1219,15 @@
                     'loadingRecords': '&nbsp;',
                     'processing': '<div class="loader2"></div>'
                 },
-                "createdRow": function (row, data) {
-                    let action_td = document.createElement('td');
-                    $(action_td).addClass('text-center');
-
-                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
-
-                    $(row).append(action_td);
-                    $(row).data('id', data['id']);
-                }
+//                "createdRow": function (row, data) {
+//                    let action_td = document.createElement('td');
+//                    $(action_td).addClass('text-center');
+//
+//                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
+//
+//                    $(row).append(action_td);
+//                    $(row).data('id', data['id']);
+//                }
 
             });
 
