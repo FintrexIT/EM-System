@@ -48,46 +48,6 @@ public class FmrController {
         return service.getFmrs(param);
     }
 
-    @PostMapping("/fmrtable-pending")
-    public DataTablesResponse<FmrDTO> getFmrPending(@RequestBody DataTableRequest param) throws Exception {
-        return service.getFmrPending(param);
-    }
-
-    @PostMapping("/fmrtable-file")
-    public DataTablesResponse<FmrDTO> getFmrfile(@RequestBody DataTableRequest param) throws Exception {
-        return service.getFmrfile(param);
-    }
-
-    @PostMapping("/fmrtable-clearance")
-    public DataTablesResponse<FmrDTO> getFmrclearance(@RequestBody DataTableRequest param) throws Exception {
-        return service.getFmrclearance(param);
-    }
-
-    @PostMapping("/fmrtable-approve")
-    public DataTablesResponse<FmrDTO> getFmrapproval(@RequestBody DataTableRequest param) throws Exception {
-        return service.getFmrapproval(param);
-    }
-
-    @PostMapping("/fmrtable-payment")
-    public DataTablesResponse<FmrDTO> getFmrpayment(@RequestBody DataTableRequest param) throws Exception {
-        return service.getFmrpayment(param);
-    }
-
-    @PostMapping("/fmrtable-paymentua")
-    public DataTablesResponse<FmrDTO> getFmrpaymentUA(@RequestBody DataTableRequest param) throws Exception {
-        return service.getFmrpaymentUA(param);
-    }
-
-    @PostMapping("/fmrtable-completed")
-    public DataTablesResponse<FmrDTO> getFmrCompleted(@RequestBody DataTableRequest param) throws Exception {
-        return service.getFmrCompleted(param);
-    }
-
-    @PostMapping("/fmrtable-reject")
-    public DataTablesResponse<FmrDTO> getFmrReject(@RequestBody DataTableRequest param) throws Exception {
-        return service.getFmrReject(param);
-    }
-
     @PostMapping("/facility-status")
     public Iterable<SlimSelectDTO> getStatus(@RequestParam String search) throws Exception {
         return service.getStatus(search);
@@ -150,8 +110,8 @@ public class FmrController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<CommonResponse> saveFmr(@RequestParam String ref_number, @RequestParam String customer_name, @RequestParam String product, @RequestParam String amount, @RequestParam String facility_status) throws Exception {
-        service.saveFmr(ref_number, customer_name, product, amount, facility_status);
+    public ResponseEntity<CommonResponse> saveFmr(@RequestParam String ref_number, @RequestParam String customer_name, @RequestParam String product, @RequestParam String amount, @RequestParam String facility_status, HttpSession session) throws Exception {
+        service.saveFmr(ref_number, customer_name, product, amount, facility_status, session);
         CommonResponse response = new CommonResponse("Success!", 200);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

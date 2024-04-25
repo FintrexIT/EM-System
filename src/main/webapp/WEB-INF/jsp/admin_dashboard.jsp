@@ -111,7 +111,7 @@
     </head>
     <body>
         <%@include file="jspf/navbar.jspf" %>
-        operation
+
         <div class="main" id="tableSection">
 
             <section class="navi-card" style="padding: 0rem 2rem;">
@@ -918,6 +918,97 @@
                 </div>
             </div>
         </div>
+        <!--Completed-->
+        <div class="" id="formSectionCompleted" style="display: none;padding-top: 1rem;">
+            <div class="card" style="width: 80%;padding: 1em;">
+                <div class="card-block p-b-0">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="ref_number">Agreement Number / Vehicle Number<span class="text-danger">*</span></label>
+                                <input id="ref_numbercom" type="text" name="ref_number" class="form-control" required autocomplete="off" disabled="">
+                            </div>  
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="customer_name">Customer's Name<span class="text-danger">*</span></label>
+                                <input id="customer_namecom" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="customer_name">Product<span class="text-danger">*</span></label>
+                                <input id="productcom" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
+                            </div>  
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="amount">Amount<span class="text-danger">*</span></label>
+                                <input id="amountcom" type="number" name="amount" class="form-control" required autocomplete="off" disabled="">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="card-footer d-flex justify-content-end" style="background-color: white;">
+                        <!--<button id="saveBtncom" class="btn btn-sm waves-effect waves-light btn-primary" style="margin-right: 10px"><i class="icon feather icon-save"></i>Save</button>-->
+                        <button id="closeBtncom" class="btn btn-sm btn-danger"><i class="icon feather icon-x-circle"></i>Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Rejected-->
+        <div class="" id="formSectionRejected" style="display: none;padding-top: 1rem;">
+            <div class="card" style="width: 80%;padding: 1em;">
+                <div class="card-block p-b-0">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="ref_number">Agreement Number / Vehicle Number<span class="text-danger">*</span></label>
+                                <input id="ref_numberrej" type="text" name="ref_number" class="form-control" required autocomplete="off" disabled="">
+                            </div>  
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="customer_name">Customer's Name<span class="text-danger">*</span></label>
+                                <input id="customer_namerej" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="customer_name">Product<span class="text-danger">*</span></label>
+                                <input id="productrej" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
+                            </div>  
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="amount">Amount<span class="text-danger">*</span></label>
+                                <input id="amountrej" type="number" name="amount" class="form-control" required autocomplete="off" disabled="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="customer_name">Rejected Reason<span class="text-danger">*</span></label>
+                                <textarea id="resonrej" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled=""></textarea>
+                            </div>  
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-footer d-flex justify-content-end" style="background-color: white;">
+                        <!--<button id="saveBtncom" class="btn btn-sm waves-effect waves-light btn-primary" style="margin-right: 10px"><i class="icon feather icon-save"></i>Save</button>-->
+                        <button id="closeBtnrej" class="btn btn-sm btn-danger"><i class="icon feather icon-x-circle"></i>Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <%@include file="jspf/scripts.jspf" %>
         <script type="text/javascript" src="files/js/slimselect.js"></script>
         <script type="text/javascript" src="files/js/datatables.min.js"></script>
@@ -987,6 +1078,8 @@
             const closeBtnclr = document.getElementById('closeBtnclr');
             const closeBtnund = document.getElementById('closeBtnund');
             const closeBtnpv = document.getElementById('closeBtnpv');
+            const closeBtncom = document.getElementById('closeBtncom');
+            const closeBtnrej = document.getElementById('closeBtnrej');
 
             closeBtn.addEventListener('click', function () {
                 formSection.style.display = 'none';
@@ -1010,6 +1103,14 @@
             });
             closeBtnpv.addEventListener('click', function () {
                 formSectionPaymentVoucher.style.display = 'none';
+                tableSection.style.display = 'block';
+            });
+            closeBtncom.addEventListener('click', function () {
+                formSectionCompleted.style.display = 'none';
+                tableSection.style.display = 'block';
+            });
+            closeBtnrej.addEventListener('click', function () {
+                formSectionRejected.style.display = 'none';
                 tableSection.style.display = 'block';
             });
 
@@ -2170,12 +2271,45 @@
                     let action_td = document.createElement('td');
                     $(action_td).addClass('text-center');
 
-                    $(action_td).append('<a href="javascript:void(0)" id="update-paymentvoucher" class="editrecpayvou"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
+                    $(action_td).append('<a href="javascript:void(0)" id="update-completed" class="editreccompleted"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
                     $(row).append(action_td);
                     $(row).data('id', data['id']);
                     $(row).data('status', data['status']);
                 }
 
+            });
+
+
+
+            $(document).on('click', '.editreccompleted', function () {
+                loadDiv($('#tableSection'));
+
+                let id = $(this).parents('tr').data('id');
+                fetch('fmr/paymentv-details/' + id)
+                        .then(resp => resp.json())
+                        .then((resp) => {
+                            let data = resp.data;
+                            let d1 = data.d1;
+                            let obj = data.obj;
+
+
+                            $('#ref_numbercom').val(obj.ref_number);
+                            $('#customer_namecom').val(obj.customer_name);
+                            $('#amountcom').val(obj.amount);
+                            $('#productcom').val(d1.product_txt);
+                            $('#saveBtnpv').data('mode', 'update-completed');
+                            $('#saveBtnpv').data('id', id);
+                            $('#saveBtnpv').html('<i class="icon feather icon-save"></i>Update'); // Change button text to 'Update'
+                            $('#formSectionCompleted').fadeIn();
+                            $('#tableSection').hide();
+                            finishLoadDiv($('#tableSection'));
+
+
+                        })
+                        .catch(error => {
+                            // Handle fetch error
+                            console.error('Error fetching payment details:', error);
+                        });
             });
         </script>
 
@@ -2224,12 +2358,44 @@
                     let action_td = document.createElement('td');
                     $(action_td).addClass('text-center');
 
-                    $(action_td).append('<a href="javascript:void(0)" id="update-paymentvoucher" class="editrecpayvou"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
+                    $(action_td).append('<a href="javascript:void(0)" id="update-rejected" class="editrecrejected"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
 
                     $(row).append(action_td);
                     $(row).data('id', data['id']);
                 }
 
+            });
+
+            $(document).on('click', '.editrecrejected', function () {
+                loadDiv($('#tableSection'));
+
+                let id = $(this).parents('tr').data('id');
+                fetch('fmr/paymentv-details/' + id)
+                        .then(resp => resp.json())
+                        .then((resp) => {
+                            let data = resp.data;
+                            let d1 = data.d1;
+                            let obj = data.obj;
+
+
+                            $('#ref_numberrej').val(obj.ref_number);
+                            $('#customer_namerej').val(obj.customer_name);
+                            $('#amountrej').val(obj.amount);
+                            $('#productrej').val(d1.product_txt);
+                            $('#resonrej').val(obj.reason);
+                            $('#saveBtnpv').data('mode', 'update-completed');
+                            $('#saveBtnpv').data('id', id);
+                            $('#saveBtnpv').html('<i class="icon feather icon-save"></i>Update'); // Change button text to 'Update'
+                            $('#formSectionRejected').fadeIn();
+                            $('#tableSection').hide();
+                            finishLoadDiv($('#tableSection'));
+
+
+                        })
+                        .catch(error => {
+                            // Handle fetch error
+                            console.error('Error fetching payment details:', error);
+                        });
             });
 
         </script>

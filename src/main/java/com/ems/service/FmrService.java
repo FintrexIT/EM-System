@@ -18,6 +18,7 @@ import com.ems.repo.UserRepo;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.servlet.http.HttpSession;
 import java.io.File;
 import java.nio.file.Path;
 import java.util.HashMap;
@@ -49,47 +50,31 @@ public class FmrService {
     private FilePendingRepo fmrrepo;
 
     public DataTablesResponse<FmrDTO> getFmrs(DataTableRequest param) throws Exception {
-        return userDt.getData(FmrDTO.class, param, "SELECT x.`id`,x.`customer_name`,x.`status`,x.`ref_number`,(SELECT `description` FROM `loan`.`product`  WHERE `id` = x.`product`) AS product,(SELECT `name` FROM `loan`.`branch`  WHERE `id` = x.`branch`) AS branch ,x.`amount`,x.`pendings`,x.`comment`,x.`approver`,x.`facility_status`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`ent_by`) AS `ent_by`,`ent_on`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`mod_by`) AS `mod_by`,`mod_on` FROM `fmr` X WHERE TRUE");
+        String stage = param.getData();
 
-    }
-
-    public DataTablesResponse<FmrDTO> getFmrPending(DataTableRequest param) throws Exception {
-        return userDt.getData(FmrDTO.class, param, "SELECT x.`id`,x.`customer_name`,x.`status`,x.`ref_number`,(SELECT `description` FROM `loan`.`product`  WHERE `id` = x.`product`) AS product,(SELECT `name` FROM `loan`.`branch`  WHERE `id` = x.`branch`) AS branch ,x.`amount`,x.`pendings`,x.`comment`,x.`approver`,x.`facility_status`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`ent_by`) AS `ent_by`,`ent_on`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`mod_by`) AS `mod_by`,`mod_on` FROM `fmr` X WHERE `status`='Acknowledgment Pending'");
-
-    }
-
-    public DataTablesResponse<FmrDTO> getFmrfile(DataTableRequest param) throws Exception {
-        return userDt.getData(FmrDTO.class, param, "SELECT x.`id`,x.`customer_name`,x.`status`,x.`ref_number`,(SELECT `description` FROM `loan`.`product`  WHERE `id` = x.`product`) AS product,(SELECT `name` FROM `loan`.`branch`  WHERE `id` = x.`branch`) AS branch ,x.`amount`,x.`pendings`,x.`comment`,x.`approver`,x.`facility_status`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`ent_by`) AS `ent_by`,`ent_on`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`mod_by`) AS `mod_by`,`mod_on` FROM `fmr` X WHERE `status`='File Pending Details'");
-
-    }
-
-    public DataTablesResponse<FmrDTO> getFmrclearance(DataTableRequest param) throws Exception {
-        return userDt.getData(FmrDTO.class, param, "SELECT x.`id`,x.`customer_name`,x.`status`,x.`ref_number`,(SELECT `description` FROM `loan`.`product`  WHERE `id` = x.`product`) AS product,(SELECT `name` FROM `loan`.`branch`  WHERE `id` = x.`branch`) AS branch ,x.`amount`,x.`pendings`,x.`comment`,x.`approver`,x.`facility_status`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`ent_by`) AS `ent_by`,`ent_on`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`mod_by`) AS `mod_by`,`mod_on` FROM `fmr` X WHERE `status`='File Pending Clearance'");
-
-    }
-
-    public DataTablesResponse<FmrDTO> getFmrapproval(DataTableRequest param) throws Exception {
-        return userDt.getData(FmrDTO.class, param, "SELECT x.`id`,x.`customer_name`,x.`status`,x.`ref_number`,(SELECT `description` FROM `loan`.`product`  WHERE `id` = x.`product`) AS product,(SELECT `name` FROM `loan`.`branch`  WHERE `id` = x.`branch`) AS branch ,x.`amount`,x.`pendings`,x.`comment`,(SELECT `name` FROM `users` WHERE `id` = x.`approver`)AS approver,x.`facility_status`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`ent_by`) AS `ent_by`,`ent_on`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`mod_by`) AS `mod_by`,`mod_on` FROM `fmr` X WHERE `status`='Undertaking Approval Pending'");
-
-    }
-
-    public DataTablesResponse<FmrDTO> getFmrpayment(DataTableRequest param) throws Exception {
-        return userDt.getData(FmrDTO.class, param, "SELECT x.`id`,x.`customer_name`,x.`status`,x.`ref_number`,(SELECT `description` FROM `loan`.`product`  WHERE `id` = x.`product`) AS product,(SELECT `name` FROM `loan`.`branch`  WHERE `id` = x.`branch`) AS branch ,x.`amount`,x.`pendings`,x.`comment`,x.`approver`,x.`facility_status`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`ent_by`) AS `ent_by`,`ent_on`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`mod_by`) AS `mod_by`,`mod_on` FROM `fmr` X WHERE `status`='Payment Voucher Hand Over To Finance'");
-
-    }
-
-    public DataTablesResponse<FmrDTO> getFmrpaymentUA(DataTableRequest param) throws Exception {
-        return userDt.getData(FmrDTO.class, param, "SELECT x.`id`,x.`customer_name`,x.`status`,x.`ref_number`,(SELECT `description` FROM `loan`.`product`  WHERE `id` = x.`product`) AS product,(SELECT `name` FROM `loan`.`branch`  WHERE `id` = x.`branch`) AS branch ,x.`amount`,x.`pendings`,x.`comment`,x.`approver`,x.`facility_status`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`ent_by`) AS `ent_by`,`ent_on`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`mod_by`) AS `mod_by`,`mod_on` FROM `fmr` X WHERE `status`='Payment Voucher Hand Over To Finance(Undertaking Approval)'");
-
-    }
-
-    public DataTablesResponse<FmrDTO> getFmrCompleted(DataTableRequest param) throws Exception {
-        return userDt.getData(FmrDTO.class, param, "SELECT x.`id`,x.`customer_name`,x.`status`,x.`ref_number`,(SELECT `description` FROM `loan`.`product`  WHERE `id` = x.`product`) AS product,(SELECT `name` FROM `loan`.`branch`  WHERE `id` = x.`branch`) AS branch ,x.`amount`,x.`pendings`,x.`comment`,x.`approver`,x.`facility_status`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`ent_by`) AS `ent_by`,`ent_on`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`mod_by`) AS `mod_by`,`mod_on` FROM `fmr` X WHERE `status`='Completed'");
-
-    }
-
-    public DataTablesResponse<FmrDTO> getFmrReject(DataTableRequest param) throws Exception {
-        return userDt.getData(FmrDTO.class, param, "SELECT x.`id`,x.`customer_name`,x.`status`,x.`ref_number`,(SELECT `description` FROM `loan`.`product`  WHERE `id` = x.`product`) AS product,(SELECT `name` FROM `loan`.`branch`  WHERE `id` = x.`branch`) AS branch ,x.`amount`,x.`pendings`,x.`comment`,x.`approver`,x.`facility_status`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`ent_by`) AS `ent_by`,`ent_on`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`mod_by`) AS `mod_by`,`mod_on` FROM `fmr` X WHERE `status`='Rejected'");
+        String sql = "SELECT x.`id`,x.`customer_name`,x.`status`,x.`ref_number`,(SELECT `description` FROM `loan`.`product`  WHERE `id` = x.`product`) AS product,(SELECT `name` FROM `loan`.`branch`  WHERE `id` = x.`branch`) AS branch ,x.`amount`,x.`pendings`,x.`comment`,x.`approver`,x.`facility_status`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`ent_by`) AS `ent_by`,`ent_on`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`mod_by`) AS `mod_by`,`mod_on` FROM `fmr` X WHERE TRUE";
+        if (!stage.equals("all")) {
+            if (stage.equals("acknowledgment")) {
+                sql += " AND `status`='Acknowledgment Pending'";
+            } else if (stage.equals("file")) {
+                sql += " AND `status`='File Pending Details'";
+            } else if (stage.equals("acknowledged")) {
+                sql += " AND `status`='Acknowledged'";
+            } else if (stage.equals("clearance")) {
+                sql += " AND `status`='File Pending Clearance'";
+            } else if (stage.equals("approve")) {
+                sql += " AND `status`='Undertaking Approval Pending'";
+            } else if (stage.equals("payment")) {
+                sql += " AND `status`='Payment Voucher Hand Over To Finance'";
+            } else if (stage.equals("paymentunder")) {
+                sql += " AND `status`='Payment Voucher Hand Over To Finance(Undertaking Approval)'";
+            } else if (stage.equals("completed")) {
+                sql += " AND `status`='Completed'";
+            } else if (stage.equals("rejected")) {
+                sql += " AND `status`='Rejected'";
+            }
+        }
+        return userDt.getData(FmrDTO.class, param, sql);
 
     }
 
@@ -151,13 +136,15 @@ public class FmrService {
         return repor.getProduct("%" + search.trim() + "%");
     }
 
-    public Fmr saveFmr(String ref_number, String customer_name, String product, String amount, String facility_status) {
+    public Fmr saveFmr(String ref_number, String customer_name, String product, String amount, String facility_status, HttpSession session) {
         Fmr savefmr = new Fmr();
         savefmr.setRef_number(ref_number);
         savefmr.setCustomer_name(customer_name);
         savefmr.setProduct(product);
         savefmr.setAmount(amount);
         savefmr.setFacility_status(facility_status);
+        String branchFromSession = (String) session.getAttribute("branch");
+        savefmr.setBranch(branchFromSession);
         savefmr.setStatus("Acknowledgment Pending");
         savefmr = repo.save(savefmr);
 
@@ -193,9 +180,23 @@ public class FmrService {
         return updatefmr;
     }
 
-    public Fmr getFmrses(Integer id) throws Exception {
+    public Map<String, Object> getFmrses(Integer id) throws Exception {
         Fmr sys = repo.findById(id).get();
-        return sys;
+
+        Map<String, Object> product = jdbc.queryForMap("SELECT `description` as product_txt FROM `loan`.`product`  WHERE `id` = ?", sys.getProduct());
+        sys.setProductTxt((String) product.get("product_txt"));
+        System.out.println(product);
+
+        Map<String, Object> name = jdbc.queryForMap("SELECT `name` as entered FROM `users` WHERE `id` = ?", sys.getEnt_by());
+        sys.setEntUser((String) name.get("entered"));
+        System.out.println(name);
+
+        Map<String, Object> combinedData = new HashMap<>();
+        combinedData.put("d1", product);
+        combinedData.put("d2", name);
+        combinedData.put("obj", sys);
+
+        return combinedData;
     }
 
     @Autowired

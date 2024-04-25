@@ -19,7 +19,7 @@ import java.util.Optional;
 @Repository
 public interface UserRepo extends CrudRepository<Users, Integer> {
 
-    @Query("SELECT `id` AS `value`, `name` AS `text` FROM `users` WHERE `user_type` = '2'")
+    @Query("SELECT `id` AS `value`, `name` AS `text` FROM `users` WHERE `usertype` = '2'")
     Iterable<SlimSelectDTO> getApprover(@Param("search") String search);
 
     @Query("SELECT `id` AS `value`, `type` AS `text` FROM `user_type` WHERE TRUE")

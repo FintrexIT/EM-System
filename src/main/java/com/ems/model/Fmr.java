@@ -40,6 +40,8 @@ public class Fmr {
     private String productTxt;
     @Transient
     private String approverName;
+    @Transient
+    private String entUser;
     private String amount;
     private String branch;
     private Integer pendings;

@@ -111,7 +111,7 @@
     </head>
     <body>
         <%@include file="jspf/navbar.jspf" %>
-        branch
+
         <div class="main" id="tableSection">
 
             <section class="navi-card" style="padding: 0rem 2rem;">
