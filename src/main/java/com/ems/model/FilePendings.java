@@ -5,6 +5,7 @@
 package com.ems.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,6 +17,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.relational.core.mapping.Table;
 
 /**
@@ -34,6 +36,10 @@ public class FilePendings {
     private Integer id;
     private Integer pendings;
     private String name;
+    private String justification;
+    private LocalDate date;
+    @Transient
+    private String modby;
     @CreatedDate
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm:ss")
     private Date ent_on;

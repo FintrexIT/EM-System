@@ -14,6 +14,10 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         <%@include file="jspf/header.jspf" %>
         <style>
+            .placeholder {
+                background-color: white;
+                color: black;
+            }
 
             hr {
                 height: 2px; /* Set the height of the hr to 2 pixels */
@@ -120,11 +124,11 @@
                         <h4>File Movement Register</h4>
                     </div>
                 </div>
-                <div class="row" style="padding: 0rem 4rem;margin-top: 1rem;">  
+                <div class="row" style="padding: 0rem 2rem;margin-top: 1rem;">  
                     <div class="col">
-                        <div class="cards bg-c-info  text-white widget-visitor-card cardActive" id="allcrd" style="height: 100px;background: linear-gradient(to right, #007bff, #5ba9fd);">
+                        <div class="cards bg-c-info  text-white widget-visitor-card cardActive" id="allcrd" style="height: 110px;background: linear-gradient(to right, #007bff, #5ba9fd);">
                             <div class="card-block-small text-center">
-                                <h4 id="coldd">0</h4>
+                                <h4 id="all">0</h4>
                                 <h6>All</h6>
                                 <i class="feather ">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-align-center"><line x1="18" y1="10" x2="6" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="18" y1="18" x2="6" y2="18"></line></svg>
@@ -134,9 +138,9 @@
                     </div>
 
                     <div class="col" > 
-                        <div class="cards bg-c-yellow text-white widget-visitor-card" id="ackncrd" style="height: 100px; background: linear-gradient(to right,#f2c71b, #f5d862);">
+                        <div class="cards bg-c-yellow text-white widget-visitor-card" id="ackncrd" style="height: 110px; background: linear-gradient(to right,#f2c71b, #f5d862);">
                             <div class="card-block-small text-center" >
-                                <h4 id="warmm">0</h4>
+                                <h4 id="acknowledgment">0</h4>
                                 <h6>Acknowledgment Pending</h6>
                                 <i class="feather ">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
@@ -144,38 +148,39 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col" > 
+                        <div class="cards bg-c-yellow text-white widget-visitor-card" id="acknoedcrd" style="height: 110px; background: linear-gradient(to right,#f2c71b, #f5d862);">
+                            <div class="card-block-small text-center" >
+                                <h4 id="acknowledgment">0</h4>
+                                <h6>Acknowledged</h6>
+                                <i class="feather ">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                </i>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col" >
-                        <div class="cards bg-c-pink  text-white widget-visitor-card" id="pendcrd" style="height: 100px;background: linear-gradient(to right, #4eb9ed, #a7d8f0);">
+                        <div class="cards bg-c-pink  text-white widget-visitor-card" id="pendcrd" style="height: 110px;background: linear-gradient(to right, #4eb9ed, #a7d8f0);">
                             <div class="card-block-small text-center">
-                                <h4 id="hott">0</h4>
-                                <h6>File Pending Details</h6>
+                                <h4 id="filepending">0</h4>
+                                <h6>Exceptions</h6>
                                 <i class="feather ">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                                 </i>
                             </div>
                         </div>
                     </div>
-                    <div class="col" > 
-                        <div class="cards  bg-c-green text-white widget-visitor-card" id="apprvcrd" style="height: 100px;    background: linear-gradient(to right, #f1948a, #f5b7b1);">
-                            <div class="card-block-small text-center">
-                                <h4 id="pprospetingl">0</h4>
-                                <h6>File Pending Clearance</h6>
-                                <i class="feather ">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>    
-                                </i>
-                            </div>
-                        </div>
-                    </div>
+
 
 
                 </div>
 
 
-                <div class="row" style="padding: 1rem 4rem;">  
+                <div class="row" style="padding: 1rem 2rem;">  
                     <div class="col" > 
-                        <div class="cards  bg-c-green text-white widget-visitor-card" id="apprvcrd" style="height: 100px;    background: linear-gradient(to right, #fe9365, #feb798);">
+                        <div class="cards  bg-c-green text-white widget-visitor-card" id="apprvcrd" style="height: 110px;    background: linear-gradient(to right, #fe9365, #feb798);">
                             <div class="card-block-small text-center">
-                                <h4 id="pprospetingl">0</h4>
+                                <h4 id="undertaking">0</h4>
                                 <h6>Undertaking Approval Pending</h6>
                                 <i class="feather ">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-award"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
@@ -184,21 +189,24 @@
                         </div>
                     </div>
 
+
                     <div class="col" > 
-                        <div class="cards   bg-c-lite-green text-white widget-visitor-card" id="paycrd" style="height: 100px;background: linear-gradient(to right, #01a9ac, #01dbdf);">
-                            <div class="cards-block-small text-center">
-                                <h4 id="conv_count">0</h4>
-                                <h6>Payment Voucher Hand Over To Finance</h6>
+                        <div class="cards   bg-c-lite-green text-white widget-visitor-card" id="paycrd" style="height: 110px;background: linear-gradient(to right, #01a9ac, #01dbdf);">
+                            <div class="card-block-small text-center">
+                                <h4 id="pay">0</h4>
+                                <h6>Payment Processing</h6>
                                 <i class="feather ">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
                                 </i>
                             </div>
                         </div>
+
                     </div>
+
                     <div class="col"> 
-                        <div class="cards bg-c-yellow text-white widget-visitor-card" id="ackncrd" style="height: 100px; background: linear-gradient(to right, #0ac282, #0df3a3);">
+                        <div class="cards bg-c-yellow text-white widget-visitor-card" id="cmplcrd" style="height: 110px; background: linear-gradient(to right, #0ac282, #0df3a3);">
                             <div class="card-block-small text-center" >
-                                <h4 id="warmm">0</h4>
+                                <h4 id="complt">0</h4>
                                 <h6>Completed</h6>
                                 <i class="feather ">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>    
@@ -206,13 +214,13 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col">
-                        <div class="cards bg-c-pink  text-white widget-visitor-card" id="pendcrd" style="height: 100px;background: linear-gradient(to right, #fe5d70, #fe909d);">
+                        <div class="cards bg-c-pink  text-white widget-visitor-card" id="rejcrd" style="height: 110px;background: linear-gradient(to right, #fe5d70, #fe909d);">
                             <div class="card-block-small text-center">
-                                <h4 id="hott">0</h4>
+                                <h4 id="reject">0</h4>
                                 <h6>Rejected</h6>
                                 <i class="feather ">
-
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-octagon"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>    
                                 </i>
                             </div>
@@ -226,44 +234,15 @@
                 <hr>
 
             </section>
-            <section class="tab-details"style="padding: 1rem 1rem;"> 
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card" id="tableCard">
-                            <div class="card-body" >
-                                <h5 id="main_name_tag">File Movement Register - All</h5>
-                                <hr>
-                                <div id="table_card">
-                                    <table class="table table-bordered table-sm" id="all_table" style="width: 100%; font-size: small">
-                                        <thead>
-                                            <tr>
-                                                <th style="display: none">ID</th>
-                                                <th>Reference Number</th>
-                                                <th>Customer Name</th>
-                                                <th>Product</th>
-                                                <th>Finance Amount</th>
-                                                <th>Branch</th>
-                                                <th>ENT Date</th>
-                                                <th>Status</th>
-                                                <!--<th>Action</th>-->
-                                            </tr>
-                                        </thead>
-                                        <tbody></tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
 
-                    </div>
-                </div>
-            </section>
             <section class="tab-details"style="padding: 0rem 1rem;"> 
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card" id="tableCard">
                             <div class="card-body" >
-                                <h5 id="main_name_tag">File Movement Register - Acknowledgment Pending</h5>
+                                <h5 id="main_name_tag">File Movement Register</h5>
                                 <hr>
+
                                 <div id="table_card">
                                     <table class="table table-bordered table-sm" id="ackn_table" style="width: 100%; font-size: small">
                                         <thead>
@@ -288,175 +267,21 @@
                     </div>
                 </div>
             </section>
-            <section class="tab-details"style="padding: 0rem 1rem;"> 
+            <section class="tab-details" style="padding: 0rem 1rem;">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="card" id="tableCard">
-                            <div class="card-body" >
-                                <h5 id="main_name_tag">File Movement Register - File Pending Details</h5>
-                                <hr>
-                                <div id="table_card">
-                                    <table class="table table-bordered table-sm" id="filep_table" style="width: 100%; font-size: small">
-                                        <thead>
-                                            <tr>
-                                                <th style="display: none">ID</th>
-                                                <th>Reference Number</th>
-                                                <th>Customer Name</th>
-                                                <th>Product</th>
-                                                <th>Finance Amount</th>
-                                                <th>Branch</th>
-                                                <th>ENT Date</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody></tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-            <section class="tab-details"style="padding: 0rem 1rem;"> 
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card" id="tableCard">
-                            <div class="card-body" >
-                                <h5 id="main_name_tag">File Movement Register - File Pending Clearance</h5>
-                                <hr>
-                                <div id="table_card">
-                                    <table class="table table-bordered table-sm" id="clear_table" style="width: 100%; font-size: small">
-                                        <thead>
-                                            <tr>
-                                                <th style="display: none">ID</th>
-                                                <th>Reference Number</th>
-                                                <th>Customer Name</th>
-                                                <th>Product</th>
-                                                <th>Finance Amount</th>
-                                                <th>Branch</th>
-                                                <th>ENT Date</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody></tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-            <section class="tab-details"style="padding: 0rem 1rem;"> 
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card" id="tableCard">
-                            <div class="card-body" >
-                                <h5 id="main_name_tag">File Movement Register - Undertaking Approval Pending</h5>
-                                <hr>
-                                <div id="table_card">
-                                    <table class="table table-bordered table-sm" id="approval_table" style="width: 100%; font-size: small">
-                                        <thead>
-                                            <tr>
-                                                <th style="display: none">ID</th>
-                                                <th>Reference Number</th>
-                                                <th>Customer Name</th>
-                                                <th>Product</th>
-                                                <th>Finance Amount</th>
-                                                <th>Branch</th>
-                                                <th>ENT Date</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody></tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-            <section class="tab-details" style="padding: 0rem 1rem;"> 
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card" id="tableCard">
+                        <div class="card" id="tableCard-pay">
                             <div class="card-body">
-                                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" id="first-tab" data-toggle="tab" href="#first" role="tab" aria-controls="first" aria-selected="true">Payment Voucher Hand Over To Finance</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="second-tab" data-toggle="tab" href="#second" role="tab" aria-controls="second" aria-selected="false">Payment Voucher Hand Over To Finance (Undertaking Approval)</a>
-                                    </li>
-                                </ul>
-                                <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane fade show active" id="first" role="tabpanel" aria-labelledby="first-tab">
-                                        <hr>
-                                        <div id="table_card_first">
-                                            <table class="table table-bordered table-sm" id="pay_table" style="width: 100%; font-size: small">
-                                                <!-- Table Content for the first tab -->
-                                                <thead>
-                                                    <tr>
-                                                        <th style="display: none">ID</th>
-                                                        <th>Reference Number</th>
-                                                        <th>Customer Name</th>
-                                                        <th>Product</th>
-                                                        <th>Finance Amount</th>
-                                                        <th>Branch</th>
-                                                        <th>ENT Date</th>
-                                                        <th>Status</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody></tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="second" role="tabpanel" aria-labelledby="second-tab">
-                                        <hr>
-                                        <div id="table_card_second">
-                                            <table class="table table-bordered table-sm" id="payUn_table" style="width: 100%; font-size: small">
-                                                <!-- Table Content for the second tab -->
-                                                <thead>
-                                                    <tr>
-                                                        <th style="display: none">ID</th>
-                                                        <th>Reference Number</th>
-                                                        <th>Customer Name</th>
-                                                        <th>Product</th>
-                                                        <th>Finance Amount</th>
-                                                        <th>Branch</th>
-                                                        <th>ENT Date</th>
-                                                        <th>Status</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody></tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-
-
-            <section class="tab-details"style="padding: 0rem 1rem;"> 
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card" id="tableCard">
-                            <div class="card-body" >
-                                <h5 id="main_name_tag">File Movement Register - Completed</h5>
+                                <h5 id="main_name_tag">File Movement Register </h5>
                                 <hr>
+                                <!-- Buttons -->
+                                <div style="padding-bottom: 1rem">
+                                    <button class="btn btn-primary" id="tab1-btn" >Payment Processing</button>
+                                    <button class="btn btn-primary" id="tab2-btn">Payment Processing - Undertaken Approved</button>
+                                </div>
+                                <!-- Table -->
                                 <div id="table_card">
-                                    <table class="table table-bordered table-sm" id="complete_table" style="width: 100%; font-size: small">
+                                    <table class="table table-bordered table-sm" id="mergedTable" style="width: 100%; font-size: small">
                                         <thead>
                                             <tr>
                                                 <th style="display: none">ID</th>
@@ -470,24 +295,30 @@
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody></tbody>
+
                                     </table>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </section>
-            <section class="tab-details"style="padding: 0rem 1rem;"> 
+
+            <section class="tab-details" style="padding: 0rem 1rem;">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="card" id="tableCard">
-                            <div class="card-body" >
-                                <h5 id="main_name_tag">File Movement Register - Rejected</h5>
+                        <div class="card" id="tableCard-com">
+                            <div class="card-body">
+                                <h5 id="main_name_tag">File Movement Register </h5>
                                 <hr>
+                                <!-- Buttons -->
+                                <div style="padding-bottom: 1rem">
+                                    <button class="btn btn-primary" id="tab3-btn">Completed</button>
+                                    <button class="btn btn-primary" id="tab4-btn">Completed - Undertaken Approved</button>
+                                </div>
+                                <!-- Table -->
                                 <div id="table_card">
-                                    <table class="table table-bordered table-sm" id="reject_table" style="width: 100%; font-size: small">
+                                    <table class="table table-bordered table-sm" id="completedTable" style="width: 100%; font-size: small">
                                         <thead>
                                             <tr>
                                                 <th style="display: none">ID</th>
@@ -501,15 +332,51 @@
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody></tbody>
+
                                     </table>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </section>
+            <section class="tab-details" style="padding: 0rem 1rem;">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card" id="tableCard-under">
+                            <div class="card-body">
+                                <h5 id="main_name_tag">File Movement Register </h5>
+                                <hr>
+                                <!-- Buttons -->
+                                <div style="padding-bottom: 1rem">
+                                    <button class="btn btn-primary" id="tab5-btn" >Undertaking Recommendation</button>
+                                    <button class="btn btn-primary" id="tab6-btn">Undertaking Approval Pending</button>
+                                </div>
+                                <!-- Table -->
+                                <div id="table_card">
+                                    <table class="table table-bordered table-sm" id="underTable" style="width: 100%; font-size: small">
+                                        <thead>
+                                            <tr>
+                                                <th style="display: none">ID</th>
+                                                <th>Reference Number</th>
+                                                <th>Customer Name</th>
+                                                <th>Product</th>
+                                                <th>Finance Amount</th>
+                                                <th>Branch</th>
+                                                <th>ENT Date</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
 
         </div>
         <div class="" id="formSection" style="display: none;padding-top: 1rem;">
@@ -551,10 +418,44 @@
 
 
 
-        <!--formSection-inprogress-->
+        <!--formSection-acknowledgment-pending-->
         <div class="" id="formSectionInprogress" style="display: none;padding-top: 1rem;">
             <div class="card" style="width: 80%;padding: 1em;">
                 <div class="card-block p-b-0">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="ref_number">Agreement Number / Vehicle Number<span class="text-danger">*</span></label>
+                                <input id="ref_numberack" type="text" name="ref_number" class="form-control" required autocomplete="off" disabled="">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="customer_name">Customer's Name<span class="text-danger">*</span></label>
+                                <input id="customer_nameack" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="products">Product Type<span class="text-danger">*</span></label>
+                                <input id="productack" type="text" name="products" class="form-control" required autocomplete="off" disabled="">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="amount">Amount<span class="text-danger">*</span></label>
+                                <input id="amountack" type="number" name="amount" class="form-control" required autocomplete="off" disabled="">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="amount">Ent By<span class="text-danger">*</span></label>
+                                <input id="ent_by" type="text" name="amount" class="form-control" required autocomplete="off" disabled="">
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="ref_number">Agreement Number / Vehicle Number<span class="text-danger">*</span></label>
                         <input id="ref_numbers" type="text" name="ref_number" class="form-control" required autocomplete="off">
@@ -578,8 +479,7 @@
                         <div class="col-sm-6">
                             <select class="form-control-sm pull-right" id="statustype" style="width: 20rem;margin-right: 15rem;">
                                 <option value="" disabled selected>Select Status</option>
-                                <option value="acknowledgment_pending">Acknowledged </option>
-                                <option value="filepending">File Pending</option>
+                                <option value="acknowledged">Acknowledged </option>
                                 <option value="reject">Reject</option>
                             </select>                                      
                         </div>
@@ -636,8 +536,17 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-lg-6 col-md-12">
+                    <div class="form-group" style="padding-bottom: 2rem">
+                        <label for="acknow_status" class="col-sm-4 col-form-label allFontByCustomerEdit">Choose Status </label>
+                        <div class="col-sm-6">
+                            <select class="form-control-sm pull-right" id="statusack" style="width: 20rem;margin-right: 15rem;">
+                                <option value="" disabled selected>Select Status</option>
+                                <option value="payProcess">Payment Processing </option>
+                                <option value="fileped">File Pending </option>
+                            </select>                                      
+                        </div>
+                    </div>
+                    <div class="row" style="display: none" id="filependings">
 
                         <div class="ttt" style="display: flex;flex-direction: row;">
                             <div class="table-responsive">
@@ -645,6 +554,8 @@
                                     <thead>
                                         <tr>
                                             <th>Pending Files </th>
+                                            <th>Justification</th>
+                                            <th>Completion Date</th>
                                             <th style="width:1px;">Action</th>
                                         </tr>
                                     </thead>
@@ -656,7 +567,7 @@
 
                         </div>
                         <div class="row justify-content-end" style="padding: 2em;">
-                            <div class="col-lg-6 col-md-12">
+                            <div class="col-lg-6 col-md-12 text-right"> 
                                 <div class="text">
                                     <button id="addBtnFile" class="btn btn-sm waves-effect waves-light btn-danger">
                                         <i class="icon feather icon-plus"></i>Add File
@@ -664,6 +575,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
 
                     <div class="card-footer d-flex justify-content-end" style="background-color: white;">
@@ -675,7 +587,7 @@
         </div>
 
 
-        <!--File Pending Clearance-->
+        <!--Exceptions-->
         <div class="" id="formSectionFileClearance" style="display: none;padding-top: 1rem;">
             <div class="card" style="width: 80%;padding: 1em;">
                 <div class="card-block p-b-0">
@@ -713,17 +625,23 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6 col-md-12">
+                    <div class="row">
 
                         <div class="ttt" style="display: flex;flex-direction: row;">
                             <div class="table-responsive">
                                 <table class="table table-hover table-bordered m-b-0" id="tbladdAtts" >
                                     <thead>
                                         <tr>
-                                            <th>Pending Files </th>
+                                            <th>Pending Files</th>
+                                            <th>Justification</th>
+                                            <th>Completion Date</th>
+                                            <th>Status</th>
+                                            <th>Modified By</th>
+                                            <th>Modified On</th>
                                             <th style="width:1px;">Action</th>
                                         </tr>
                                     </thead>
+
                                     <tbody>
                                         <!-- Your table body content goes here -->
                                     </tbody>
@@ -747,12 +665,92 @@
                         <div class="col-sm-6">
                             <select class="form-control-sm pull-right" id="statusclr" style="width: 20rem;margin-right: 15rem;">
                                 <option value="" disabled selected>Select Status</option>
-                                <option value="approve">Need Undertaking Approval</option>
-                                <option value="cleared">File Pending Cleared</option>
+                                <option value="approve">Undertaking Recommendation</option>
+                                <option value="cleared">Exceptions Cleared</option>
                             </select>
                         </div>
                     </div>
-                    <div class="form-group" id="approve_section" style="display: none;">
+                    <!--                    <div class="form-group" id="approve_section" style="display: none;">
+                                            <div class="col-sm-6">
+                                                <label for="reason">Approver<span class="text-danger">*</span></label>
+                                                <select class="form-control-sm pull-right" id="approver"></select> 
+                                            </div>
+                                        </div>-->
+
+                    <div class="card-footer d-flex justify-content-end" style="background-color: white;">
+                        <button id="saveBtnclr" class="btn btn-sm waves-effect waves-light btn-primary" style="margin-right: 10px"><i class="icon feather icon-save"></i>Save</button>
+                        <button id="closeBtnclr" class="btn btn-sm btn-danger"><i class="icon feather icon-x-circle"></i>Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Undertaking Recommendation-->
+        <div class="" id="formSectionRecommendation" style="display: none;padding-top: 1rem;">
+            <div class="card" style="width: 80%;padding: 1em;">
+                <div class="card-block p-b-0">
+                    <div class="card-header">
+                        <ul class="list-unstyled card-option">
+                            <li><i class="feather icon-x cls-card"></i></li>
+                        </ul>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="ref_number">Agreement Number / Vehicle Number<span class="text-danger">*</span></label>
+                                <input id="ref_numberrec" type="text" name="ref_number" class="form-control" required autocomplete="off" disabled="">
+                            </div>  
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="customer_name">Customer's Name<span class="text-danger">*</span></label>
+                                <input id="customer_namerec" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="customer_name">Product<span class="text-danger">*</span></label>
+                                <input id="productrec" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
+                            </div>  
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="amount">Amount<span class="text-danger">*</span></label>
+                                <input id="amountrec" type="number" name="amount" class="form-control" required autocomplete="off" disabled="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="ttt" style="display: flex;flex-direction: row;">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-bordered m-b-0" id="tbladdAttsrec" >
+                                    <thead>
+                                        <tr>
+                                            <th>Pending Files</th>
+                                            <th>Justification</th>
+                                            <th>Completion Date</th>
+                                            <th>Status</th>
+                                            <th>Modified By</th>
+                                            <th>Modified On</th>
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <!-- Your table body content goes here -->
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group" id="approve_section" >
                         <div class="col-sm-6">
                             <label for="reason">Approver<span class="text-danger">*</span></label>
                             <select class="form-control-sm pull-right" id="approver"></select> 
@@ -760,8 +758,8 @@
                     </div>
 
                     <div class="card-footer d-flex justify-content-end" style="background-color: white;">
-                        <button id="saveBtnclr" class="btn btn-sm waves-effect waves-light btn-primary" style="margin-right: 10px"><i class="icon feather icon-save"></i>Save</button>
-                        <button id="closeBtnclr" class="btn btn-sm btn-danger"><i class="icon feather icon-x-circle"></i>Close</button>
+                        <button id="saveBtnrec" class="btn btn-sm waves-effect waves-light btn-primary" style="margin-right: 10px"><i class="icon feather icon-save"></i>Save</button>
+                        <button id="closeBtnrec" class="btn btn-sm btn-danger"><i class="icon feather icon-x-circle"></i>Close</button>
                     </div>
                 </div>
             </div>
@@ -805,14 +803,19 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6 col-md-12">
+                    <div class="row">
 
                         <div class="ttt" style="display: flex;flex-direction: row;">
                             <div class="table-responsive">
                                 <table class="table table-hover table-bordered m-b-0" id="tbladdAttu" >
                                     <thead>
                                         <tr>
-                                            <th>Pending Files </th>
+                                            <th>Pending Files</th>
+                                            <th>Justification</th>
+                                            <th>Completion Date</th>
+                                            <th>Status</th>
+                                            <th>Modified By</th>
+                                            <th>Modified On</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -865,13 +868,13 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="ref_number">Agreement Number / Vehicle Number<span class="text-danger">*</span></label>
-                                <input id="ref_numberv" type="text" name="ref_number" class="form-control" required autocomplete="off" disabled="">
+                                <input id="ref_numberpay" type="text" name="ref_number" class="form-control" required autocomplete="off" disabled="">
                             </div>  
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="customer_name">Customer's Name<span class="text-danger">*</span></label>
-                                <input id="customer_namev" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
+                                <input id="customer_namepay" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
                             </div>
                         </div>
                     </div>
@@ -879,27 +882,17 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="customer_name">Product<span class="text-danger">*</span></label>
-                                <input id="productv" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
+                                <input id="productpay" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
                             </div>  
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="amount">Amount<span class="text-danger">*</span></label>
-                                <input id="amountv" type="number" name="amount" class="form-control" required autocomplete="off" disabled="">
+                                <input id="amountpay" type="number" name="amount" class="form-control" required autocomplete="off" disabled="">
                             </div>
                         </div>
                     </div>
-                    <div class="row" id="approverRow" style="display: none;">
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="approver">Approved By<span class="text-danger">*</span></label>
-                                <input id="approvername" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
-                            </div>  
-                        </div>
-                        <div class="col">
-                            <!-- Additional column content if needed -->
-                        </div>
-                    </div>
+
                     <div class="form-group" style="padding-bottom: 2rem">
                         <label for="status" class="col-sm-4 col-form-label allFontByCustomerEdit">Choose Status </label>
                         <div class="col-sm-6">
@@ -912,12 +905,100 @@
                     </div>
 
                     <div class="card-footer d-flex justify-content-end" style="background-color: white;">
-                        <button id="saveBtnpv" class="btn btn-sm waves-effect waves-light btn-primary" style="margin-right: 10px"><i class="icon feather icon-save"></i>Save</button>
-                        <button id="closeBtnpv" class="btn btn-sm btn-danger"><i class="icon feather icon-x-circle"></i>Close</button>
+                        <button id="saveBtnpay" class="btn btn-sm waves-effect waves-light btn-primary" style="margin-right: 10px"><i class="icon feather icon-save"></i>Save</button>
+                        <button id="closeBtnpay" class="btn btn-sm btn-danger"><i class="icon feather icon-x-circle"></i>Close</button>
                     </div>
                 </div>
             </div>
         </div>
+        <!--Payment Voucher Hand Over To Finance(Undertaking Approval)-->
+        <div class="" id="formSectionPaymentVoucherUnder" style="display: none;padding-top: 1rem;">
+            <div class="card" style="width: 80%;padding: 1em;">
+                <div class="card-block p-b-0">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="ref_number">Agreement Number / Vehicle Number<span class="text-danger">*</span></label>
+                                <input id="ref_numberppun" type="text" name="ref_number" class="form-control" required autocomplete="off" disabled="">
+                            </div>  
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="customer_name">Customer's Name<span class="text-danger">*</span></label>
+                                <input id="customer_nameppun" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="customer_name">Product<span class="text-danger">*</span></label>
+                                <input id="productppun" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
+                            </div>  
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="amount">Amount<span class="text-danger">*</span></label>
+                                <input id="amountppun" type="number" name="amount" class="form-control" required autocomplete="off" disabled="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="approverRow" >
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="approver">Approved By<span class="text-danger">*</span></label>
+                                <input id="approvername" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
+                            </div>  
+                        </div>
+                        <div class="col">
+
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="ttt" style="display: flex;flex-direction: row;">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-bordered m-b-0" id="tbladdAttpay" >
+                                    <thead>
+                                        <tr>
+                                            <th>Pending Files</th>
+                                            <th>Justification</th>
+                                            <th>Completion Date</th>
+                                            <th>Status</th>
+                                            <th>Modified By</th>
+                                            <th>Modified On</th>
+                                            <th style="width:1px;">Action</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <!-- Your table body content goes here -->
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="form-group" style="padding-bottom: 2rem">
+                        <label for="status" class="col-sm-4 col-form-label allFontByCustomerEdit">Choose Status </label>
+                        <div class="col-sm-6">
+                            <select class="form-control-sm pull-right" id="statusvoucherun" style="width: 20rem;margin-right: 15rem;">
+                                <option value="" disabled selected>Select Status</option>
+                                <option value="completedun">Completed</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="card-footer d-flex justify-content-end" style="background-color: white;">
+                        <button id="saveBtnppun" class="btn btn-sm waves-effect waves-light btn-primary" style="margin-right: 10px"><i class="icon feather icon-save"></i>Save</button>
+                        <button id="closeBtnppun" class="btn btn-sm btn-danger"><i class="icon feather icon-x-circle"></i>Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!--Completed-->
         <div class="" id="formSectionCompleted" style="display: none;padding-top: 1rem;">
             <div class="card" style="width: 80%;padding: 1em;">
@@ -955,6 +1036,58 @@
                     <div class="card-footer d-flex justify-content-end" style="background-color: white;">
                         <!--<button id="saveBtncom" class="btn btn-sm waves-effect waves-light btn-primary" style="margin-right: 10px"><i class="icon feather icon-save"></i>Save</button>-->
                         <button id="closeBtncom" class="btn btn-sm btn-danger"><i class="icon feather icon-x-circle"></i>Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Completed Undertaking-->
+        <div class="" id="formSectionCompletedUndertaking" style="display: none;padding-top: 1rem;">
+            <div class="card" style="width: 80%;padding: 1em;">
+                <div class="card-block p-b-0">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="ref_number">Agreement Number / Vehicle Number<span class="text-danger">*</span></label>
+                                <input id="ref_numbercomund" type="text" name="ref_number" class="form-control" required autocomplete="off" disabled="">
+                            </div>  
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="customer_name">Customer's Name<span class="text-danger">*</span></label>
+                                <input id="customer_namecomund" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="customer_name">Product<span class="text-danger">*</span></label>
+                                <input id="productcomund" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
+                            </div>  
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="amount">Amount<span class="text-danger">*</span></label>
+                                <input id="amountcomund" type="number" name="amount" class="form-control" required autocomplete="off" disabled="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="customer_name">Approved By<span class="text-danger">*</span></label>
+                                <input id="approvercomund" type="text" name="approver_name" class="form-control" required autocomplete="off" disabled="">
+                            </div>  
+                        </div>
+                        <div class="col">
+
+                        </div>
+                    </div>
+
+
+                    <div class="card-footer d-flex justify-content-end" style="background-color: white;">
+                        <button id="saveBtncom" class="btn btn-sm waves-effect waves-light btn-primary" style="margin-right: 10px"><i class="icon feather icon-save"></i>Save</button>
+                        <button id="closeBtncomun" class="btn btn-sm btn-danger"><i class="icon feather icon-x-circle"></i>Close</button>
                     </div>
                 </div>
             </div>
@@ -1022,33 +1155,22 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                // Get all the tab-details sections
-                const tabDetails = document.querySelectorAll('.tab-details');
-
-                // Hide all tab-details sections except for the first one (corresponding to the "All" card)
-                tabDetails.forEach(function (section, index) {
-                    if (index !== 0) {
-                        section.style.display = 'none';
-                    }
-                });
-
+            document.addEventListener("DOMContentLoaded", function () {
                 // Get all the card elements
-                const cards = document.querySelectorAll('.cards');
+                const cards = document.querySelectorAll('.widget-visitor-card');
 
                 // Add click event listener to each card
-                cards.forEach(function (card, index) {
+                cards.forEach(card => {
                     card.addEventListener('click', function () {
-                        // Hide all tab-details sections
-                        tabDetails.forEach(function (section) {
-                            section.style.display = 'none';
-                        });
+                        // Get the text of the h6 element inside the clicked card
+                        const h6Text = this.querySelector('h6').textContent;
 
-                        // Show the corresponding tab-details section based on the index
-                        tabDetails[index].style.display = 'block';
+                        // Update the h5 tag of the table with the clicked card's h6 text
+                        document.getElementById('main_name_tag').textContent = `File Movement Register - ${h6Text}`;
                     });
                 });
             });
+
             document.addEventListener("DOMContentLoaded", function () {
                 var facilityStatusSelect = document.getElementById("statustype");
                 var commentSection = document.getElementById("reason_section");
@@ -1065,6 +1187,22 @@
                         commentSection.style.display = "none";
                     }
                 });
+
+                var acknowSelect = document.getElementById("statusack");
+                var filepenSection = document.getElementById("filependings");
+
+                // Add event listener to the select element
+                acknowSelect.addEventListener("change", function () {
+
+                    // Check if the selected value is "reject"
+                    if (this.value === "fileped") {
+                        // Show the comment section
+                        filepenSection.style.display = "block";
+                    } else {
+                        // Hide the comment section
+                        filepenSection.style.display = "none";
+                    }
+                });
             });
 
 
@@ -1077,9 +1215,12 @@
             const closeBtnfile = document.getElementById('closeBtnfile');
             const closeBtnclr = document.getElementById('closeBtnclr');
             const closeBtnund = document.getElementById('closeBtnund');
-            const closeBtnpv = document.getElementById('closeBtnpv');
+            const closeBtnpay = document.getElementById('closeBtnpay');
+            const closeBtnppun = document.getElementById('closeBtnppun');
             const closeBtncom = document.getElementById('closeBtncom');
+            const closeBtncomun = document.getElementById('closeBtncomun');
             const closeBtnrej = document.getElementById('closeBtnrej');
+            const closeBtnrec = document.getElementById('closeBtnrec');
 
             closeBtn.addEventListener('click', function () {
                 formSection.style.display = 'none';
@@ -1101,16 +1242,28 @@
                 formSectionApprovalPending.style.display = 'none';
                 tableSection.style.display = 'block';
             });
-            closeBtnpv.addEventListener('click', function () {
+            closeBtnpay.addEventListener('click', function () {
                 formSectionPaymentVoucher.style.display = 'none';
+                tableSection.style.display = 'block';
+            });
+            closeBtnppun.addEventListener('click', function () {
+                formSectionPaymentVoucherUnder.style.display = 'none';
                 tableSection.style.display = 'block';
             });
             closeBtncom.addEventListener('click', function () {
                 formSectionCompleted.style.display = 'none';
                 tableSection.style.display = 'block';
             });
+            closeBtncomun.addEventListener('click', function () {
+                formSectionCompletedUndertaking.style.display = 'none';
+                tableSection.style.display = 'block';
+            });
             closeBtnrej.addEventListener('click', function () {
                 formSectionRejected.style.display = 'none';
+                tableSection.style.display = 'block';
+            });
+            closeBtnrec.addEventListener('click', function () {
+                formSectionRecommendation.style.display = 'none';
                 tableSection.style.display = 'block';
             });
 
@@ -1279,8 +1432,161 @@
 
 
 
+
+        </script>
+
+        <!--Table Details-->
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+
+                var tab1Btn = document.getElementById("tab1-btn");
+                var tab2Btn = document.getElementById("tab2-btn");
+
+
+                tab1Btn.addEventListener("click", function () {
+                    stage1 = 'payment';
+                    dtable2.ajax.reload();
+                });
+
+                tab2Btn.addEventListener("click", function () {
+                    stage1 = 'paymentunder';
+                    dtable2.ajax.reload();
+                });
+
+                var tab3Btn = document.getElementById("tab3-btn");
+                var tab4Btn = document.getElementById("tab4-btn");
+
+
+                tab3Btn.addEventListener("click", function () {
+                    stage2 = 'completed';
+                    dtable3.ajax.reload();
+                });
+
+                tab4Btn.addEventListener("click", function () {
+                    stage2 = 'completedun';
+                    dtable3.ajax.reload();
+                });
+
+                var tab5Btn = document.getElementById("tab5-btn");
+                var tab6Btn = document.getElementById("tab6-btn");
+
+
+                tab5Btn.addEventListener("click", function () {
+                    stage3 = 'underrec';
+                    dtable4.ajax.reload();
+                });
+
+                tab6Btn.addEventListener("click", function () {
+                    stage3 = 'underapp';
+                    dtable4.ajax.reload();
+                });
+
+
+
+            });
+
+            document.addEventListener('DOMContentLoaded', function () {
+
+                document.getElementById('tableCard-pay').style.display = 'none';
+                document.getElementById('tableCard-com').style.display = 'none';
+                document.getElementById('tableCard-under').style.display = 'none';
+
+                document.getElementById('paycrd').addEventListener('click', function () {
+
+                    document.getElementById('tableCard').style.display = 'none';
+                    document.getElementById('tableCard-com').style.display = 'none';
+                    document.getElementById('tableCard-pay').style.display = 'block';
+                    document.getElementById('tableCard-under').style.display = 'none';
+                });
+                document.getElementById('cmplcrd').addEventListener('click', function () {
+
+                    document.getElementById('tableCard').style.display = 'none';
+                    document.getElementById('tableCard-pay').style.display = 'none';
+                    document.getElementById('tableCard-com').style.display = 'block';
+                    document.getElementById('tableCard-under').style.display = 'none';
+                });
+                document.getElementById('apprvcrd').addEventListener('click', function () {
+
+                    document.getElementById('tableCard').style.display = 'none';
+                    document.getElementById('tableCard-pay').style.display = 'none';
+                    document.getElementById('tableCard-com').style.display = 'none';
+                    document.getElementById('tableCard-under').style.display = 'block';
+                });
+            });
+
+            $('#allcrd').click(function () {
+                document.getElementById('tableCard').style.display = 'block';
+                document.getElementById('tableCard-pay').style.display = 'none';
+                document.getElementById('tableCard-com').style.display = 'none';
+                document.getElementById('tableCard-under').style.display = 'none';
+                stage = 'all';
+                dtable.ajax.reload();
+            });
+            $('#ackncrd').click(function () {
+                document.getElementById('tableCard').style.display = 'block';
+                document.getElementById('tableCard-pay').style.display = 'none';
+                document.getElementById('tableCard-com').style.display = 'none';
+                document.getElementById('tableCard-under').style.display = 'none';
+                stage = 'acknowledgment';
+                dtable.ajax.reload();
+            });
+            $('#acknoedcrd').click(function () {
+                document.getElementById('tableCard').style.display = 'block';
+                document.getElementById('tableCard-pay').style.display = 'none';
+                document.getElementById('tableCard-com').style.display = 'none';
+                document.getElementById('tableCard-under').style.display = 'none';
+                stage = 'acknowledged';
+                dtable.ajax.reload();
+            });
+            $('#pendcrd').click(function () {
+                document.getElementById('tableCard').style.display = 'block';
+                document.getElementById('tableCard-pay').style.display = 'none';
+                document.getElementById('tableCard-com').style.display = 'none';
+                document.getElementById('tableCard-under').style.display = 'none';
+                stage = 'file';
+                dtable.ajax.reload();
+            });
+            $('#clrcrd').click(function () {
+                document.getElementById('tableCard').style.display = 'block';
+                document.getElementById('tableCard-pay').style.display = 'none';
+                document.getElementById('tableCard-com').style.display = 'none';
+                document.getElementById('tableCard-under').style.display = 'none';
+                stage = 'clearance';
+                dtable.ajax.reload();
+            });
+//            $('#apprvcrd').click(function () {
+//                document.getElementById('tableCard').style.display = 'block';
+//                document.getElementById('tableCard-pay').style.display = 'none';
+//                document.getElementById('tableCard-com').style.display = 'none';
+//                stage = 'approve';
+//                dtable.ajax.reload();
+//            });
+            $('#payuncrd').click(function () {
+                document.getElementById('tableCard').style.display = 'block';
+                document.getElementById('tableCard-pay').style.display = 'none';
+                document.getElementById('tableCard-com').style.display = 'none';
+                stage = 'paymentunder';
+                dtable.ajax.reload();
+            });
+            $('#rejcrd').click(function () {
+                document.getElementById('tableCard').style.display = 'block';
+                document.getElementById('tableCard-pay').style.display = 'none';
+                document.getElementById('tableCard-com').style.display = 'none';
+                stage = 'rejected';
+                dtable.ajax.reload();
+            });
+            $('#tab1-tab').click(function () {
+                stage1 = 'payment';
+                dtable2.ajax.reload();
+            });
+
+            let stage = 'all';
+            let stage1 = 'payment';
+            let stage2 = 'completed';
+            let stage3 = 'underrec';
+
             $.fn.dataTable.ext.errMode = 'none';
-            var dtable = $('#all_table').DataTable({
+            var dtable = $('#ackn_table').DataTable({
                 "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
                 "pageLength": 5,
                 "ordering": true,
@@ -1295,6 +1601,7 @@
                     "contentType": "application/json",
                     "type": "POST",
                     "data": function (d) {
+                        d.data = stage;
                         return JSON.stringify(d);
                     },
                     error: function (xhr, error, code) {
@@ -1316,177 +1623,609 @@
                     'loadingRecords': '&nbsp;',
                     'processing': '<div class="loader2"></div>'
                 },
-//                "createdRow": function (row, data) {
-//                    let action_td = document.createElement('td');
-//                    $(action_td).addClass('text-center');
-//
-//                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
-//
-//                    $(row).append(action_td);
-//                    $(row).data('id', data['id']);
-//                }
+                "createdRow": function (row, data) {
+                    let action_td = document.createElement('td');
+                    $(action_td).addClass('text-center');
+
+                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
+
+                    $(row).append(action_td);
+                    $(row).data('id', data['id']);
+                    $(row).data('status', data['status']);
+
+                }
 
             });
 
+            var dtable2 = $('#mergedTable').DataTable({
+                "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
+                "pageLength": 5,
+                "ordering": true,
+                "autoWidth": false,
+                "processing": true,
+                "serverSide": true,
+                "order": [[0, "desc"]],
+                "searchHighlight": true,
+                "searchDelay": 350,
+                "ajax": {
+                    "url": "fmr/fmrtable-all",
+                    "contentType": "application/json",
+                    "type": "POST",
+                    "data": function (d) {
+                        d.data = stage1;
+                        return JSON.stringify(d);
+                    },
+                    error: function (xhr, error, code) {
+                        console.log(xhr);
+                        console.log(code);
+                    }
+                },
+                "columns": [
+                    {"data": "id", className: "text-right", "visible": false},
+                    {"data": "ref_number"},
+                    {"data": "customer_name"},
+                    {"data": "product"},
+                    {"data": "amount"},
+                    {"data": "branch"},
+                    {"data": "ent_on"},
 
+                    {"data": "status"}
+                ], "language": {
+                    'loadingRecords': '&nbsp;',
+                    'processing': '<div class="loader2"></div>'
+                },
+                "createdRow": function (row, data) {
+                    let action_td = document.createElement('td');
+                    $(action_td).addClass('text-center');
+
+                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
+
+                    $(row).append(action_td);
+                    $(row).data('id', data['id']);
+                    $(row).data('status', data['status']);
+
+                }
+
+            });
+
+            var dtable3 = $('#completedTable').DataTable({
+                "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
+                "pageLength": 5,
+                "ordering": true,
+                "autoWidth": false,
+                "processing": true,
+                "serverSide": true,
+                "order": [[0, "desc"]],
+                "searchHighlight": true,
+                "searchDelay": 350,
+                "ajax": {
+                    "url": "fmr/fmrtable-all",
+                    "contentType": "application/json",
+                    "type": "POST",
+                    "data": function (d) {
+                        d.data = stage2;
+                        return JSON.stringify(d);
+                    },
+                    error: function (xhr, error, code) {
+                        console.log(xhr);
+                        console.log(code);
+                    }
+                },
+                "columns": [
+                    {"data": "id", className: "text-right", "visible": false},
+                    {"data": "ref_number"},
+                    {"data": "customer_name"},
+                    {"data": "product"},
+                    {"data": "amount"},
+                    {"data": "branch"},
+                    {"data": "ent_on"},
+
+                    {"data": "status"}
+                ], "language": {
+                    'loadingRecords': '&nbsp;',
+                    'processing': '<div class="loader2"></div>'
+                },
+                "createdRow": function (row, data) {
+                    let action_td = document.createElement('td');
+                    $(action_td).addClass('text-center');
+
+                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
+
+                    $(row).append(action_td);
+                    $(row).data('id', data['id']);
+                    $(row).data('status', data['status']);
+
+                }
+
+            });
+
+            var dtable4 = $('#underTable').DataTable({
+                "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
+                "pageLength": 5,
+                "ordering": true,
+                "autoWidth": false,
+                "processing": true,
+                "serverSide": true,
+                "order": [[0, "desc"]],
+                "searchHighlight": true,
+                "searchDelay": 350,
+                "ajax": {
+                    "url": "fmr/fmrtable-all-approver",
+                    "contentType": "application/json",
+                    "type": "POST",
+                    "data": function (d) {
+                        d.data = stage3;
+                        return JSON.stringify(d);
+                    },
+                    error: function (xhr, error, code) {
+                        console.log(xhr);
+                        console.log(code);
+                    }
+                },
+                "columns": [
+                    {"data": "id", className: "text-right", "visible": false},
+                    {"data": "ref_number"},
+                    {"data": "customer_name"},
+                    {"data": "product"},
+                    {"data": "amount"},
+                    {"data": "branch"},
+                    {"data": "ent_on"},
+
+                    {"data": "status"}
+                ], "language": {
+                    'loadingRecords': '&nbsp;',
+                    'processing': '<div class="loader2"></div>'
+                },
+                "createdRow": function (row, data) {
+                    let action_td = document.createElement('td');
+                    $(action_td).addClass('text-center');
+
+                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
+
+                    $(row).append(action_td);
+                    $(row).data('id', data['id']);
+                    $(row).data('status', data['status']);
+
+                }
+
+            });
+        </script>
+
+
+        <!--editrec-->
+        <script>
             $(document).on('click', '.editrec', function () {
+                let row = $(this).closest('tr');
+                let status = row.data('status');
+                if (status === 'Acknowledgment Pending') {
+                    loadDiv($('#tableSection'));
+                    let id = $(this).parents('tr').data('id');
+                    fetch('fmr/details-all/' + id)
+                            .then(resp => resp.json())
+                            .then((resp) => {
+                                let data = resp.data;
+                                let d1 = data.d1;
+                                let d2 = data.d2;
+                                let obj = data.obj;
 
-                loadDiv($('#tableSection'));
-                let id = $(this).parents('tr').data('id');
-                fetch('fmr/details-all/' + id)
-                        .then(resp => resp.json())
-                        .then((resp) => {
-                            let data = resp.data;
-                            $('#ref_numbers').val(data.ref_number);
-                            $('#customer_names').val(data.customer_name);
-                            $('#amounts').val(data.amount);
-                            $('#saveBtnin').data('mode', 'update-inprogress');
-                            $('#saveBtnin').data('id', id);
-                            $('#saveBtnin').html('<i class="icon feather icon-save"></i>Update'); // Change button text to 'Update'
-                            $('#formSectionInprogress').fadeIn();
-                            $('#tableSection').hide();
-                            finishLoadDiv($('#tableSection'));
-                        });
-            });
+                                $('#ref_numberack').val(obj.ref_number);
+                                $('#customer_nameack').val(obj.customer_name);
+                                $('#amountack').val(obj.amount);
+                                $('#productack').val(d1.product_txt);
+                                console.log(d1.product_txt);
+                                console.log(d2.entered);
+                                $('#ent_by').val(d2.entered);
+                                $('#saveBtnin').data('mode', 'update');
+                                $('#saveBtnin').data('id', id);
+                                $('#saveBtnin').html('<i class="icon feather icon-save"></i>Update');
+                                $('#formSectionInprogress').fadeIn();
+                                $('#tableSection').hide();
+                                finishLoadDiv($('#tableSection'));
+                            });
+                } else if (status === 'Acknowledged') {
+                    loadDiv($('#tableSection'));
+                    let id = $(this).parents('tr').data('id');
+                    fetch('fmr/details-file/' + id)
+                            .then(resp => resp.json())
+                            .then((resp) => {
+                                let data = resp.data;
+                                $('#ref_numberp').val(data.ref_number);
+                                $('#customer_namep').val(data.customer_name);
+                                $('#amountp').val(data.amount);
+                                $('#productp').val(data.productTxt);
+                                $('#saveBtnfile').data('mode', 'update-filepending');
+                                $('#saveBtnfile').data('id', id);
+                                $('#saveBtnfile').html('<i class="icon feather icon-save"></i>Update');
+                                $('#formSectionFilePending').fadeIn();
+                                $('#tableSection').hide();
+                                finishLoadDiv($('#tableSection'));
+                            });
+                } else if (status === 'Exceptions') {
+                    loadDiv($('#tableSection'));
+                    let id = $(this).parents('tr').data('id');
+
+                    // Fetch team and attachment details
+                    fetch('fmr/clearance-details/' + id)
+                            .then(resp => resp.json())
+                            .then((resp) => {
+                                let data = resp.data;
+                                let content = resp.data.content;
+                                let product = resp.data.productData;
+
+                                $('#ref_numberc').val(content.ref_number);
+                                $('#customer_namec').val(content.customer_name);
+                                $('#amountc').val(content.amount);
+                                $('#productc').val(product.product_txt);
+                                console.log(data.product_txt);
+                                let attachments = resp.data.videos;
+
+                                // Clear existing rows in the attachment table
+                                $('#tbladdAtts tbody').empty();
+
+                                // Populate the attachment table with fetched data
+                                attachments.forEach((attachment) => {
+                                    // Get the table body
+                                    var tableBody = document.querySelector('#tbladdAtts tbody');
+
+                                    // Create a new row
+                                    var newRow = tableBody.insertRow();
+
+                                    // Create cells in the new row
+                                    var fileNameCell = newRow.insertCell(0);
+                                    var justificationCell = newRow.insertCell(1);
+                                    var dateCell = newRow.insertCell(2);
+                                    var statusCell = newRow.insertCell(3);
+                                    var modifiedByCell = newRow.insertCell(4);
+                                    var modifiedOnCell = newRow.insertCell(5);
+                                    var actionCell = newRow.insertCell(6);
+
+                                    // Set the text content of the cells with the fetched values
+                                    fileNameCell.textContent = attachment.name;
+                                    statusCell.textContent = attachment.status; // Assuming status is available in attachment object
+                                    modifiedByCell.textContent = attachment.modby; // Assuming modifiedBy is available in attachment object
+                                    modifiedOnCell.textContent = attachment.mod_on; // Assuming modifiedOn is available in attachment object
+                                    justificationCell.textContent = attachment.justification; // Assuming modifiedOn is available in attachment object
+                                    dateCell.textContent = attachment.date; // Assuming modifiedOn is available in attachment object
+
+                                    // Create a delete button in the action cell
+                                    var deleteButton = document.createElement('button');
+                                    deleteButton.classList.add('btn', 'btn-sm', 'btn-danger');
+                                    deleteButton.textContent = 'Remove';
+                                    deleteButton.name = 'dele';
+
+                                    // Add a click event listener to the delete button
+                                    let videoId = attachment.id;
+                                    deleteButton.addEventListener('click', function () {
+                                        deleted.push(videoId + "");
+                                        // Remove the row when the delete button is clicked
+                                        tableBody.removeChild(newRow);
+                                    });
+
+                                    // Append the delete button to the action cell
+                                    actionCell.appendChild(deleteButton);
+                                });
 
 
-        </script>
+                                // Show the form section
+                                $('#saveBtnclr').data('mode', 'update-fileclear');
+                                $('#saveBtnclr').data('id', id);
+                                $('#saveBtnclr').html('<i class="icon feather icon-save"></i>Update'); // Change button text to 'Update'
+                                $('#formSectionFileClearance').fadeIn();
+                                $('#tableSection').hide();
+                                finishLoadDiv($('#tableSection'));
 
-        <!--Acknowledgement Pending-->
-        <script>
+                            });
+                } else if (status === 'Undertaking Recommendation') {
+                    loadDiv($('#tableSection'));
+                    let id = $(this).parents('tr').data('id');
 
-            $.fn.dataTable.ext.errMode = 'none';
-            var dtable = $('#ackn_table').DataTable({
-                "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
-                "pageLength": 5,
-                "ordering": true,
-                "autoWidth": false,
-                "processing": true,
-                "serverSide": true,
-                "order": [[0, "desc"]],
-                "searchHighlight": true,
-                "searchDelay": 350,
-                "ajax": {
-                    "url": "fmr/fmrtable-pending",
-                    "contentType": "application/json",
-                    "type": "POST",
-                    "data": function (d) {
-                        return JSON.stringify(d);
-                    },
-                    error: function (xhr, error, code) {
-                        console.log(xhr);
-                        console.log(code);
-                    }
-                },
-                "columns": [
-                    {"data": "id", className: "text-right", "visible": false},
-                    {"data": "ref_number"},
-                    {"data": "customer_name"},
-                    {"data": "product"},
-                    {"data": "amount"},
-                    {"data": "branch"},
-                    {"data": "ent_on"},
+                    // Fetch team and attachment details
+                    fetch('fmr/clearance-details/' + id)
+                            .then(resp => resp.json())
+                            .then((resp) => {
+                                let data = resp.data;
+                                let content = resp.data.content;
+                                let product = resp.data.productData;
 
-                    {"data": "status"}
-                ], "language": {
-                    'loadingRecords': '&nbsp;',
-                    'processing': '<div class="loader2"></div>'
-                },
-                "createdRow": function (row, data) {
-                    let action_td = document.createElement('td');
-                    $(action_td).addClass('text-center');
+                                $('#ref_numberrec').val(content.ref_number);
+                                $('#customer_namerec').val(content.customer_name);
+                                $('#amountrec').val(content.amount);
+                                $('#productrec').val(product.product_txt);
+                                console.log(data.product_txt);
+                                let attachments = resp.data.videos;
 
-                    $(action_td).append('<a href="javascript:void(0)" id="update-inprogress" class="editrec"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
+                                // Clear existing rows in the attachment table
+                                $('#tbladdAttsrec tbody').empty();
 
-                    $(row).append(action_td);
-                    $(row).data('id', data['id']);
+                                // Populate the attachment table with fetched data
+                                attachments.forEach((attachment) => {
+                                    // Get the table body
+                                    var tableBody = document.querySelector('#tbladdAttsrec tbody');
+
+                                    // Create a new row
+                                    var newRow = tableBody.insertRow();
+
+                                    // Create cells in the new row
+                                    var fileNameCell = newRow.insertCell(0);
+                                    var justificationCell = newRow.insertCell(1);
+                                    var dateCell = newRow.insertCell(2);
+                                    var statusCell = newRow.insertCell(3);
+                                    var modifiedByCell = newRow.insertCell(4);
+                                    var modifiedOnCell = newRow.insertCell(5);
+
+
+                                    // Set the text content of the cells with the fetched values
+                                    fileNameCell.textContent = attachment.name;
+                                    statusCell.textContent = attachment.status; // Assuming status is available in attachment object
+                                    modifiedByCell.textContent = attachment.modby; // Assuming modifiedBy is available in attachment object
+                                    modifiedOnCell.textContent = attachment.mod_on; // Assuming modifiedOn is available in attachment object
+                                    justificationCell.textContent = attachment.justification; // Assuming modifiedOn is available in attachment object
+                                    dateCell.textContent = attachment.date;
+
+                                });
+
+
+                                // Show the form section
+                                $('#saveBtnrec').data('mode', 'update-Recommendation');
+                                $('#saveBtnrec').data('id', id);
+                                $('#saveBtnrec').html('<i class="icon feather icon-save"></i>Update'); // Change button text to 'Update'
+                                $('#formSectionRecommendation').fadeIn();
+                                $('#tableSection').hide();
+                                finishLoadDiv($('#tableSection'));
+
+                            });
+                } else if (status === 'Undertaking Approval Pending') {
+                    loadDiv($('#tableSection'));
+                    let id = $(this).parents('tr').data('id');
+
+
+                    fetch('fmr/clearance-details/' + id)
+                            .then(resp => resp.json())
+                            .then((resp) => {
+                                let data = resp.data;
+                                let content = resp.data.content;
+                                let product = resp.data.productData;
+
+                                $('#ref_numberu').val(content.ref_number);
+                                $('#customer_nameu').val(content.customer_name);
+                                $('#amountu').val(content.amount);
+                                $('#productu').val(product.product_txt);
+                                let attachments = resp.data.videos;
+
+                                // Clear existing rows in the attachment table
+                                $('#tbladdAttu tbody').empty();
+
+                                // Populate the attachment table with fetched data
+                                attachments.forEach((attachment) => {
+                                    // Get the table body
+                                    var tableBody = document.querySelector('#tbladdAttu tbody');
+
+                                    // Create a new row
+                                    var newRow = tableBody.insertRow();
+
+                                    // Create cells in the new row
+                                    var fileNameCell = newRow.insertCell(0);
+                                    var justificationCell = newRow.insertCell(1);
+                                    var dateCell = newRow.insertCell(2);
+                                    var statusCell = newRow.insertCell(3);
+                                    var modifiedByCell = newRow.insertCell(4);
+                                    var modifiedOnCell = newRow.insertCell(5);
+
+
+                                    // Set the text content of the cells with the fetched values
+                                    fileNameCell.textContent = attachment.name;
+                                    statusCell.textContent = attachment.status; // Assuming status is available in attachment object
+                                    modifiedByCell.textContent = attachment.modby; // Assuming modifiedBy is available in attachment object
+                                    modifiedOnCell.textContent = attachment.mod_on; // Assuming modifiedOn is available in attachment object
+                                    justificationCell.textContent = attachment.justification; // Assuming modifiedOn is available in attachment object
+                                    dateCell.textContent = attachment.date;
+
+
+                                });
+
+                                // Show the form section
+                                $('#saveBtnund').data('mode', 'update-undertaking');
+                                $('#saveBtnund').data('id', id);
+                                $('#saveBtnund').html('<i class="icon feather icon-save"></i>Update'); // Change button text to 'Update'
+                                $('#formSectionApprovalPending').fadeIn();
+                                $('#tableSection').hide();
+                                finishLoadDiv($('#tableSection'));
+
+                            });
+                } else if (status === 'Payment Voucher Hand Over To Finance') {
+                    loadDiv($('#tableSection'));
+                    let id = $(this).parents('tr').data('id');
+                    fetch('fmr/clearance-details/' + id)
+                            .then(resp => resp.json())
+                            .then((resp) => {
+                                let data = resp.data;
+                                let content = resp.data.content;
+                                let product = resp.data.productData;
+
+                                $('#ref_numberpay').val(content.ref_number);
+                                $('#customer_namepay').val(content.customer_name);
+                                $('#amountpay').val(content.amount);
+                                $('#productpay').val(product.product_txt);
+                                $('#saveBtnpay').data('mode', 'update-payment');
+                                $('#saveBtnpay').data('id', id);
+                                $('#saveBtnpay').html('<i class="icon feather icon-save"></i>Update');
+                                $('#formSectionPaymentVoucher').fadeIn();
+                                $('#tableSection').hide();
+                                finishLoadDiv($('#tableSection'));
+                            });
+                } else if (status === 'Payment Voucher Hand Over To Finance(Undertaking Approval)') {
+                    loadDiv($('#tableSection'));
+                    let id = $(this).parents('tr').data('id');
+                    fetch('fmr/clearance-details/' + id)
+                            .then(resp => resp.json())
+                            .then((resp) => {
+
+                                let data = resp.data;
+                                let content = resp.data.content;
+                                let approve = resp.data.approverData;
+                                let product = resp.data.productData;
+
+
+                                $('#ref_numberppun').val(content.ref_number);
+                                $('#customer_nameppun').val(content.customer_name);
+                                $('#amountppun').val(content.amount);
+                                $('#productppun').val(product.product_txt);
+                                $('#approvername').val(approve.approvername);
+
+
+                                let attachments = resp.data.videos;
+
+                                // Clear existing rows in the attachment table
+                                $('#tbladdAttpay tbody').empty();
+
+                                // Populate the attachment table with fetched data
+                                attachments.forEach((attachment) => {
+                                    // Get the table body
+                                    var tableBody = document.querySelector('#tbladdAttpay tbody');
+
+                                    // Create a new row
+                                    var newRow = tableBody.insertRow();
+
+                                    // Create cells in the new row
+                                    var fileNameCell = newRow.insertCell(0);
+                                    var justificationCell = newRow.insertCell(1);
+                                    var dateCell = newRow.insertCell(2);
+                                    var statusCell = newRow.insertCell(3);
+                                    var modifiedByCell = newRow.insertCell(4);
+                                    var modifiedOnCell = newRow.insertCell(5);
+                                    var actionCell = newRow.insertCell(6);
+
+                                    // Set the text content of the cells with the fetched values
+                                    fileNameCell.textContent = attachment.name;
+                                    statusCell.textContent = attachment.status; // Assuming status is available in attachment object
+                                    modifiedByCell.textContent = attachment.modby; // Assuming modifiedBy is available in attachment object
+                                    modifiedOnCell.textContent = attachment.mod_on; // Assuming modifiedOn is available in attachment object
+                                    justificationCell.textContent = attachment.justification; // Assuming modifiedOn is available in attachment object
+                                    dateCell.textContent = attachment.date; // Assuming modifiedOn is available in attachment object
+
+                                    // Create a delete button in the action cell
+                                    var deleteButton = document.createElement('button');
+                                    deleteButton.classList.add('btn', 'btn-sm', 'btn-danger');
+                                    deleteButton.textContent = 'Remove';
+                                    deleteButton.name = 'dele';
+
+                                    // Add a click event listener to the delete button
+                                    let videoId = attachment.id;
+                                    deleteButton.addEventListener('click', function () {
+                                        deleted.push(videoId + "");
+                                        // Remove the row when the delete button is clicked
+                                        tableBody.removeChild(newRow);
+                                    });
+
+                                    // Append the delete button to the action cell
+                                    actionCell.appendChild(deleteButton);
+                                });
+
+                                $('#saveBtnppun').data('mode', 'update-payunder');
+                                $('#saveBtnppun').data('id', id);
+                                $('#saveBtnppun').html('<i class="icon feather icon-save"></i>Update');
+                                $('#formSectionPaymentVoucherUnder').fadeIn();
+                                $('#tableSection').hide();
+                                finishLoadDiv($('#tableSection'));
+                            });
+                } else if (status === 'Completed') {
+                    loadDiv($('#tableSection'));
+
+                    let id = $(this).parents('tr').data('id');
+                    fetch('fmr/paymentv-details/' + id)
+                            .then(resp => resp.json())
+                            .then((resp) => {
+                                let data = resp.data;
+                                let d1 = data.d1;
+                                let obj = data.obj;
+
+
+                                $('#ref_numbercom').val(obj.ref_number);
+                                $('#customer_namecom').val(obj.customer_name);
+                                $('#amountcom').val(obj.amount);
+                                $('#productcom').val(d1.product_txt);
+                                $('#saveBtnpv').data('mode', 'update-completed');
+                                $('#saveBtnpv').data('id', id);
+                                $('#saveBtnpv').html('<i class="icon feather icon-save"></i>Update'); // Change button text to 'Update'
+                                $('#formSectionCompleted').fadeIn();
+                                $('#tableSection').hide();
+                                finishLoadDiv($('#tableSection'));
+
+
+                            })
+                            .catch(error => {
+                                // Handle fetch error
+                                console.error('Error fetching payment details:', error);
+                            });
+                } else if (status === 'Completed(Undertaking Approval)') {
+                    loadDiv($('#tableSection'));
+
+                    let id = $(this).parents('tr').data('id');
+                    fetch('fmr/paymentv-details/' + id)
+                            .then(resp => resp.json())
+                            .then((resp) => {
+                                let data = resp.data;
+                                let d1 = data.d1;
+                                let d2 = data.d2;
+                                let obj = data.obj;
+
+
+                                $('#ref_numbercomund').val(obj.ref_number);
+                                $('#customer_namecomund').val(obj.customer_name);
+                                $('#amountcomund').val(obj.amount);
+                                $('#productcomund').val(d1.product_txt);
+                                $('#approvercomund').val(d2.approvername);
+                                $('#saveBtnpv').data('mode', 'update-completed');
+                                $('#saveBtnpv').data('id', id);
+                                $('#saveBtnpv').html('<i class="icon feather icon-save"></i>Update'); // Change button text to 'Update'
+                                $('#formSectionCompletedUndertaking').fadeIn();
+                                $('#tableSection').hide();
+                                finishLoadDiv($('#tableSection'));
+
+
+                            })
+                            .catch(error => {
+                                // Handle fetch error
+                                console.error('Error fetching payment details:', error);
+                            });
+                } else if (status === 'Rejected') {
+                    loadDiv($('#tableSection'));
+
+
+                    let id = $(this).parents('tr').data('id');
+                    fetch('fmr/paymentv-details/' + id)
+                            .then(resp => resp.json())
+                            .then((resp) => {
+                                let data = resp.data;
+                                let d1 = data.d1;
+                                let obj = data.obj;
+
+
+                                $('#ref_numberrej').val(obj.ref_number);
+                                $('#customer_namerej').val(obj.customer_name);
+                                $('#amountrej').val(obj.amount);
+                                $('#productrej').val(d1.product_txt);
+                                $('#resonrej').val(obj.reason);
+                                $('#saveBtnpv').data('mode', 'update-completed');
+                                $('#saveBtnpv').data('id', id);
+                                $('#saveBtnpv').html('<i class="icon feather icon-save"></i>Update'); // Change button text to 'Update'
+                                $('#formSectionRejected').fadeIn();
+                                $('#tableSection').hide();
+                                finishLoadDiv($('#tableSection'));
+
+
+                            })
+                            .catch(error => {
+                                // Handle fetch error
+                                console.error('Error fetching payment details:', error);
+                            });
                 }
 
             });
-
-
         </script>
 
-        <!--File Pending--> 
+        <!--File Pending Details-->
         <script>
-
-
-
-
-            //            File Pending
-            $.fn.dataTable.ext.errMode = 'none';
-            var dtable = $('#filep_table').DataTable({
-                "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
-                "pageLength": 5,
-                "ordering": true,
-                "autoWidth": false,
-                "processing": true,
-                "serverSide": true,
-                "order": [[0, "desc"]],
-                "searchHighlight": true,
-                "searchDelay": 350,
-                "ajax": {
-                    "url": "fmr/fmrtable-file",
-                    "contentType": "application/json",
-                    "type": "POST",
-                    "data": function (d) {
-                        return JSON.stringify(d);
-                    },
-                    error: function (xhr, error, code) {
-                        console.log(xhr);
-                        console.log(code);
-                    }
-                },
-                "columns": [
-                    {"data": "id", className: "text-right", "visible": false},
-                    {"data": "ref_number"},
-                    {"data": "customer_name"},
-                    {"data": "product"},
-                    {"data": "amount"},
-                    {"data": "branch"},
-                    {"data": "ent_on"},
-
-                    {"data": "status"}
-                ], "language": {
-                    'loadingRecords': '&nbsp;',
-                    'processing': '<div class="loader2"></div>'
-                },
-                "createdRow": function (row, data) {
-                    let action_td = document.createElement('td');
-                    $(action_td).addClass('text-center');
-
-                    $(action_td).append('<a href="javascript:void(0)" id="update-filepending" class="editrecfile"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
-
-                    $(row).append(action_td);
-                    $(row).data('id', data['id']);
-                }
-
-            });
-
-
-            $(document).on('click', '.editrecfile', function () {
-
-                loadDiv($('#tableSection'));
-                let id = $(this).parents('tr').data('id');
-                fetch('fmr/details-file/' + id)
-                        .then(resp => resp.json())
-                        .then((resp) => {
-                            let data = resp.data;
-                            $('#ref_numberp').val(data.ref_number);
-                            $('#customer_namep').val(data.customer_name);
-                            $('#amountp').val(data.amount);
-                            $('#productp').val(data.productTxt);
-                            $('#saveBtnfile').data('mode', 'update-filepending');
-                            $('#saveBtnfile').data('id', id);
-                            $('#saveBtnfile').html('<i class="icon feather icon-save"></i>Update'); // Change button text to 'Update'
-                            $('#formSectionFilePending').fadeIn();
-                            $('#tableSection').hide();
-                            finishLoadDiv($('#tableSection'));
-                        });
-            });
-
-
-
             document.getElementById('addBtnFile').addEventListener('click', function () {
                 // Get the table body
                 var tableBody = document.querySelector('#tbladdAtt tbody');
@@ -1496,9 +2235,11 @@
 
                 // Create cells in the new row
                 var fileNameCell = newRow.insertCell(0);
-                var actionCell = newRow.insertCell(1);
+                var justificationCell = newRow.insertCell(1);
+                var completionDateCell = newRow.insertCell(2);
+                var actionCell = newRow.insertCell(3);
 
-                // Create input for "File Name" in cell 1
+                // Create input for "Pending Files" in cell 1
                 var fileNameInput = document.createElement('input');
                 fileNameInput.type = 'text';
                 fileNameInput.name = 'fileName';
@@ -1506,9 +2247,25 @@
                 fileNameInput.required = true;
                 fileNameInput.autocomplete = 'off';
 
+                // Create input for "Justification" in cell 2
+                var justificationInput = document.createElement('input');
+                justificationInput.type = 'text';
+                justificationInput.name = 'justification';
+                justificationInput.classList.add('form-control');
+                justificationInput.required = true;
+                justificationInput.autocomplete = 'off';
+
+                // Create input for "Completion Date" in cell 3
+                var completionDateInput = document.createElement('input');
+                completionDateInput.type = 'date';
+                completionDateInput.name = 'completionDate';
+                completionDateInput.classList.add('form-control');
+                completionDateInput.required = true;
 
                 // Append input elements to respective cells
                 fileNameCell.appendChild(fileNameInput);
+                justificationCell.appendChild(justificationInput);
+                completionDateCell.appendChild(completionDateInput);
 
                 // Create a delete button in the action cell
                 var deleteButton = document.createElement('button');
@@ -1524,10 +2281,8 @@
 
                 // Append the delete button to the action cell
                 actionCell.appendChild(deleteButton);
-
-                // Call the addAttachmentRow function with the input values
-//                addAttachmentRow(fileNameInput.value);
             });
+
 
 
 
@@ -1539,18 +2294,26 @@
                     let attachmentData = [];
                     let formData = {};
 
-                    let i = 1;
-                    tableRows.forEach((row, index) => {
+                    tableRows.forEach((row) => {
                         let fileName = row.querySelector('input[name="fileName"]').value;
+                        let justification = row.querySelector('input[name="justification"]').value;
+                        let completionDate = row.querySelector('input[name="completionDate"]').value;
 
                         attachmentData.push({
-                            name: fileName
+                            name: fileName,
+                            justification: justification,
+                            completionDate: completionDate
                         });
                     });
-                    let desclist = JSON.stringify(attachmentData);
 
+                    let desclist = JSON.stringify(attachmentData);
+                    let statusack = document.getElementById('statusack').value;
+
+                    // Add statusack and desclist to formData
+                    formData.statusack = statusack;
                     formData.desclist = desclist;
                     formData.id = id;
+
                     fetch('fmr/save-filePendings', {
                         method: 'POST',
                         body: new URLSearchParams(formData)
@@ -1558,7 +2321,7 @@
                         if (!response.ok) {
                             throw new Error(response.statusText);
                         } else {
-                            Swal.fire('Successful!', 'Pending Files has been successfully saved', 'success');
+                            Swal.fire('Successful!', 'Pending Files have been successfully saved', 'success');
                             clearForms();
                             $('#formSectionFilePending').hide();
                             $('#tableSection').fadeIn();
@@ -1566,9 +2329,12 @@
                             clearForms();
                         }
                         return response.json();
+                    }).catch(error => {
+                        Swal.fire('Error!', error.message, 'error');
                     });
                 }
             });
+
             function clearForms() {
 
                 // Clear table rows
@@ -1589,128 +2355,8 @@
             }
         </script>
 
-        <!--File Pending Clearance-->
+        <!--Exceptions-->
         <script>
-
-            $.fn.dataTable.ext.errMode = 'none';
-            var dtable = $('#clear_table').DataTable({
-                "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
-                "pageLength": 5,
-                "ordering": true,
-                "autoWidth": false,
-                "processing": true,
-                "serverSide": true,
-                "order": [[0, "desc"]],
-                "searchHighlight": true,
-                "searchDelay": 350,
-                "ajax": {
-                    "url": "fmr/fmrtable-clearance",
-                    "contentType": "application/json",
-                    "type": "POST",
-                    "data": function (d) {
-                        return JSON.stringify(d);
-                    },
-                    error: function (xhr, error, code) {
-                        console.log(xhr);
-                        console.log(code);
-                    }
-                },
-                "columns": [
-                    {"data": "id", className: "text-right", "visible": false},
-                    {"data": "ref_number"},
-                    {"data": "customer_name"},
-                    {"data": "product"},
-                    {"data": "amount"},
-                    {"data": "branch"},
-                    {"data": "ent_on"},
-
-                    {"data": "status"}
-                ], "language": {
-                    'loadingRecords': '&nbsp;',
-                    'processing': '<div class="loader2"></div>'
-                },
-                "createdRow": function (row, data) {
-                    let action_td = document.createElement('td');
-                    $(action_td).addClass('text-center');
-
-                    $(action_td).append('<a href="javascript:void(0)" id="update-fileclear" class="editrecfileclr"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
-
-                    $(row).append(action_td);
-                    $(row).data('id', data['id']);
-                }
-
-            });
-
-
-
-            let deleted = [];
-            $(document).on('click', '.editrecfileclr', function () {
-                loadDiv($('#tableSection'));
-                let id = $(this).parents('tr').data('id');
-
-                // Fetch team and attachment details
-                fetch('fmr/clearance-details/' + id)
-                        .then(resp => resp.json())
-                        .then((resp) => {
-                            let content = resp.data.content;
-
-                            $('#ref_numberc').val(content.ref_number);
-                            $('#customer_namec').val(content.customer_name);
-                            $('#amountc').val(content.amount);
-                            $('#productc').val(content.product_txt);
-                            let attachments = resp.data.videos;
-
-                            // Clear existing rows in the attachment table
-                            $('#tbladdAtts tbody').empty();
-
-                            // Populate the attachment table with fetched data
-                            attachments.forEach((attachment) => {
-                                // Get the table body
-                                var tableBody = document.querySelector('#tbladdAtts tbody');
-
-                                // Create a new row
-                                var newRow = tableBody.insertRow();
-
-                                // Create cells in the new row
-                                var fileNameCell = newRow.insertCell(0);
-                                var actionCell = newRow.insertCell(1);
-
-                                // Set the text content of the cells with the fetched values
-                                fileNameCell.textContent = attachment.name;
-
-                                // Create a delete button in the action cell
-                                var deleteButton = document.createElement('button');
-                                deleteButton.classList.add('btn', 'btn-sm', 'btn-danger');
-                                deleteButton.textContent = 'Remove';
-                                deleteButton.name = 'dele';
-
-                                // Add a click event listener to the delete button
-
-                                let videoId = attachment.id;
-                                deleteButton.addEventListener('click', function () {
-
-                                    deleted.push(videoId + "");
-
-                                    // Remove the row when the delete button is clicked
-                                    tableBody.removeChild(newRow);
-                                });
-
-                                // Append the delete button to the action cell
-                                actionCell.appendChild(deleteButton);
-                            });
-
-                            // Show the form section
-                            $('#saveBtnclr').data('mode', 'update-fileclear');
-                            $('#saveBtnclr').data('id', id);
-                            $('#saveBtnclr').html('<i class="icon feather icon-save"></i>Update'); // Change button text to 'Update'
-                            $('#formSectionFileClearance').fadeIn();
-                            $('#tableSection').hide();
-                            finishLoadDiv($('#tableSection'));
-
-                        });
-            });
-
-
             function handleAttachmentDeletion() {
                 let deleteIds = [];
 
@@ -1723,7 +2369,10 @@
                 return deleteIds;
             }
 
+            let deleted = [];
+            $(document).on('click', '.editrecfileclr', function () {
 
+            });
             document.getElementById('saveBtnclr').addEventListener('click', function () {
                 let mode = $('#saveBtnclr').data('mode');
                 if (mode === 'update-fileclear') {
@@ -1756,12 +2405,6 @@
                     // Add statusclr to formData
                     formData.statusclr = statusclr;
 
-                    // If statusclr is 'approve', add the selected approver to formData
-                    if (statusclr === 'approve') {
-                        let approver = document.getElementById('approver').value;
-                        formData.approver = approver;
-                    }
-
                     fetch('fmr/update-fileclearance', {
                         method: 'POST',
                         body: new URLSearchParams(formData)
@@ -1782,6 +2425,50 @@
                     });
                 }
             });
+
+        </script>
+
+
+        <!--Undertaking recommendation-->
+        <script>
+            document.getElementById('saveBtnrec').addEventListener('click', function () {
+                let mode = $('#saveBtnrec').data('mode');
+                if (mode === 'update-Recommendation') {
+                    let id = $('#saveBtnrec').data('id');
+
+                    let approver = document.getElementById('approver').value;
+
+                    // Ensure formData is properly defined and initialized
+                    let formData = {
+                        id: id,
+                        approver: approver
+                    };
+
+                    fetch('fmr/update-recommendation', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: new URLSearchParams(formData)
+                    }).then(response => {
+                        if (!response.ok) {
+                            throw new Error(response.statusText);
+                        }
+                        return response.json(); // Move this line here to parse JSON
+                    }).then(data => {
+                        Swal.fire('Successful!', 'Pending File details updated successfully', 'success');
+                        clearFormsf();
+                        $('#formSectionRecommendation').hide();
+                        $('#tableSection').fadeIn();
+                        dtable.ajax.reload();
+                    }).catch(error => {
+                        console.error('Error updating Pending File details:', error);
+                        Swal.fire('Error!', 'Failed to update Pending File details', 'error');
+                    });
+                }
+            });
+
+
 
 
             document.addEventListener("DOMContentLoaded", function () {
@@ -1814,6 +2501,9 @@
                         allowDeselect: true,
                         deselectLabel: '<span class="red">✖</span>'
                     });
+
+
+
             document.getElementById('addBtnClr').addEventListener('click', function () {
                 // Get the table body
                 var tableBody = document.querySelector('#tbladdAtts tbody');
@@ -1853,127 +2543,15 @@
                 actionCell.appendChild(deleteButton);
 
                 // Call the addAttachmentRow function with the input values
-//                addAttachmentRow(fileNameInput.value);
+                //                addAttachmentRow(fileNameInput.value);
             });
-
-
 
 
 
         </script>
 
-        <!--Approval Pending-->
+        <!--Undertaking Approval Pending-->
         <script>
-            $.fn.dataTable.ext.errMode = 'none';
-            var dtable = $('#approval_table').DataTable({
-                "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
-                "pageLength": 5,
-                "ordering": true,
-                "autoWidth": false,
-                "processing": true,
-                "serverSide": true,
-                "order": [[0, "desc"]],
-                "searchHighlight": true,
-                "searchDelay": 350,
-                "ajax": {
-                    "url": "fmr/fmrtable-approve",
-                    "contentType": "application/json",
-                    "type": "POST",
-                    "data": function (d) {
-                        return JSON.stringify(d);
-                    },
-                    error: function (xhr, error, code) {
-                        console.log(xhr);
-                        console.log(code);
-                    }
-                },
-                "columns": [
-                    {"data": "id", className: "text-right", "visible": false},
-                    {"data": "ref_number"},
-                    {"data": "customer_name"},
-                    {"data": "product"},
-                    {"data": "amount"},
-                    {"data": "branch"},
-                    {"data": "ent_on"},
-
-                    {"data": "status"}
-                ], "language": {
-                    'loadingRecords': '&nbsp;',
-                    'processing': '<div class="loader2"></div>'
-                },
-                "createdRow": function (row, data) {
-                    let action_td = document.createElement('td');
-                    $(action_td).addClass('text-center');
-
-                    $(action_td).append('<a href="javascript:void(0)" id="update-undertaking" class="editrecunder"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
-
-                    $(row).append(action_td);
-                    $(row).data('id', data['id']);
-                }
-
-            });
-
-            $(document).on('click', '.editrecunder', function () {
-                loadDiv($('#tableSection'));
-                let id = $(this).parents('tr').data('id');
-
-                // Fetch team and attachment details
-                fetch('fmr/clearance-details/' + id)
-                        .then(resp => resp.json())
-                        .then((resp) => {
-                            let content = resp.data.content;
-                            $('#ref_numberu').val(content.ref_number);
-                            $('#customer_nameu').val(content.customer_name);
-                            $('#amountu').val(content.amount);
-                            $('#productu').val(content.product_txt);
-                            let attachments = resp.data.videos;
-
-                            // Clear existing rows in the attachment table
-                            $('#tbladdAttu tbody').empty();
-
-                            // Populate the attachment table with fetched data
-                            attachments.forEach((attachment) => {
-                                // Get the table body
-                                var tableBody = document.querySelector('#tbladdAttu tbody');
-
-                                // Create a new row
-                                var newRow = tableBody.insertRow();
-
-                                // Create cells in the new row
-                                var fileNameCell = newRow.insertCell(0);
-
-
-                                // Set the text content of the cells with the fetched values
-                                fileNameCell.textContent = attachment.name;
-
-
-                            });
-
-                            // Show the form section
-                            $('#saveBtnund').data('mode', 'update-undertaking');
-                            $('#saveBtnund').data('id', id);
-                            $('#saveBtnund').html('<i class="icon feather icon-save"></i>Update'); // Change button text to 'Update'
-                            $('#formSectionApprovalPending').fadeIn();
-                            $('#tableSection').hide();
-                            finishLoadDiv($('#tableSection'));
-
-                        });
-            });
-
-
-            function handleAttachmentDeletionu() {
-                let deleteIds = [];
-
-                $('#tbladdAttu').on('click', '.btn-danger', function () {
-                    let deleteRowId = $(this).closest('tr').attr('id');
-                    deleteIds.push(deleteRowId);
-                    $(this).closest('tr').remove();
-                });
-
-                return deleteIds;
-            }
-
-
             document.getElementById('saveBtnund').addEventListener('click', function () {
                 let mode = $('#saveBtnund').data('mode');
                 if (mode === 'update-undertaking') {
@@ -1988,11 +2566,6 @@
                     // Add statusclr to formData
                     formData.statusund = statusund;
 
-                    // If statusclr is 'approve', add the selected approver to formData
-                    if (statusund === 'returned') {
-                        let returncomment = document.getElementById('return_textarea').value;
-                        formData.returncomment = returncomment;
-                    }
 
                     fetch('fmr/update-undertakingap', {
                         method: 'POST',
@@ -2014,185 +2587,15 @@
                     });
                 }
             });
-
-
-            document.addEventListener("DOMContentLoaded", function () {
-                var approveStatusSelect = document.getElementById("statusund");
-                var returncom = document.getElementById("return_section");
-
-                // Add event listener to the select element
-                approveStatusSelect.addEventListener("change", function () {
-                    // Check if the selected value is "approve"
-                    if (this.value === "returned") {
-                        // Show the comment section
-                        returncom.style.display = "block";
-                    } else {
-                        // Hide the comment section
-                        returncom.style.display = "none";
-                    }
-                });
-            });
-
-
-
-
-
-
-
-
         </script>
 
-        <!--Payment Voucher Hand Over To finance-->
+        <!--Payment Voucher Hand Over To finance -->
         <script>
 
-            $.fn.dataTable.ext.errMode = 'none';
-            var dtable = $('#pay_table').DataTable({
-                "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
-                "pageLength": 5,
-                "ordering": true,
-                "autoWidth": false,
-                "processing": true,
-                "serverSide": true,
-                "order": [[0, "desc"]],
-                "searchHighlight": true,
-                "searchDelay": 350,
-                "ajax": {
-                    "url": "fmr/fmrtable-payment",
-                    "contentType": "application/json",
-                    "type": "POST",
-                    "data": function (d) {
-                        return JSON.stringify(d);
-                    },
-                    error: function (xhr, error, code) {
-                        console.log(xhr);
-                        console.log(code);
-                    }
-                },
-                "columns": [
-                    {"data": "id", className: "text-right", "visible": false},
-                    {"data": "ref_number"},
-                    {"data": "customer_name"},
-                    {"data": "product"},
-                    {"data": "amount"},
-                    {"data": "branch"},
-                    {"data": "ent_on"},
-
-                    {"data": "status"}
-                ], "language": {
-                    'loadingRecords': '&nbsp;',
-                    'processing': '<div class="loader2"></div>'
-                },
-                "createdRow": function (row, data) {
-                    let action_td = document.createElement('td');
-                    $(action_td).addClass('text-center');
-
-                    $(action_td).append('<a href="javascript:void(0)" id="update-paymentvoucher" class="editrecpayvou"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
-
-                    $(row).append(action_td);
-                    $(row).data('id', data['id']);
-                }
-
-            });
-
-
-
-        </script>
-
-        <!--Payment Voucher Hand Over To finance(Undertaking Approved)-->
-        <script>
-
-            $.fn.dataTable.ext.errMode = 'none';
-            var dtable = $('#payUn_table').DataTable({
-                "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
-                "pageLength": 5,
-                "ordering": true,
-                "autoWidth": false,
-                "processing": true,
-                "serverSide": true,
-                "order": [[0, "desc"]],
-                "searchHighlight": true,
-                "searchDelay": 350,
-                "ajax": {
-                    "url": "fmr/fmrtable-paymentua",
-                    "contentType": "application/json",
-                    "type": "POST",
-                    "data": function (d) {
-                        return JSON.stringify(d);
-                    },
-                    error: function (xhr, error, code) {
-                        console.log(xhr);
-                        console.log(code);
-                    }
-                },
-                "columns": [
-                    {"data": "id", className: "text-right", "visible": false},
-                    {"data": "ref_number"},
-                    {"data": "customer_name"},
-                    {"data": "product"},
-                    {"data": "amount"},
-                    {"data": "branch"},
-                    {"data": "ent_on"},
-
-                    {"data": "status"}
-                ], "language": {
-                    'loadingRecords': '&nbsp;',
-                    'processing': '<div class="loader2"></div>'
-                },
-                "createdRow": function (row, data) {
-                    let action_td = document.createElement('td');
-                    $(action_td).addClass('text-center');
-
-                    $(action_td).append('<a href="javascript:void(0)" id="update-paymentvoucher" class="editrecpayvou"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
-
-                    $(row).append(action_td);
-                    $(row).data('id', data['id']);
-                }
-
-            });
-            $(document).on('click', '.editrecpayvou', function () {
-                loadDiv($('#tableSection'));
-
-                let id = $(this).parents('tr').data('id');
-                fetch('fmr/paymentv-details/' + id)
-                        .then(resp => resp.json())
-                        .then((resp) => {
-                            let data = resp.data;
-                            let d1 = data.d1;
-                            let d2 = data.d2;
-                            let obj = data.obj;
-
-
-                            $('#ref_numberv').val(obj.ref_number);
-                            $('#customer_namev').val(obj.customer_name);
-                            $('#amountv').val(obj.amount);
-                            $('#productv').val(d1.product_txt);
-                            $('#saveBtnpv').data('mode', 'update-paymentvoucher');
-                            $('#saveBtnpv').data('id', id);
-                            $('#saveBtnpv').html('<i class="icon feather icon-save"></i>Update'); // Change button text to 'Update'
-                            $('#formSectionPaymentVoucher').fadeIn();
-                            $('#tableSection').hide();
-                            finishLoadDiv($('#tableSection'));
-
-                            // Check if datas object exists and has the 'approvername' property
-                            if (d2 && d2.approvername) {
-                                // Show the hidden row
-                                $('#approverRow').show();
-                                // Assign the approvername to the input field
-                                $('#approvername').val(d2.approvername);
-                            }
-                        })
-                        .catch(error => {
-                            // Handle fetch error
-                            console.error('Error fetching payment details:', error);
-                        });
-            });
-
-
-
-            document.getElementById('saveBtnpv').addEventListener('click', function () {
-                let mode = $('#saveBtnpv').data('mode');
-                if (mode === 'update-paymentvoucher') {
-                    let id = $('#saveBtnpv').data('id');//
+            document.getElementById('saveBtnpay').addEventListener('click', function () {
+                let mode = $('#saveBtnpay').data('mode');
+                if (mode === 'update-payment') {
+                    let id = $('#saveBtnpay').data('id');//
 
                     let formData = {};
                     formData.id = id;
@@ -2225,179 +2628,83 @@
                 }
             });
 
+
+
         </script>
 
-        <!--Completed-->
+        <!--Payment Undertaking-->
         <script>
 
-            $.fn.dataTable.ext.errMode = 'none';
-            var dtable = $('#complete_table').DataTable({
-                "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
-                "pageLength": 5,
-                "ordering": true,
-                "autoWidth": false,
-                "processing": true,
-                "serverSide": true,
-                "order": [[0, "desc"]],
-                "searchHighlight": true,
-                "searchDelay": 350,
-                "ajax": {
-                    "url": "fmr/fmrtable-completed",
-                    "contentType": "application/json",
-                    "type": "POST",
-                    "data": function (d) {
-                        return JSON.stringify(d);
-                    },
-                    error: function (xhr, error, code) {
-                        console.log(xhr);
-                        console.log(code);
-                    }
-                },
-                "columns": [
-                    {"data": "id", className: "text-right", "visible": false},
-                    {"data": "ref_number"},
-                    {"data": "customer_name"},
-                    {"data": "product"},
-                    {"data": "amount"},
-                    {"data": "branch"},
-                    {"data": "ent_on"},
+            function handleAttachmentDeletion() {
+                let deleteIds = [];
 
-                    {"data": "status"}
-                ], "language": {
-                    'loadingRecords': '&nbsp;',
-                    'processing': '<div class="loader2"></div>'
-                },
-                "createdRow": function (row, data) {
-                    let action_td = document.createElement('td');
-                    $(action_td).addClass('text-center');
+                $('#tbladdAttpay').on('click', '.btn-danger', function () {
+                    let deleteRowId = $(this).closest('tr').attr('id');
+                    deleteIds.push(deleteRowId);
+                    $(this).closest('tr').remove();
+                });
 
-                    $(action_td).append('<a href="javascript:void(0)" id="update-completed" class="editreccompleted"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
-                    $(row).append(action_td);
-                    $(row).data('id', data['id']);
-                    $(row).data('status', data['status']);
+                return deleteIds;
+            }
+
+
+            document.getElementById('saveBtnppun').addEventListener('click', function () {
+                let mode = $('#saveBtnppun').data('mode');
+                if (mode === 'update-payunder') {
+                    let id = $('#saveBtnppun').data('id');//
+                    let deleteIds = handleAttachmentDeletion();
+                    let tableRows = document.querySelectorAll('#tbladdAtts tbody tr');
+                    let attachmentData = [];
+                    let formData = {};
+
+                    tableRows.forEach((row, index) => {
+                        let fileNameInput = row.querySelector('input[name="fileName"]');
+                        if (fileNameInput) {
+                            let fileName = fileNameInput.value;
+
+                            attachmentData.push({
+                                name: fileName
+                            });
+                        }
+                    });
+
+                    let desclist = JSON.stringify(attachmentData);
+
+                    formData.desclist = desclist;
+                    formData.id = id;
+                    formData.deleteIds = JSON.stringify(deleted);
+
+                    // Get the selected value of statusclr
+                    let statusvoucherun = document.getElementById('statusvoucherun').value;
+
+                    // Add statusclr to formData
+                    formData.statusvoucherun = statusvoucherun;
+
+
+
+                    fetch('fmr/update-payment-undertaking', {
+                        method: 'POST',
+                        body: new URLSearchParams(formData)
+                    }).then(response => {
+                        if (!response.ok) {
+                            throw new Error(response.statusText);
+                        } else {
+                            Swal.fire('Successful!', 'Pending File details updated successfully', 'success');
+                            clearFormsf();
+                            $('#formSectionPaymentVoucherUnder').hide();
+                            $('#tableSection').fadeIn();
+                            dtable.ajax.reload();
+                        }
+                        return response.json();
+                    }).catch(error => {
+                        console.error('Error updating Pending File details:', error);
+                        Swal.fire('Error!', 'Failed to update Pending File details', 'error');
+                    });
                 }
-
-            });
-
-
-
-            $(document).on('click', '.editreccompleted', function () {
-                loadDiv($('#tableSection'));
-
-                let id = $(this).parents('tr').data('id');
-                fetch('fmr/paymentv-details/' + id)
-                        .then(resp => resp.json())
-                        .then((resp) => {
-                            let data = resp.data;
-                            let d1 = data.d1;
-                            let obj = data.obj;
-
-
-                            $('#ref_numbercom').val(obj.ref_number);
-                            $('#customer_namecom').val(obj.customer_name);
-                            $('#amountcom').val(obj.amount);
-                            $('#productcom').val(d1.product_txt);
-                            $('#saveBtnpv').data('mode', 'update-completed');
-                            $('#saveBtnpv').data('id', id);
-                            $('#saveBtnpv').html('<i class="icon feather icon-save"></i>Update'); // Change button text to 'Update'
-                            $('#formSectionCompleted').fadeIn();
-                            $('#tableSection').hide();
-                            finishLoadDiv($('#tableSection'));
-
-
-                        })
-                        .catch(error => {
-                            // Handle fetch error
-                            console.error('Error fetching payment details:', error);
-                        });
-            });
-        </script>
-
-        <!-- Rejected-->
-        <script>
-
-
-            $.fn.dataTable.ext.errMode = 'none';
-            var dtable = $('#reject_table').DataTable({
-                "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
-                "pageLength": 5,
-                "ordering": true,
-                "autoWidth": false,
-                "processing": true,
-                "serverSide": true,
-                "order": [[0, "desc"]],
-                "searchHighlight": true,
-                "searchDelay": 350,
-                "ajax": {
-                    "url": "fmr/fmrtable-reject",
-                    "contentType": "application/json",
-                    "type": "POST",
-                    "data": function (d) {
-                        return JSON.stringify(d);
-                    },
-                    error: function (xhr, error, code) {
-                        console.log(xhr);
-                        console.log(code);
-                    }
-                },
-                "columns": [
-                    {"data": "id", className: "text-right", "visible": false},
-                    {"data": "ref_number"},
-                    {"data": "customer_name"},
-                    {"data": "product"},
-                    {"data": "amount"},
-                    {"data": "branch"},
-                    {"data": "ent_on"},
-
-                    {"data": "status"}
-                ], "language": {
-                    'loadingRecords': '&nbsp;',
-                    'processing': '<div class="loader2"></div>'
-                },
-                "createdRow": function (row, data) {
-                    let action_td = document.createElement('td');
-                    $(action_td).addClass('text-center');
-
-                    $(action_td).append('<a href="javascript:void(0)" id="update-rejected" class="editrecrejected"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
-
-                    $(row).append(action_td);
-                    $(row).data('id', data['id']);
-                }
-
-            });
-
-            $(document).on('click', '.editrecrejected', function () {
-                loadDiv($('#tableSection'));
-
-                let id = $(this).parents('tr').data('id');
-                fetch('fmr/paymentv-details/' + id)
-                        .then(resp => resp.json())
-                        .then((resp) => {
-                            let data = resp.data;
-                            let d1 = data.d1;
-                            let obj = data.obj;
-
-
-                            $('#ref_numberrej').val(obj.ref_number);
-                            $('#customer_namerej').val(obj.customer_name);
-                            $('#amountrej').val(obj.amount);
-                            $('#productrej').val(d1.product_txt);
-                            $('#resonrej').val(obj.reason);
-                            $('#saveBtnpv').data('mode', 'update-completed');
-                            $('#saveBtnpv').data('id', id);
-                            $('#saveBtnpv').html('<i class="icon feather icon-save"></i>Update'); // Change button text to 'Update'
-                            $('#formSectionRejected').fadeIn();
-                            $('#tableSection').hide();
-                            finishLoadDiv($('#tableSection'));
-
-
-                        })
-                        .catch(error => {
-                            // Handle fetch error
-                            console.error('Error fetching payment details:', error);
-                        });
             });
 
         </script>
+
+
     </body>
 </html>

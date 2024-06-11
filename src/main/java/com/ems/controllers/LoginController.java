@@ -21,7 +21,9 @@ public class LoginController {
 
     @PostMapping("/login")
     public String checkLogin(@RequestParam String username, @RequestParam String password, HttpSession session) {
-
+        if (password.trim().equals("")) {
+            return "error";
+        }
         Users user = servr.checkLogin(username);
 
         if (user == null) {

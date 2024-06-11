@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpSession;
 import java.io.File;
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,18 +52,21 @@ public class FmrService {
 
     public DataTablesResponse<FmrDTO> getFmrs(DataTableRequest param) throws Exception {
         String stage = param.getData();
+        String stage1 = param.getData();
+        String stage2 = param.getData();
+        String stage3 = param.getData();
 
         String sql = "SELECT x.`id`,x.`customer_name`,x.`status`,x.`ref_number`,(SELECT `description` FROM `loan`.`product`  WHERE `id` = x.`product`) AS product,(SELECT `name` FROM `loan`.`branch`  WHERE `id` = x.`branch`) AS branch ,x.`amount`,x.`pendings`,x.`comment`,x.`approver`,x.`facility_status`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`ent_by`) AS `ent_by`,`ent_on`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`mod_by`) AS `mod_by`,`mod_on` FROM `fmr` X WHERE TRUE";
         if (!stage.equals("all")) {
             if (stage.equals("acknowledgment")) {
                 sql += " AND `status`='Acknowledgment Pending'";
             } else if (stage.equals("file")) {
-                sql += " AND `status`='File Pending Details'";
+                sql += " AND `status`='Exceptions'";
             } else if (stage.equals("acknowledged")) {
                 sql += " AND `status`='Acknowledged'";
-            } else if (stage.equals("clearance")) {
-                sql += " AND `status`='File Pending Clearance'";
-            } else if (stage.equals("approve")) {
+            } else if (stage.equals("underrec")) {
+                sql += " AND `status`='Undertaking Recommendation'";
+            } else if (stage.equals("underapp")) {
                 sql += " AND `status`='Undertaking Approval Pending'";
             } else if (stage.equals("payment")) {
                 sql += " AND `status`='Payment Voucher Hand Over To Finance'";
@@ -70,6 +74,8 @@ public class FmrService {
                 sql += " AND `status`='Payment Voucher Hand Over To Finance(Undertaking Approval)'";
             } else if (stage.equals("completed")) {
                 sql += " AND `status`='Completed'";
+            } else if (stage.equals("completedun")) {
+                sql += " AND `status`='Completed(Undertaking Approval)'";
             } else if (stage.equals("rejected")) {
                 sql += " AND `status`='Rejected'";
             }
@@ -83,9 +89,47 @@ public class FmrService {
         return userDt.getData(FmrDTO.class, param, "SELECT x.`id`,x.`customer_name`,x.`status`,x.`ref_number`,(SELECT `description` FROM `loan`.`product` WHERE `id` = x.`product`) AS product,(SELECT `name` FROM `loan`.`branch` WHERE `id` = x.`branch`) AS branch,x.`amount`,x.`pendings`,x.`comment`,x.`approver`,x.`facility_status`,(SELECT d.`name` FROM `users` d WHERE d.`id` = x.`ent_by`) AS `ent_by`,`ent_on`,(SELECT d.`name` FROM `users` d WHERE d.`id` = x.`mod_by`) AS `mod_by`,`mod_on` FROM `fmr` X WHERE x.branch = (SELECT `branch` FROM `users` WHERE `id` = ?)", userId);
 
     }
+//Approver
 
-    public DataTablesResponse<FmrDTO> getFmrPendingBranch(DataTableRequest param, Integer userId) throws Exception {
-        return userDt.getData(FmrDTO.class, param, "SELECT x.`id`,x.`customer_name`,x.`status`,x.`ref_number`,(SELECT `description` FROM `loan`.`product`  WHERE `id` = x.`product`) AS product,(SELECT `name` FROM `loan`.`branch`  WHERE `id` = x.`branch`) AS branch ,x.`amount`,x.`pendings`,x.`comment`,x.`approver`,x.`facility_status`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`ent_by`) AS `ent_by`,`ent_on`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`mod_by`) AS `mod_by`,`mod_on` FROM `fmr` X WHERE `status`='Acknowledgment Pending'AND x.branch = (SELECT `branch` FROM `users` WHERE `id` = ?)", userId);
+    public DataTablesResponse<FmrDTO> getFmrApprove(DataTableRequest param, Integer userId) throws Exception {
+        String stage = param.getData();
+        String sql;
+
+        // Construct SQL query based on the stage
+        if (stage.equals("underrec")) {
+            sql = "SELECT x.`id`, x.`customer_name`, x.`status`, x.`ref_number`, "
+                    + "(SELECT `description` FROM `loan`.`product` WHERE `id` = x.`product`) AS product, "
+                    + "(SELECT `name` FROM `loan`.`branch` WHERE `id` = x.`branch`) AS branch, "
+                    + "x.`amount`, x.`pendings`, x.`comment`, x.`approver`, x.`facility_status`, "
+                    + "(SELECT d.`name` FROM `users` d WHERE d.`id` = x.`ent_by`) AS `ent_by`, "
+                    + "x.`ent_on`, "
+                    + "(SELECT d.`name` FROM `users` d WHERE d.`id` = x.`mod_by`) AS `mod_by`, "
+                    + "x.`mod_on` "
+                    + "FROM `fmr` X "
+                    + "WHERE x.`status` = 'Undertaking Recommendation'";
+        } else {
+            sql = "SELECT x.`id`, x.`customer_name`, x.`status`, x.`ref_number`, "
+                    + "(SELECT `description` FROM `loan`.`product` WHERE `id` = x.`product`) AS product, "
+                    + "(SELECT `name` FROM `loan`.`branch` WHERE `id` = x.`branch`) AS branch, "
+                    + "x.`amount`, x.`pendings`, x.`comment`, x.`approver`, x.`facility_status`, "
+                    + "(SELECT d.`name` FROM `users` d WHERE d.`id` = x.`ent_by`) AS `ent_by`, "
+                    + "x.`ent_on`, "
+                    + "(SELECT d.`name` FROM `users` d WHERE d.`id` = x.`mod_by`) AS `mod_by`, "
+                    + "x.`mod_on` "
+                    + "FROM `fmr` X "
+                    + "WHERE x.`approver` = ? AND x.`status` = 'Undertaking Approval Pending'";
+        }
+
+        // Execute the query with the userId parameter if the stage is not underrec
+        if (!stage.equals("underrec")) {
+            return userDt.getData(FmrDTO.class, param, sql, userId);
+        } else {
+            return userDt.getData(FmrDTO.class, param, sql);
+        }
+    }
+
+    public DataTablesResponse<FmrDTO> getFmrApprovse(DataTableRequest param, Integer userId) throws Exception {
+        return userDt.getData(FmrDTO.class, param, "SELECT x.`id`,x.`customer_name`,x.`status`,x.`ref_number`,(SELECT `description` FROM `loan`.`product`  WHERE `id` = x.`product`) AS product,(SELECT `name` FROM `loan`.`branch`  WHERE `id` = x.`branch`) AS branch ,x.`amount`,x.`pendings`,x.`comment`,x.`approver`,x.`facility_status`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`ent_by`) AS `ent_by`,`ent_on`,(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`mod_by`) AS `mod_by`,`mod_on` FROM `fmr` X WHERE `status`='Acknowledgment Pending' AND x.branch = (SELECT `branch` FROM `users` WHERE `id` = ?)", userId);
 
     }
 
@@ -164,13 +208,11 @@ public class FmrService {
                 updatefmr.setStatus("Rejected");
                 updatefmr.setReason(reason);
                 break;
-            case "filepending":
-                updatefmr.setStatus("File Pending Details");
+
+            case "acknowledged":
+                updatefmr.setStatus("Acknowledged");
                 break;
-            case "acknowledgment_pending":
-                updatefmr.setStatus("Payment Voucher Hand Over To Finance");
-                break;
-            // Add more cases if needed for other facility statuses
+
             default:
                 // Handle default case if necessary
                 break;
@@ -214,42 +256,71 @@ public class FmrService {
 
     private final ObjectMapper mapper = new ObjectMapper();
 
-    public Fmr uploadFiles(Integer id, String desclist) throws Exception {
-        Fmr system = repo.findById(id).get();
+    public Fmr uploadFiles(Integer id, String desclist, String statusack) throws Exception {
+        Fmr system = repo.findById(id).orElseThrow(() -> new Exception("Record not found with id: " + id));
         system.setPendings(system.getId());
-        system.setStatus("File Pending Clearance");
+
         system = repo.save(system);
 
-        JsonNode fileList = mapper.readTree(desclist);
-        for (int i = 0; i < fileList.size(); i++) {
-            JsonNode fileItem = fileList.get(i);
+        switch (statusack) {
+            case "payProcess":
+                system.setStatus("Payment Voucher Hand Over To Finance");
+                break;
 
-            FilePendings attachment = new FilePendings();
-            attachment.setPendings(system.getId());
-            attachment.setName(fileItem.get("name").asText());
-            attachment.setStatus("active");
-            attachment = fmrrepo.save(attachment);
-            fmrrepo.save(attachment);
+            case "fileped":
+                system.setStatus("Exceptions");
+                JsonNode fileList = mapper.readTree(desclist);
+                for (JsonNode fileItem : fileList) {
+                    FilePendings attachment = new FilePendings();
+                    attachment.setPendings(system.getId());
+                    attachment.setName(fileItem.get("name").asText());
+                    attachment.setJustification(fileItem.get("justification").asText());
+                    attachment.setDate(LocalDate.parse(fileItem.get("completionDate").asText()));
+                    attachment.setStatus("active");
+                    fmrrepo.save(attachment);
+                }
+                break;
+
+            default:
+                // Handle default case if necessary
+                break;
         }
 
         return repo.save(system);
     }
 
     public Object getClearance(Integer id) throws Exception {
-        Fmr sys = repo.findById(id).get();
+        Fmr sys = repo.findById(id).orElseThrow(() -> new Exception("Fmr not found for id: " + id));
 
-        Map<String, Object> data = jdbc.queryForMap("SELECT `description` as product_txt FROM `loan`.`product`  WHERE `id` = ?", sys.getProduct());
+        Map<String, Object> data = jdbc.queryForMap("SELECT `description` as product_txt FROM `loan`.`product` WHERE `id` = ?", sys.getProduct());
         System.out.println(data);
         sys.setProductTxt((String) data.get("product_txt"));
 
-        Fmr content = repo.findById(id).get();
+        Map<String, Object> datas = jdbc.queryForMap("SELECT `name` as approvername FROM `users` WHERE `id` = ?", sys.getApprover());
+        System.out.println(datas);
+        sys.setApproverName((String) datas.get("approvername"));
+
+        Fmr content = repo.findById(id).orElseThrow(() -> new Exception("Fmr not found for id: " + id));
         List<FilePendings> videos = fmrrepo.findByPendingsAndStatus(id, "active");
-        data.put("content", content);
-        data.put("videos", videos);
-        return data;
+
+        for (FilePendings video : videos) {
+            Map<String, Object> name = jdbc.queryForMap("SELECT `name` as entered FROM `users` WHERE `id` = ?", video.getMod_by());
+            String enteredName = (String) name.get("entered");
+            System.out.println(name);
+            video.setModby(enteredName);
+        }
+
+        // Adding all the data to the return map
+        Map<String, Object> result = new HashMap<>();
+        result.put("productData", data);
+        result.put("approverData", datas);
+        result.put("content", content);
+        result.put("videos", videos);
+
+        return result;
     }
 
-    public Fmr updateClearance(Integer id, String desclist, String deleteIds, String statusclr, String approver) {
+    public Fmr updateClearance(Integer id, String desclist, String deleteIds, String statusclr) {
         try {
             Fmr system = repo.findById(id).orElseThrow(() -> new Exception("FMR not found"));
 
@@ -285,8 +356,8 @@ public class FmrService {
 
             // Handle statusclr
             if ("approve".equals(statusclr)) {
-                system.setApprover(approver);
-                system.setStatus("Undertaking Approval Pending");
+//                system.setApprover(approver);
+                system.setStatus("Undertaking Recommendation");
             } else if ("cleared".equals(statusclr)) {
                 system.setStatus("Payment Voucher Hand Over To Finance");
             }
@@ -314,13 +385,23 @@ public class FmrService {
         return repors.getApprover("%" + search.trim() + "%");
     }
 
-    public Fmr updateUndertaking(Integer id, String statusund, String returncomment) throws Exception {
+    public Fmr updateRecommendation(Integer id, String approver) throws Exception {
+        Fmr rec = repo.findById(id).get();
+
+        rec.setApprover(approver);
+        rec.setStatus("Undertaking Approval Pending");
+
+        rec = repo.save(rec);
+        return rec;
+    }
+
+    public Fmr updateUndertaking(Integer id, String statusund) throws Exception {
         Fmr updatefmr = repo.findById(id).get();
 
         switch (statusund) {
             case "returned":
-                updatefmr.setStatus("File Pending Clearance");
-                updatefmr.setReturncomment(returncomment);
+                updatefmr.setStatus("Exceptions");
+
                 break;
             case "approved":
                 updatefmr.setStatus("Payment Voucher Hand Over To Finance(Undertaking Approval)");
@@ -333,6 +414,55 @@ public class FmrService {
 
         updatefmr = repo.save(updatefmr);
         return updatefmr;
+    }
+
+    public Fmr updatePaymentUP(Integer id, String desclist, String deleteIds, String statusvoucherun) {
+        try {
+            Fmr system = repo.findById(id).orElseThrow(() -> new Exception("FMR not found"));
+
+            // Handle deleteIds
+            if (deleteIds != null) {
+                JsonNode toBeDeleted = mapper.readTree(deleteIds);
+                for (JsonNode jsonNode : toBeDeleted) {
+                    Optional<FilePendings> optionalMembers = fmrrepo.findById(Integer.parseInt(jsonNode.asText()));
+                    if (optionalMembers.isPresent()) {
+                        FilePendings attachmentToDelete = optionalMembers.get();
+                        attachmentToDelete.setStatus("deactivate");
+                        fmrrepo.save(attachmentToDelete);
+                    } else {
+                        throw new Exception("FMR with ID " + jsonNode.asText() + " not found");
+                    }
+                }
+            }
+
+            // Handle desclist
+            if (desclist != null && !desclist.isEmpty()) {
+                JsonNode fileList = mapper.readTree(desclist);
+                for (int i = 0; i < fileList.size(); i++) {
+                    JsonNode fileItem = fileList.get(i);
+                    String fileName = fileItem.get("name").asText();
+
+                    FilePendings attachment = new FilePendings();
+                    attachment.setPendings(system.getId());
+                    attachment.setName(fileName);
+                    attachment.setStatus("active");
+                    fmrrepo.save(attachment);
+                }
+            }
+            switch (statusvoucherun) {
+                case "completedun":
+                    system.setStatus("Completed(Undertaking Approval)");
+                    break;
+
+                default:
+                    // Handle default case if necessary
+                    break;
+            }
+            return repo.save(system);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Failed to update FMR with File Pendings", e);
+        }
     }
 
     public Map<String, Object> getPayment(Integer id) throws Exception {

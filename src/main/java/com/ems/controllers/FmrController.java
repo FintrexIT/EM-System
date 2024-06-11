@@ -58,10 +58,11 @@ public class FmrController {
     public DataTablesResponse<FmrDTO> getFmrsBranch(@RequestBody DataTableRequest param, HttpSession session) throws Exception {
         return service.getFmrsBranch(param, (Integer) session.getAttribute("uid"));
     }
+//Approver
 
-    @PostMapping("/fmrtable-pending-branch")
-    public DataTablesResponse<FmrDTO> getFmrPendingBranch(@RequestBody DataTableRequest param, HttpSession session) throws Exception {
-        return service.getFmrPendingBranch(param, (Integer) session.getAttribute("uid"));
+    @PostMapping("/fmrtable-all-approver")
+    public DataTablesResponse<FmrDTO> getFmrApprove(@RequestBody DataTableRequest param, HttpSession session) throws Exception {
+        return service.getFmrApprove(param, (Integer) session.getAttribute("uid"));
     }
 
     @PostMapping("/fmrtable-file-branch")
@@ -137,8 +138,11 @@ public class FmrController {
 
     @PostMapping("/save-filePendings")
     @ResponseBody
-    public Fmr uploadFiles(@RequestParam Integer id, @RequestParam("desclist") String desclist) throws Exception {
-        return service.uploadFiles(id, desclist);
+    public Fmr uploadFiles(
+            @RequestParam Integer id,
+            @RequestParam(name = "desclist", required = false) String desclist,
+            @RequestParam(name = "statusack") String statusack) throws Exception {
+        return service.uploadFiles(id, desclist, statusack);
     }
 
     @GetMapping("/clearance-details/{id}")
@@ -149,12 +153,18 @@ public class FmrController {
 
     @PostMapping("/update-fileclearance")
     @ResponseBody
-    public Fmr updateClearance(String id, String desclist, @RequestParam(value = "deleteIds", required = false) String deleteIds, @RequestParam String statusclr, @RequestParam(required = false) String approver) throws Exception {
+    public Fmr updateClearance(String id, String desclist, @RequestParam(value = "deleteIds", required = false) String deleteIds, @RequestParam String statusclr) throws Exception {
         Integer idd = Integer.parseInt(id);
         // Pass deleteIds to the service method
         System.out.println(deleteIds);
-        return service.updateClearance(idd, desclist, deleteIds, statusclr, approver);
+        return service.updateClearance(idd, desclist, deleteIds, statusclr);
 
+    }
+
+    @PostMapping("/update-recommendation")
+    @ResponseBody
+    public Fmr updateRecommendation(@RequestParam Integer id, @RequestParam String approver) throws Exception {
+        return service.updateRecommendation(id, approver);
     }
 
     @PostMapping("/approver")
@@ -164,10 +174,19 @@ public class FmrController {
 
     @PostMapping("/update-undertakingap")
     @ResponseBody
-    public Fmr updateUndertaking(String id, @RequestParam String statusund, @RequestParam(required = false) String returncomment) throws Exception {
+    public Fmr updateUndertaking(String id, @RequestParam String statusund) throws Exception {
         Integer idd = Integer.parseInt(id);
-        return service.updateUndertaking(idd, statusund, returncomment);
+        return service.updateUndertaking(idd, statusund);
 
+    }
+
+    @PostMapping("/update-payment-undertaking")
+    @ResponseBody
+    public Fmr updatePaymentUP(String id, String desclist, @RequestParam(value = "deleteIds", required = false) String deleteIds, @RequestParam String statusvoucherun) throws Exception {
+        Integer idd = Integer.parseInt(id);
+        // Pass deleteIds to the service method
+        System.out.println(deleteIds);
+        return service.updatePaymentUP(idd, desclist, deleteIds, statusvoucherun);
     }
 
     @GetMapping("/paymentv-details/{id}")
