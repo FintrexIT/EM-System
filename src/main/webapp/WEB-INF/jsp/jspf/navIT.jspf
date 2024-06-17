@@ -28,7 +28,9 @@
     .dropdown-item {
         font-size: 0.8rem; /* You can adjust the size as needed */
     }
-
+    a{
+        color: white !important;
+    }
 </style>
 
 
@@ -43,10 +45,10 @@
         <img src="files/images/fintrex-din-white1.png" width="150" height="60" class="d-inline-block align-top" alt="">
 
     </a>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03" >
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="users">Users</a>
+            <li class="nav-item" >
+                <a class="nav-link" href="users" >Users</a>
             </li>
         </ul>
     </div>
