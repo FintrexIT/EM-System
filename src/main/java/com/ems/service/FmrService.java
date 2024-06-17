@@ -50,6 +50,7 @@ public class FmrService {
     @Autowired
     private FilePendingRepo fmrrepo;
 
+//    Operation
     public DataTablesResponse<FmrDTO> getFmrs(DataTableRequest param) throws Exception {
         String stage = param.getData();
         String stage1 = param.getData();
@@ -85,12 +86,57 @@ public class FmrService {
     }
 
     //    branch
-    public DataTablesResponse<FmrDTO> getFmrsBranch(DataTableRequest param, Integer userId) throws Exception {
-        return userDt.getData(FmrDTO.class, param, "SELECT x.`id`,x.`customer_name`,x.`status`,x.`ref_number`,(SELECT `description` FROM `loan`.`product` WHERE `id` = x.`product`) AS product,(SELECT `name` FROM `loan`.`branch` WHERE `id` = x.`branch`) AS branch,x.`amount`,x.`pendings`,x.`comment`,x.`approver`,x.`facility_status`,(SELECT d.`name` FROM `users` d WHERE d.`id` = x.`ent_by`) AS `ent_by`,`ent_on`,(SELECT d.`name` FROM `users` d WHERE d.`id` = x.`mod_by`) AS `mod_by`,`mod_on` FROM `fmr` X WHERE x.branch = (SELECT `branch` FROM `users` WHERE `id` = ?)", userId);
+    public DataTablesResponse<FmrDTO> getFmrsBrnch(DataTableRequest param, Integer userId) throws Exception {
+        String stage = param.getData();
+        StringBuilder sql = new StringBuilder("SELECT x.`id`, x.`customer_name`, x.`status`, x.`ref_number`, "
+                + "(SELECT `description` FROM `loan`.`product` WHERE `id` = x.`product`) AS product, "
+                + "(SELECT `name` FROM `loan`.`branch` WHERE `id` = x.`branch`) AS branch, x.`amount`, x.`pendings`, "
+                + "x.`comment`, x.`approver`, x.`facility_status`, "
+                + "(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`ent_by`) AS `ent_by`, `ent_on`, "
+                + "(SELECT d.`name` FROM `users` d WHERE d.`id`=x.`mod_by`) AS `mod_by`, `mod_on` "
+                + "FROM `fmr` x WHERE TRUE AND x.branch = (SELECT `branch` FROM `users` WHERE `id` = ?)");
 
+        if (!"all".equals(stage)) {
+            switch (stage) {
+                case "acknowledgment":
+                    sql.append(" AND x.`status`='Acknowledgment Pending'");
+                    break;
+                case "file":
+                    sql.append(" AND x.`status`='Exceptions'");
+                    break;
+                case "acknowledged":
+                    sql.append(" AND x.`status`='Acknowledged'");
+                    break;
+                case "underrec":
+                    sql.append(" AND x.`status`='Undertaking Recommendation'");
+                    break;
+                case "underapp":
+                    sql.append(" AND x.`status`='Undertaking Approval Pending'");
+                    break;
+                case "payment":
+                    sql.append(" AND x.`status`='Payment Voucher Hand Over To Finance'");
+                    break;
+                case "paymentunder":
+                    sql.append(" AND x.`status`='Payment Voucher Hand Over To Finance(Undertaking Approval)'");
+                    break;
+                case "completed":
+                    sql.append(" AND x.`status`='Completed'");
+                    break;
+                case "completedun":
+                    sql.append(" AND x.`status`='Completed(Undertaking Approval)'");
+                    break;
+                case "rejected":
+                    sql.append(" AND x.`status`='Rejected'");
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        return userDt.getData(FmrDTO.class, param, sql.toString(), userId);
     }
-//Approver
 
+//Approver
     public DataTablesResponse<FmrDTO> getFmrApprove(DataTableRequest param, Integer userId) throws Exception {
         String stage = param.getData();
         String sql;

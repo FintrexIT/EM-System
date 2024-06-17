@@ -54,9 +54,9 @@ public class FmrController {
     }
 
 //    branch
-    @PostMapping("/fmrtable-all-branch")
-    public DataTablesResponse<FmrDTO> getFmrsBranch(@RequestBody DataTableRequest param, HttpSession session) throws Exception {
-        return service.getFmrsBranch(param, (Integer) session.getAttribute("uid"));
+    @PostMapping("/fmrtable-all-branches")
+    public DataTablesResponse<FmrDTO> getFmrBrnch(@RequestBody DataTableRequest param, HttpSession session) throws Exception {
+        return service.getFmrsBrnch(param, (Integer) session.getAttribute("uid"));
     }
 //Approver
 

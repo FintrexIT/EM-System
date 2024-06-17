@@ -25,6 +25,11 @@ public class PageController {
         return "branch_dashbaord";
     }
 
+    @GetMapping("/Dashboard-Branch-Manager")
+    public String bmdashboard() {
+        return "branchM_dashboard";
+    }
+
     @GetMapping("/IT-Dashbaord")
     public String dashboardIT() {
         return "it_dashboard";
@@ -59,6 +64,8 @@ public class PageController {
                     return "branch_dashbaord";
                 case "4":
                     return "admin_dashboard";
+                case "5":
+                    return "branchM_dashboard";
                 default:
                     return "login";
             }
@@ -82,6 +89,8 @@ public class PageController {
                     return "branch_dashbaord";
                 case "4":
                     return "admin_dashboard";
+                case "5":
+                    return "branchM_dashboard";
                 default:
                     return "login";
             }

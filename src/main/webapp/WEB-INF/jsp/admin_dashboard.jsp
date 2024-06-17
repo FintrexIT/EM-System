@@ -14,6 +14,44 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         <%@include file="jspf/header.jspf" %>
         <style>
+            .cards {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 5px;
+                transition: transform 0.2s;
+            }
+            .widget-visitor-card {
+                padding: 10px;
+                text-align: center;
+            }
+            .card-block-small,
+            .card-block-large {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+            }
+            .card-block-small h4,
+            .card-block-large h4 {
+                margin: 0;
+                font-size: 24px;
+            }
+            .card-block-small h6,
+            .card-block-large h6 {
+                margin: 0;
+                font-size: 14px;
+            }
+            .feather {
+                margin-top: 50px;
+                transition: transform 0.2s; /* Smooth transition for hover effect */
+            }
+
+            .card-block-large .feather {
+                width: 74px; /* Larger size for the large card block */
+                height: 74px; /* Larger size for the large card block */
+            }
             .placeholder {
                 background-color: white;
                 color: black;
@@ -100,7 +138,7 @@
                 top: 13px;
             }
             .card{
-                width: 90em;
+                /*width: 90em;*/
                 justify-content: center;
                 margin: auto;
 
@@ -750,15 +788,9 @@
 
                     </div>
 
-                    <div class="form-group" id="approve_section" >
-                        <div class="col-sm-6">
-                            <label for="reason">Approver<span class="text-danger">*</span></label>
-                            <select class="form-control-sm pull-right" id="approver"></select> 
-                        </div>
-                    </div>
+
 
                     <div class="card-footer d-flex justify-content-end" style="background-color: white;">
-                        <button id="saveBtnrec" class="btn btn-sm waves-effect waves-light btn-primary" style="margin-right: 10px"><i class="icon feather icon-save"></i>Save</button>
                         <button id="closeBtnrec" class="btn btn-sm btn-danger"><i class="icon feather icon-x-circle"></i>Close</button>
                     </div>
                 </div>
@@ -836,23 +868,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group" style="padding-bottom: 2rem">
-                        <label for="status" class="col-sm-4 col-form-label allFontByCustomerEdit">Choose Status </label>
-                        <div class="col-sm-6">
-                            <select class="form-control-sm pull-right" id="statusund" style="width: 20rem;margin-right: 15rem;">
-                                <option value="" disabled selected>Select Status</option>
-                                <option value="approved">Approve</option>
-                                <option value="returned">Return to File Pending Clearance</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group" id="return_section" style="display: none;">
-                        <label for="return">Return Comment<span class="text-danger">*</span></label>
-                        <textarea id="return_textarea" name="return" class="form-control" required></textarea>
-                    </div>
+
 
                     <div class="card-footer d-flex justify-content-end" style="background-color: white;">
-                        <button id="saveBtnund" class="btn btn-sm waves-effect waves-light btn-primary" style="margin-right: 10px"><i class="icon feather icon-save"></i>Save</button>
                         <button id="closeBtnund" class="btn btn-sm btn-danger"><i class="icon feather icon-x-circle"></i>Close</button>
                     </div>
                 </div>
@@ -1155,21 +1173,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                // Get all the card elements
-                const cards = document.querySelectorAll('.widget-visitor-card');
-
-                // Add click event listener to each card
-                cards.forEach(card => {
-                    card.addEventListener('click', function () {
-                        // Get the text of the h6 element inside the clicked card
-                        const h6Text = this.querySelector('h6').textContent;
-
-                        // Update the h5 tag of the table with the clicked card's h6 text
-                        document.getElementById('main_name_tag').textContent = `File Movement Register - ${h6Text}`;
-                    });
-                });
-            });
 
             document.addEventListener("DOMContentLoaded", function () {
                 var facilityStatusSelect = document.getElementById("statustype");
@@ -1750,7 +1753,7 @@
                 "searchHighlight": true,
                 "searchDelay": 350,
                 "ajax": {
-                    "url": "fmr/fmrtable-all-approver",
+                    "url": "fmr/fmrtable-all",
                     "contentType": "application/json",
                     "type": "POST",
                     "data": function (d) {
@@ -2429,165 +2432,7 @@
         </script>
 
 
-        <!--Undertaking recommendation-->
-        <script>
-            document.getElementById('saveBtnrec').addEventListener('click', function () {
-                let mode = $('#saveBtnrec').data('mode');
-                if (mode === 'update-Recommendation') {
-                    let id = $('#saveBtnrec').data('id');
 
-                    let approver = document.getElementById('approver').value;
-
-                    // Ensure formData is properly defined and initialized
-                    let formData = {
-                        id: id,
-                        approver: approver
-                    };
-
-                    fetch('fmr/update-recommendation', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded'
-                        },
-                        body: new URLSearchParams(formData)
-                    }).then(response => {
-                        if (!response.ok) {
-                            throw new Error(response.statusText);
-                        }
-                        return response.json(); // Move this line here to parse JSON
-                    }).then(data => {
-                        Swal.fire('Successful!', 'Pending File details updated successfully', 'success');
-                        clearFormsf();
-                        $('#formSectionRecommendation').hide();
-                        $('#tableSection').fadeIn();
-                        dtable.ajax.reload();
-                    }).catch(error => {
-                        console.error('Error updating Pending File details:', error);
-                        Swal.fire('Error!', 'Failed to update Pending File details', 'error');
-                    });
-                }
-            });
-
-
-
-
-            document.addEventListener("DOMContentLoaded", function () {
-                var clearanceStatusSelect = document.getElementById("statusclr");
-                var approveSelect = document.getElementById("approve_section");
-
-                // Add event listener to the select element
-                clearanceStatusSelect.addEventListener("change", function () {
-                    // Check if the selected value is "approve"
-                    if (this.value === "approve") {
-                        // Show the comment section
-                        approveSelect.style.display = "block";
-                    } else {
-                        // Hide the comment section
-                        approveSelect.style.display = "none";
-                    }
-                });
-            });
-            var approv = new SlimSelect(
-                    {select: '#approver',
-                        placeholder: "Select Approver",
-                        ajax: function (search, callback) {
-                            fetch('fmr/approver', {
-                                method: 'POST',
-                                body: new URLSearchParams({search: search || ''})
-                            }).then(res => res.json()).then((data) => {
-                                callback(data);
-                            });
-                        },
-                        allowDeselect: true,
-                        deselectLabel: '<span class="red">✖</span>'
-                    });
-
-
-
-            document.getElementById('addBtnClr').addEventListener('click', function () {
-                // Get the table body
-                var tableBody = document.querySelector('#tbladdAtts tbody');
-
-                // Create a new row
-                var newRow = tableBody.insertRow();
-
-                // Create cells in the new row
-                var fileNameCell = newRow.insertCell(0);
-                var actionCell = newRow.insertCell(1);
-
-                // Create input for "File Name" in cell 1
-                var fileNameInput = document.createElement('input');
-                fileNameInput.type = 'text';
-                fileNameInput.name = 'fileName';
-                fileNameInput.classList.add('form-control');
-                fileNameInput.required = true;
-                fileNameInput.autocomplete = 'off';
-
-
-                // Append input elements to respective cells
-                fileNameCell.appendChild(fileNameInput);
-
-                // Create a delete button in the action cell
-                var deleteButton = document.createElement('button');
-                deleteButton.classList.add('btn', 'btn-sm', 'btn-danger');
-                deleteButton.textContent = 'Remove';
-                deleteButton.name = 'dele';
-
-                // Add a click event listener to the delete button
-                deleteButton.addEventListener('click', function () {
-                    // Remove the row when the delete button is clicked
-                    tableBody.removeChild(newRow);
-                });
-
-                // Append the delete button to the action cell
-                actionCell.appendChild(deleteButton);
-
-                // Call the addAttachmentRow function with the input values
-                //                addAttachmentRow(fileNameInput.value);
-            });
-
-
-
-        </script>
-
-        <!--Undertaking Approval Pending-->
-        <script>
-            document.getElementById('saveBtnund').addEventListener('click', function () {
-                let mode = $('#saveBtnund').data('mode');
-                if (mode === 'update-undertaking') {
-                    let id = $('#saveBtnund').data('id');//
-
-                    let formData = {};
-                    formData.id = id;
-
-                    // Get the selected value of statusund
-                    let statusund = document.getElementById('statusund').value;
-
-                    // Add statusclr to formData
-                    formData.statusund = statusund;
-
-
-                    fetch('fmr/update-undertakingap', {
-                        method: 'POST',
-                        body: new URLSearchParams(formData)
-                    }).then(response => {
-                        if (!response.ok) {
-                            throw new Error(response.statusText);
-                        } else {
-                            Swal.fire('Successful!', 'Undertaking Approval details updated successfully', 'success');
-                            clearFormsu();
-                            $('#formSectionApprovalPending').hide();
-                            $('#tableSection').fadeIn();
-                            dtable.ajax.reload();
-                        }
-                        return response.json();
-                    }).catch(error => {
-                        console.error('Error updating Undertaking Approval details:', error);
-                        Swal.fire('Error!', 'Failed to update Undertaking Approval details', 'error');
-                    });
-                }
-            });
-        </script>
 
         <!--Payment Voucher Hand Over To finance -->
         <script>

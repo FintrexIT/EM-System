@@ -14,6 +14,44 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         <%@include file="jspf/header.jspf" %>
         <style>
+            .cards {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 5px;
+                transition: transform 0.2s;
+            }
+            .widget-visitor-card {
+                padding: 10px;
+                text-align: center;
+            }
+            .card-block-small,
+            .card-block-large {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+            }
+            .card-block-small h4,
+            .card-block-large h4 {
+                margin: 0;
+                font-size: 24px;
+            }
+            .card-block-small h6,
+            .card-block-large h6 {
+                margin: 0;
+                font-size: 14px;
+            }
+            .feather {
+                margin-top: 50px;
+                transition: transform 0.2s; /* Smooth transition for hover effect */
+            }
+
+            .card-block-large .feather {
+                width: 74px; /* Larger size for the large card block */
+                height: 74px; /* Larger size for the large card block */
+            }
             .placeholder {
                 background-color: white;
                 color: black;
@@ -100,7 +138,7 @@
                 top: 13px;
             }
             .card{
-                width: 90em;
+                /*width: 90em;*/
                 justify-content: center;
                 margin: auto;
 
@@ -1035,21 +1073,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                // Get all the card elements
-                const cards = document.querySelectorAll('.widget-visitor-card');
-
-                // Add click event listener to each card
-                cards.forEach(card => {
-                    card.addEventListener('click', function () {
-                        // Get the text of the h6 element inside the clicked card
-                        const h6Text = this.querySelector('h6').textContent;
-
-                        // Update the h5 tag of the table with the clicked card's h6 text
-                        document.getElementById('main_name_tag').textContent = `File Movement Register - ${h6Text}`;
-                    });
-                });
-            });
 
 
 
@@ -1388,7 +1411,7 @@
                 "searchHighlight": true,
                 "searchDelay": 350,
                 "ajax": {
-                    "url": "fmr/fmrtable-all",
+                    "url": "fmr/fmrtable-all-branches",
                     "contentType": "application/json",
                     "type": "POST",
                     "data": function (d) {
@@ -1439,7 +1462,7 @@
                 "searchHighlight": true,
                 "searchDelay": 350,
                 "ajax": {
-                    "url": "fmr/fmrtable-all",
+                    "url": "fmr/fmrtable-all-branches",
                     "contentType": "application/json",
                     "type": "POST",
                     "data": function (d) {
@@ -1490,7 +1513,7 @@
                 "searchHighlight": true,
                 "searchDelay": 350,
                 "ajax": {
-                    "url": "fmr/fmrtable-all",
+                    "url": "fmr/fmrtable-all-branches",
                     "contentType": "application/json",
                     "type": "POST",
                     "data": function (d) {
@@ -1541,7 +1564,7 @@
                 "searchHighlight": true,
                 "searchDelay": 350,
                 "ajax": {
-                    "url": "fmr/fmrtable-all",
+                    "url": "fmr/fmrtable-all-branches",
                     "contentType": "application/json",
                     "type": "POST",
                     "data": function (d) {

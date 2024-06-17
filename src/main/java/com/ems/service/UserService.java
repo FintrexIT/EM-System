@@ -30,7 +30,7 @@ public class UserService {
     private DataTableRepo<UserDataTable> userDt;
 
     public DataTablesResponse<UserDataTable> getUsers(DataTableRequest param) throws Exception {
-        return userDt.getData(UserDataTable.class, param, "SELECT `id`,`username`,`name`,(SELECT `type` FROM `user_type` WHERE `id`= u.`usertype`) AS `usertype`,(SELECT d.`name` FROM `users` d WHERE d.`id`=u.`ent_by`) AS `ent_by`,`ent_on`,(SELECT d.`name` FROM `users` d WHERE d.`id`=u.`mod_by`) AS `mod_by`,`mod_on`,(SELECT `name` FROM `loan`.`branch` WHERE `id` = `branch`) AS branch,`status` FROM `users` u WHERE TRUE ");
+        return userDt.getData(UserDataTable.class, param, "SELECT `id`,`username`,`name`,(SELECT `type` FROM `user_type` WHERE `id`= u.`usertype`) AS `user_type`,(SELECT d.`name` FROM `users` d WHERE d.`id`=u.`ent_by`) AS `ent_by`,`ent_on`,(SELECT d.`name` FROM `users` d WHERE d.`id`=u.`mod_by`) AS `mod_by`,`mod_on`,(SELECT `name` FROM `loan`.`branch` WHERE `id` = `branch`) AS branch,`status`FROM `users` u WHERE TRUE");
     }
 
     public Users getUser(Integer id) throws Exception {

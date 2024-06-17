@@ -14,6 +14,44 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         <%@include file="jspf/header.jspf" %>
         <style>
+            .cards {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 5px;
+                transition: transform 0.2s;
+            }
+            .widget-visitor-card {
+                padding: 10px;
+                text-align: center;
+            }
+            .card-block-small,
+            .card-block-large {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+            }
+            .card-block-small h4,
+            .card-block-large h4 {
+                margin: 0;
+                font-size: 24px;
+            }
+            .card-block-small h6,
+            .card-block-large h6 {
+                margin: 0;
+                font-size: 14px;
+            }
+            .feather {
+                margin-top: 50px;
+                transition: transform 0.2s; /* Smooth transition for hover effect */
+            }
+
+            .card-block-large .feather {
+                width: 74px; /* Larger size for the large card block */
+                height: 74px; /* Larger size for the large card block */
+            }
             .placeholder {
                 background-color: white;
                 color: black;
@@ -100,7 +138,7 @@
                 top: 13px;
             }
             .card{
-                width: 90em;
+                /*width: 90em;*/
                 justify-content: center;
                 margin: auto;
 
