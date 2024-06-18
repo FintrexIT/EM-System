@@ -191,7 +191,7 @@
                     <div class="col" > 
                         <div class="cards bg-c-yellow text-white widget-visitor-card" id="acknoedcrd" style="height: 110px; background: linear-gradient(to right,#f2c71b, #f5d862);">
                             <div class="card-block-small text-center" >
-                                <h4 id="acknowledgment">0</h4>
+                                <h4 id="acknowledged">0</h4>
                                 <h6>Acknowledged</h6>
                                 <i class="feather ">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
@@ -495,41 +495,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="ref_number">Agreement Number / Vehicle Number<span class="text-danger">*</span></label>
-                        <input id="ref_numbers" type="text" name="ref_number" class="form-control" required autocomplete="off">
-                    </div>
-                    <div class="form-group">
-                        <label for="customer_name">Customer's Name<span class="text-danger">*</span></label>
-                        <input id="customer_names" type="text" name="customer_name" class="form-control" required autocomplete="off" >
-                    </div>
-                    <div class="form-group" style="padding-bottom: 2rem">
-                        <label for="product" class="col-sm-4 col-form-label allFontByCustomerEdit">Choose Product Type</label>
-                        <div class="col-sm-6">
-                            <select class="form-control-sm pull-right" id="products"></select>                                      
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="amount">Amount<span class="text-danger">*</span></label>
-                        <input id="amounts" type="number" name="amount" class="form-control" required autocomplete="off">
-                    </div>
-                    <div class="form-group" style="padding-bottom: 2rem">
-                        <label for="facility_status" class="col-sm-4 col-form-label allFontByCustomerEdit">Choose Status </label>
-                        <div class="col-sm-6">
-                            <select class="form-control-sm pull-right" id="statustype" style="width: 20rem;margin-right: 15rem;">
-                                <option value="" disabled selected>Select Status</option>
-                                <option value="acknowledged">Acknowledged </option>
-                                <option value="reject">Reject</option>
-                            </select>                                      
-                        </div>
-                    </div>
-                    <div class="form-group" id="reason_section" style="display: none;">
-                        <label for="reason">Comment<span class="text-danger">*</span></label>
-                        <textarea id="reason_textarea" name="reason" class="form-control" required></textarea>
-                    </div>
+
 
                     <div class="card-footer d-flex justify-content-end" style="background-color: white;">
-                        <button id="saveBtnin" class="btn btn-sm waves-effect waves-light btn-primary" style="margin-right: 10px"><i class="icon feather icon-save"></i>Save</button>
                         <button id="closeBtnin" class="btn btn-sm btn-danger"><i class="icon feather icon-x-circle"></i>Close</button>
                     </div>
                 </div>
@@ -575,50 +543,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group" style="padding-bottom: 2rem">
-                        <label for="acknow_status" class="col-sm-4 col-form-label allFontByCustomerEdit">Choose Status </label>
-                        <div class="col-sm-6">
-                            <select class="form-control-sm pull-right" id="statusack" style="width: 20rem;margin-right: 15rem;">
-                                <option value="" disabled selected>Select Status</option>
-                                <option value="payProcess">Payment Processing </option>
-                                <option value="fileped">File Pending </option>
-                            </select>                                      
-                        </div>
-                    </div>
-                    <div class="row" style="display: none" id="filependings">
 
-                        <div class="ttt" style="display: flex;flex-direction: row;">
-                            <div class="table-responsive">
-                                <table class="table table-hover table-bordered m-b-0" id="tbladdAtt" >
-                                    <thead>
-                                        <tr>
-                                            <th>Pending Files </th>
-                                            <th>Justification</th>
-                                            <th>Completion Date</th>
-                                            <th style="width:1px;">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- Your table body content goes here -->
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </div>
-                        <div class="row justify-content-end" style="padding: 2em;">
-                            <div class="col-lg-6 col-md-12 text-right"> 
-                                <div class="text">
-                                    <button id="addBtnFile" class="btn btn-sm waves-effect waves-light btn-danger">
-                                        <i class="icon feather icon-plus"></i>Add File
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
 
                     <div class="card-footer d-flex justify-content-end" style="background-color: white;">
-                        <button id="saveBtnfile" class="btn btn-sm waves-effect waves-light btn-primary" style="margin-right: 10px"><i class="icon feather icon-save"></i>Save</button>
                         <button id="closeBtnfile" class="btn btn-sm btn-danger"><i class="icon feather icon-x-circle"></i>Close</button>
                     </div>
                 </div>
@@ -677,7 +604,7 @@
                                             <th>Status</th>
                                             <th>Modified By</th>
                                             <th>Modified On</th>
-                                            <th style="width:1px;">Action</th>
+
                                         </tr>
                                     </thead>
 
@@ -690,34 +617,8 @@
                         </div>
 
                     </div>
-                    <div class="row justify-content-end" style="padding: 2em;display: none;">
-                        <div class="col-lg-6 col-md-12">
-                            <div class="text">
-                                <button id="addBtnClr" class="btn btn-sm waves-effect waves-light btn-danger">
-                                    <i class="icon feather icon-plus"></i>Add File
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group" style="padding-bottom: 2rem">
-                        <label for="status" class="col-sm-4 col-form-label allFontByCustomerEdit">Choose Status </label>
-                        <div class="col-sm-6">
-                            <select class="form-control-sm pull-right" id="statusclr" style="width: 20rem;margin-right: 15rem;">
-                                <option value="" disabled selected>Select Status</option>
-                                <option value="approve">Undertaking Recommendation</option>
-                                <option value="cleared">Exceptions Cleared</option>
-                            </select>
-                        </div>
-                    </div>
-                    <!--                    <div class="form-group" id="approve_section" style="display: none;">
-                                            <div class="col-sm-6">
-                                                <label for="reason">Approver<span class="text-danger">*</span></label>
-                                                <select class="form-control-sm pull-right" id="approver"></select> 
-                                            </div>
-                                        </div>-->
 
                     <div class="card-footer d-flex justify-content-end" style="background-color: white;">
-                        <button id="saveBtnclr" class="btn btn-sm waves-effect waves-light btn-primary" style="margin-right: 10px"><i class="icon feather icon-save"></i>Save</button>
                         <button id="closeBtnclr" class="btn btn-sm btn-danger"><i class="icon feather icon-x-circle"></i>Close</button>
                     </div>
                 </div>
@@ -912,19 +813,9 @@
                         </div>
                     </div>
 
-                    <div class="form-group" style="padding-bottom: 2rem">
-                        <label for="status" class="col-sm-4 col-form-label allFontByCustomerEdit">Choose Status </label>
-                        <div class="col-sm-6">
-                            <select class="form-control-sm pull-right" id="statusvoucher" style="width: 20rem;margin-right: 15rem;">
-                                <option value="" disabled selected>Select Status</option>
-                                <option value="completed">Completed</option>
 
-                            </select>
-                        </div>
-                    </div>
 
                     <div class="card-footer d-flex justify-content-end" style="background-color: white;">
-                        <button id="saveBtnpay" class="btn btn-sm waves-effect waves-light btn-primary" style="margin-right: 10px"><i class="icon feather icon-save"></i>Save</button>
                         <button id="closeBtnpay" class="btn btn-sm btn-danger"><i class="icon feather icon-x-circle"></i>Close</button>
                     </div>
                 </div>
@@ -986,7 +877,7 @@
                                             <th>Status</th>
                                             <th>Modified By</th>
                                             <th>Modified On</th>
-                                            <th style="width:1px;">Action</th>
+
                                         </tr>
                                     </thead>
 
@@ -999,19 +890,9 @@
                         </div>
 
                     </div>
-                    <div class="form-group" style="padding-bottom: 2rem">
-                        <label for="status" class="col-sm-4 col-form-label allFontByCustomerEdit">Choose Status </label>
-                        <div class="col-sm-6">
-                            <select class="form-control-sm pull-right" id="statusvoucherun" style="width: 20rem;margin-right: 15rem;">
-                                <option value="" disabled selected>Select Status</option>
-                                <option value="completedun">Completed</option>
 
-                            </select>
-                        </div>
-                    </div>
 
                     <div class="card-footer d-flex justify-content-end" style="background-color: white;">
-                        <button id="saveBtnppun" class="btn btn-sm waves-effect waves-light btn-primary" style="margin-right: 10px"><i class="icon feather icon-save"></i>Save</button>
                         <button id="closeBtnppun" class="btn btn-sm btn-danger"><i class="icon feather icon-x-circle"></i>Close</button>
                     </div>
                 </div>
@@ -1053,7 +934,6 @@
 
 
                     <div class="card-footer d-flex justify-content-end" style="background-color: white;">
-                        <!--<button id="saveBtncom" class="btn btn-sm waves-effect waves-light btn-primary" style="margin-right: 10px"><i class="icon feather icon-save"></i>Save</button>-->
                         <button id="closeBtncom" class="btn btn-sm btn-danger"><i class="icon feather icon-x-circle"></i>Close</button>
                     </div>
                 </div>
@@ -1174,42 +1054,29 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <script>
-            feather.replace();
+            document.addEventListener('DOMContentLoaded', (event) => {
+                // Define an array of objects containing endpoint URLs and corresponding IDs
+                const endpoints = [
+                    {url: 'fmr/count-all', id: 'all'},
+                    {url: 'fmr/count-acknopen', id: 'acknowledgment'},
+                    {url: 'fmr/count-ackno', id: 'acknowledged'},
+                    {url: 'fmr/count-exception', id: 'filepending'},
+                    {url: 'fmr/count-undertaking', id: 'undertaking'},
+                    {url: 'fmr/count-payment', id: 'pay'},
+                    {url: 'fmr/count-completed', id: 'complt'},
+                    {url: 'fmr/count-rejected', id: 'reject'}
+                ];
 
-            document.addEventListener("DOMContentLoaded", function () {
-                var facilityStatusSelect = document.getElementById("statustype");
-                var commentSection = document.getElementById("reason_section");
-
-                // Add event listener to the select element
-                facilityStatusSelect.addEventListener("change", function () {
-
-                    // Check if the selected value is "reject"
-                    if (this.value === "reject") {
-                        // Show the comment section
-                        commentSection.style.display = "block";
-                    } else {
-                        // Hide the comment section
-                        commentSection.style.display = "none";
-                    }
-                });
-
-                var acknowSelect = document.getElementById("statusack");
-                var filepenSection = document.getElementById("filependings");
-
-                // Add event listener to the select element
-                acknowSelect.addEventListener("change", function () {
-
-                    // Check if the selected value is "reject"
-                    if (this.value === "fileped") {
-                        // Show the comment section
-                        filepenSection.style.display = "block";
-                    } else {
-                        // Hide the comment section
-                        filepenSection.style.display = "none";
-                    }
+                // Loop through the endpoints array
+                endpoints.forEach(endpoint => {
+                    fetch(endpoint.url)
+                            .then(response => response.json())
+                            .then(data => {
+                                document.getElementById(endpoint.id).innerText = data;
+                            })
+                            .catch(error => console.error(`Error fetching count for ${endpoint.url}:`, error));
                 });
             });
-
 
 
 
@@ -1292,50 +1159,6 @@
 
 
         <script>
-            var facility_status = new SlimSelect(
-                    {select: '#facility_status',
-                        placeholder: "Facility Type",
-                        ajax: function (search, callback) {
-                            fetch('fmr/facility-status', {
-                                method: 'POST',
-                                body: new URLSearchParams({search: search || ''})
-                            }).then(res => res.json()).then((data) => {
-                                callback(data);
-                            });
-                        },
-                        allowDeselect: true,
-                        deselectLabel: '<span class="red">✖</span>'
-                    });
-            var product = new SlimSelect(
-                    {select: '#product',
-                        placeholder: "Facility Type",
-                        ajax: function (search, callback) {
-                            fetch('fmr/product', {
-                                method: 'POST',
-                                body: new URLSearchParams({search: search || ''})
-                            }).then(res => res.json()).then((data) => {
-                                callback(data);
-                            });
-                        },
-                        allowDeselect: true,
-                        deselectLabel: '<span class="red">✖</span>'
-                    });
-            var products = new SlimSelect(
-                    {select: '#products',
-                        placeholder: "Facility Type",
-                        ajax: function (search, callback) {
-                            fetch('fmr/product', {
-                                method: 'POST',
-                                body: new URLSearchParams({search: search || ''})
-                            }).then(res => res.json()).then((data) => {
-                                callback(data);
-                            });
-                        },
-                        allowDeselect: true,
-                        deselectLabel: '<span class="red">✖</span>'
-                    });
-
-
 
             $('#addFmrBtn').click(function () {
                 $('#saveBtn').data('mode', 'save');
@@ -1360,84 +1183,6 @@
                     }
                 });
             }
-        </script>
-
-
-        <script>
-            $('#saveBtn').click(function () {
-
-                return fetch((($('#saveBtn').data('mode') === 'save') ? 'fmr/save' : 'fmr/update'), {
-                    method: 'POST',
-                    body: new URLSearchParams({
-                        id: $('#saveBtn').data('id'),
-                        ref_number: document.getElementById('ref_number').value,
-                        customer_name: document.getElementById('customer_name').value,
-                        product: document.getElementById('product').value,
-                        amount: document.getElementById('amount').value,
-                        facility_status: document.getElementById('facility_status').value,
-                    })
-                }).then(response => {
-                    if (!response.ok) {
-                        throw new Error(response.statusText);
-                    } else {
-                        Swal.fire('Successfull!', 'FMR has been successfully saved');
-                        clearForm();
-                        $('#formSection').hide();
-                        $('#tableSection').fadeIn();
-                        dtable.ajax.reload();
-                    }
-                    return response.json();
-                });
-            });
-        </script>
-
-
-
-
-
-        <script>
-            $('#saveBtnin').click(function () {
-                // Get the value of the facility status select element
-                var statustype = document.getElementById('statustype').value;
-
-                // Initialize request body
-                var requestBody = {
-                    id: $('#saveBtnin').data('id'),
-                    ref_number: document.getElementById('ref_numbers').value,
-                    customer_name: document.getElementById('customer_names').value,
-                    product: document.getElementById('products').value,
-                    amount: document.getElementById('amounts').value,
-                    statustype: statustype,
-                };
-
-                // Check if the facility status is "reject"
-                if (statustype === "reject") {
-                    // Include comment in the request body
-                    requestBody.reason = document.getElementById('reason_textarea').value;
-                }
-
-                // Send the request
-                return fetch((($('#saveBtnin').data('mode') === 'save') ? 'fmr/save' : 'fmr/update-ack'), {
-                    method: 'POST',
-                    body: new URLSearchParams(requestBody)
-                }).then(response => {
-                    if (!response.ok) {
-                        throw new Error(response.statusText);
-                    } else {
-                        Swal.fire('Successfull!', 'FMR has been successfully saved');
-                        clearForm();
-                        $('#formSectionInprogress').hide();
-                        $('#tableSection').fadeIn();
-                        dtable.ajax.reload();
-                    }
-                    return response.json();
-                });
-            });
-
-
-
-
-
         </script>
 
         <!--Table Details-->
@@ -1632,7 +1377,7 @@
                     let action_td = document.createElement('td');
                     $(action_td).addClass('text-center');
 
-                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
+                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-list f-w-600 f-16 m-r-10 text-c-green"></i></a>');
 
                     $(row).append(action_td);
                     $(row).data('id', data['id']);
@@ -1683,7 +1428,7 @@
                     let action_td = document.createElement('td');
                     $(action_td).addClass('text-center');
 
-                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
+                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-list f-w-600 f-16 m-r-10 text-c-green"></i></a>');
 
                     $(row).append(action_td);
                     $(row).data('id', data['id']);
@@ -1734,7 +1479,7 @@
                     let action_td = document.createElement('td');
                     $(action_td).addClass('text-center');
 
-                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
+                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-list f-w-600 f-16 m-r-10 text-c-green"></i></a>');
 
                     $(row).append(action_td);
                     $(row).data('id', data['id']);
@@ -1785,7 +1530,7 @@
                     let action_td = document.createElement('td');
                     $(action_td).addClass('text-center');
 
-                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
+                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-list f-w-600 f-16 m-r-10 text-c-green"></i></a>');
 
                     $(row).append(action_td);
                     $(row).data('id', data['id']);
@@ -1882,7 +1627,7 @@
                                     var statusCell = newRow.insertCell(3);
                                     var modifiedByCell = newRow.insertCell(4);
                                     var modifiedOnCell = newRow.insertCell(5);
-                                    var actionCell = newRow.insertCell(6);
+
 
                                     // Set the text content of the cells with the fetched values
                                     fileNameCell.textContent = attachment.name;
@@ -1892,22 +1637,7 @@
                                     justificationCell.textContent = attachment.justification; // Assuming modifiedOn is available in attachment object
                                     dateCell.textContent = attachment.date; // Assuming modifiedOn is available in attachment object
 
-                                    // Create a delete button in the action cell
-                                    var deleteButton = document.createElement('button');
-                                    deleteButton.classList.add('btn', 'btn-sm', 'btn-danger');
-                                    deleteButton.textContent = 'Remove';
-                                    deleteButton.name = 'dele';
 
-                                    // Add a click event listener to the delete button
-                                    let videoId = attachment.id;
-                                    deleteButton.addEventListener('click', function () {
-                                        deleted.push(videoId + "");
-                                        // Remove the row when the delete button is clicked
-                                        tableBody.removeChild(newRow);
-                                    });
-
-                                    // Append the delete button to the action cell
-                                    actionCell.appendChild(deleteButton);
                                 });
 
 
@@ -2098,7 +1828,7 @@
                                     var statusCell = newRow.insertCell(3);
                                     var modifiedByCell = newRow.insertCell(4);
                                     var modifiedOnCell = newRow.insertCell(5);
-                                    var actionCell = newRow.insertCell(6);
+
 
                                     // Set the text content of the cells with the fetched values
                                     fileNameCell.textContent = attachment.name;
@@ -2108,22 +1838,7 @@
                                     justificationCell.textContent = attachment.justification; // Assuming modifiedOn is available in attachment object
                                     dateCell.textContent = attachment.date; // Assuming modifiedOn is available in attachment object
 
-                                    // Create a delete button in the action cell
-                                    var deleteButton = document.createElement('button');
-                                    deleteButton.classList.add('btn', 'btn-sm', 'btn-danger');
-                                    deleteButton.textContent = 'Remove';
-                                    deleteButton.name = 'dele';
 
-                                    // Add a click event listener to the delete button
-                                    let videoId = attachment.id;
-                                    deleteButton.addEventListener('click', function () {
-                                        deleted.push(videoId + "");
-                                        // Remove the row when the delete button is clicked
-                                        tableBody.removeChild(newRow);
-                                    });
-
-                                    // Append the delete button to the action cell
-                                    actionCell.appendChild(deleteButton);
                                 });
 
                                 $('#saveBtnppun').data('mode', 'update-payunder');
@@ -2229,328 +1944,6 @@
             });
         </script>
 
-        <!--File Pending Details-->
-        <script>
-            document.getElementById('addBtnFile').addEventListener('click', function () {
-                // Get the table body
-                var tableBody = document.querySelector('#tbladdAtt tbody');
-
-                // Create a new row
-                var newRow = tableBody.insertRow();
-
-                // Create cells in the new row
-                var fileNameCell = newRow.insertCell(0);
-                var justificationCell = newRow.insertCell(1);
-                var completionDateCell = newRow.insertCell(2);
-                var actionCell = newRow.insertCell(3);
-
-                // Create input for "Pending Files" in cell 1
-                var fileNameInput = document.createElement('input');
-                fileNameInput.type = 'text';
-                fileNameInput.name = 'fileName';
-                fileNameInput.classList.add('form-control');
-                fileNameInput.required = true;
-                fileNameInput.autocomplete = 'off';
-
-                // Create input for "Justification" in cell 2
-                var justificationInput = document.createElement('input');
-                justificationInput.type = 'text';
-                justificationInput.name = 'justification';
-                justificationInput.classList.add('form-control');
-                justificationInput.required = true;
-                justificationInput.autocomplete = 'off';
-
-                // Create input for "Completion Date" in cell 3
-                var completionDateInput = document.createElement('input');
-                completionDateInput.type = 'date';
-                completionDateInput.name = 'completionDate';
-                completionDateInput.classList.add('form-control');
-                completionDateInput.required = true;
-
-                // Append input elements to respective cells
-                fileNameCell.appendChild(fileNameInput);
-                justificationCell.appendChild(justificationInput);
-                completionDateCell.appendChild(completionDateInput);
-
-                // Create a delete button in the action cell
-                var deleteButton = document.createElement('button');
-                deleteButton.classList.add('btn', 'btn-sm', 'btn-danger');
-                deleteButton.textContent = 'Remove';
-                deleteButton.name = 'dele';
-
-                // Add a click event listener to the delete button
-                deleteButton.addEventListener('click', function () {
-                    // Remove the row when the delete button is clicked
-                    tableBody.removeChild(newRow);
-                });
-
-                // Append the delete button to the action cell
-                actionCell.appendChild(deleteButton);
-            });
-
-
-
-
-            document.getElementById('saveBtnfile').addEventListener('click', function () {
-                let mode = $('#saveBtnfile').data('mode');
-                if (mode === 'update-filepending') {
-                    let id = $('#saveBtnfile').data('id');
-                    let tableRows = document.querySelectorAll('#tbladdAtt tbody tr');
-                    let attachmentData = [];
-                    let formData = {};
-
-                    tableRows.forEach((row) => {
-                        let fileName = row.querySelector('input[name="fileName"]').value;
-                        let justification = row.querySelector('input[name="justification"]').value;
-                        let completionDate = row.querySelector('input[name="completionDate"]').value;
-
-                        attachmentData.push({
-                            name: fileName,
-                            justification: justification,
-                            completionDate: completionDate
-                        });
-                    });
-
-                    let desclist = JSON.stringify(attachmentData);
-                    let statusack = document.getElementById('statusack').value;
-
-                    // Add statusack and desclist to formData
-                    formData.statusack = statusack;
-                    formData.desclist = desclist;
-                    formData.id = id;
-
-                    fetch('fmr/save-filePendings', {
-                        method: 'POST',
-                        body: new URLSearchParams(formData)
-                    }).then(response => {
-                        if (!response.ok) {
-                            throw new Error(response.statusText);
-                        } else {
-                            Swal.fire('Successful!', 'Pending Files have been successfully saved', 'success');
-                            clearForms();
-                            $('#formSectionFilePending').hide();
-                            $('#tableSection').fadeIn();
-                            dtable.ajax.reload();
-                            clearForms();
-                        }
-                        return response.json();
-                    }).catch(error => {
-                        Swal.fire('Error!', error.message, 'error');
-                    });
-                }
-            });
-
-            function clearForms() {
-
-                // Clear table rows
-                var tableBody = document.querySelector('#tbladdAtt tbody');
-                tableBody.innerHTML = '';
-            }
-            function clearFormsf() {
-
-                // Clear table rows
-                var tableBody = document.querySelector('#tbladdAtts tbody');
-                tableBody.innerHTML = '';
-            }
-            function clearFormsu() {
-
-                // Clear table rows
-                var tableBody = document.querySelector('#tbladdAttu tbody');
-                tableBody.innerHTML = '';
-            }
-        </script>
-
-        <!--Exceptions-->
-        <script>
-            function handleAttachmentDeletion() {
-                let deleteIds = [];
-
-                $('#tbladdAtts').on('click', '.btn-danger', function () {
-                    let deleteRowId = $(this).closest('tr').attr('id');
-                    deleteIds.push(deleteRowId);
-                    $(this).closest('tr').remove();
-                });
-
-                return deleteIds;
-            }
-
-            let deleted = [];
-            $(document).on('click', '.editrecfileclr', function () {
-
-            });
-            document.getElementById('saveBtnclr').addEventListener('click', function () {
-                let mode = $('#saveBtnclr').data('mode');
-                if (mode === 'update-fileclear') {
-                    let id = $('#saveBtnclr').data('id');//
-                    let deleteIds = handleAttachmentDeletion();
-                    let tableRows = document.querySelectorAll('#tbladdAtts tbody tr');
-                    let attachmentData = [];
-                    let formData = {};
-
-                    tableRows.forEach((row, index) => {
-                        let fileNameInput = row.querySelector('input[name="fileName"]');
-                        if (fileNameInput) {
-                            let fileName = fileNameInput.value;
-
-                            attachmentData.push({
-                                name: fileName
-                            });
-                        }
-                    });
-
-                    let desclist = JSON.stringify(attachmentData);
-
-                    formData.desclist = desclist;
-                    formData.id = id;
-                    formData.deleteIds = JSON.stringify(deleted);
-
-                    // Get the selected value of statusclr
-                    let statusclr = document.getElementById('statusclr').value;
-
-                    // Add statusclr to formData
-                    formData.statusclr = statusclr;
-
-                    fetch('fmr/update-fileclearance', {
-                        method: 'POST',
-                        body: new URLSearchParams(formData)
-                    }).then(response => {
-                        if (!response.ok) {
-                            throw new Error(response.statusText);
-                        } else {
-                            Swal.fire('Successful!', 'Pending File details updated successfully', 'success');
-                            clearFormsf();
-                            $('#formSectionFileClearance').hide();
-                            $('#tableSection').fadeIn();
-                            dtable.ajax.reload();
-                        }
-                        return response.json();
-                    }).catch(error => {
-                        console.error('Error updating Pending File details:', error);
-                        Swal.fire('Error!', 'Failed to update Pending File details', 'error');
-                    });
-                }
-            });
-
-        </script>
-
-
-
-
-        <!--Payment Voucher Hand Over To finance -->
-        <script>
-
-            document.getElementById('saveBtnpay').addEventListener('click', function () {
-                let mode = $('#saveBtnpay').data('mode');
-                if (mode === 'update-payment') {
-                    let id = $('#saveBtnpay').data('id');//
-
-                    let formData = {};
-                    formData.id = id;
-
-                    // Get the selected value of statusund
-                    let statusvoucher = document.getElementById('statusvoucher').value;
-
-                    // Add statusclr to formData
-                    formData.statusvoucher = statusvoucher;
-
-
-                    fetch('fmr/update-payvoucher', {
-                        method: 'POST',
-                        body: new URLSearchParams(formData)
-                    }).then(response => {
-                        if (!response.ok) {
-                            throw new Error(response.statusText);
-                        } else {
-                            Swal.fire('Successful!', 'Payment Voucher Hand Over details updated successfully', 'success');
-                            clearFormsu();
-                            $('#formSectionPaymentVoucher').hide();
-                            $('#tableSection').fadeIn();
-                            dtable.ajax.reload();
-                        }
-                        return response.json();
-                    }).catch(error => {
-                        console.error('Error updating Payment Voucher Hand Over details:', error);
-                        Swal.fire('Error!', 'Failed to update Payment Voucher Hand Over details', 'error');
-                    });
-                }
-            });
-
-
-
-        </script>
-
-        <!--Payment Undertaking-->
-        <script>
-
-            function handleAttachmentDeletion() {
-                let deleteIds = [];
-
-                $('#tbladdAttpay').on('click', '.btn-danger', function () {
-                    let deleteRowId = $(this).closest('tr').attr('id');
-                    deleteIds.push(deleteRowId);
-                    $(this).closest('tr').remove();
-                });
-
-                return deleteIds;
-            }
-
-
-            document.getElementById('saveBtnppun').addEventListener('click', function () {
-                let mode = $('#saveBtnppun').data('mode');
-                if (mode === 'update-payunder') {
-                    let id = $('#saveBtnppun').data('id');//
-                    let deleteIds = handleAttachmentDeletion();
-                    let tableRows = document.querySelectorAll('#tbladdAtts tbody tr');
-                    let attachmentData = [];
-                    let formData = {};
-
-                    tableRows.forEach((row, index) => {
-                        let fileNameInput = row.querySelector('input[name="fileName"]');
-                        if (fileNameInput) {
-                            let fileName = fileNameInput.value;
-
-                            attachmentData.push({
-                                name: fileName
-                            });
-                        }
-                    });
-
-                    let desclist = JSON.stringify(attachmentData);
-
-                    formData.desclist = desclist;
-                    formData.id = id;
-                    formData.deleteIds = JSON.stringify(deleted);
-
-                    // Get the selected value of statusclr
-                    let statusvoucherun = document.getElementById('statusvoucherun').value;
-
-                    // Add statusclr to formData
-                    formData.statusvoucherun = statusvoucherun;
-
-
-
-                    fetch('fmr/update-payment-undertaking', {
-                        method: 'POST',
-                        body: new URLSearchParams(formData)
-                    }).then(response => {
-                        if (!response.ok) {
-                            throw new Error(response.statusText);
-                        } else {
-                            Swal.fire('Successful!', 'Pending File details updated successfully', 'success');
-                            clearFormsf();
-                            $('#formSectionPaymentVoucherUnder').hide();
-                            $('#tableSection').fadeIn();
-                            dtable.ajax.reload();
-                        }
-                        return response.json();
-                    }).catch(error => {
-                        console.error('Error updating Pending File details:', error);
-                        Swal.fire('Error!', 'Failed to update Pending File details', 'error');
-                    });
-                }
-            });
-
-        </script>
 
 
     </body>

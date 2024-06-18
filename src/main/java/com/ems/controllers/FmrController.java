@@ -202,24 +202,44 @@ public class FmrController {
         return service.updateVoucher(idd, statusvoucher);
 
     }
-//
-//    @GetMapping("/content")
-//    public Iterable<Fmr> getAllActiveImages() {
-//        return service.findAllActiveImages();
-//    }
-//
-//
-//    @PostMapping("/deactivate-fmr")
-//    public ResponseEntity<CommonResponse> deactivateFmrs(@RequestParam Integer id) throws Exception {
-//        service.deactivateFmrs(id);
-//        CommonResponse response = new CommonResponse("Success!", 200);
-//        return new ResponseEntity<>(response, HttpStatus.OK);
-//    }
-//
-//    @PostMapping("/reactivate-fmr")
-//    public ResponseEntity<CommonResponse> reactivateFmrs(@RequestParam Integer id) throws Exception {
-//        service.reactivateFmrs(id);
-//        CommonResponse response = new CommonResponse("Success!", 200);
-//        return new ResponseEntity<>(response, HttpStatus.OK);
-//    }
+
+    @GetMapping("/count-all")
+    public Long getcountAllStatus() {
+        return service.countAllStatus();
+    }
+
+    @GetMapping("/count-acknopen")
+    public Long getcountAcknoPendStatus() {
+        return service.countAcknoPendStatus();
+    }
+
+    @GetMapping("/count-ackno")
+    public Long getcountAcknoStatus() {
+        return service.countAcknoStatus();
+    }
+
+    @GetMapping("/count-exception")
+    public Long getcountExceptionsStatus() {
+        return service.countExceptionsStatus();
+    }
+
+    @GetMapping("/count-undertaking")
+    public Long getcountUndertakinStatus() {
+        return service.countUndertakinStatus();
+    }
+
+    @GetMapping("/count-payment")
+    public Long getcountPaymentStatus() {
+        return service.countPaymentStatus();
+    }
+
+    @GetMapping("/count-completed")
+    public Long getCountOfCompletedStatus() {
+        return service.countCompletedStatus();
+    }
+
+    @GetMapping("/count-rejected")
+    public Long getcountRejectedStatus() {
+        return service.countRejectedStatus();
+    }
 }

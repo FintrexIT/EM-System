@@ -189,7 +189,7 @@
                     <div class="col" > 
                         <div class="cards bg-c-yellow text-white widget-visitor-card" id="acknoedcrd" style="height: 110px; background: linear-gradient(to right,#f2c71b, #f5d862);">
                             <div class="card-block-small text-center" >
-                                <h4 id="acknowledgment">0</h4>
+                                <h4 id="acknowledged">0</h4>
                                 <h6>Acknowledged</h6>
                                 <i class="feather ">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
@@ -513,10 +513,10 @@
                         <input id="amounts" type="number" name="amount" class="form-control" required autocomplete="off">
                     </div>
                     <div class="form-group" style="padding-bottom: 2rem">
-                        <label for="facility_status" class="col-sm-4 col-form-label allFontByCustomerEdit">Choose Status </label>
+                        <label for="facility_status" class="col-sm-4 col-form-label allFontByCustomerEdit">Choose Next Action </label>
                         <div class="col-sm-6">
                             <select class="form-control-sm pull-right" id="statustype" style="width: 20rem;margin-right: 15rem;">
-                                <option value="" disabled selected>Select Status</option>
+                                <option value="" disabled selected>Select Action</option>
                                 <option value="acknowledged">Acknowledged </option>
                                 <option value="reject">Reject</option>
                             </select>                                      
@@ -575,10 +575,10 @@
                         </div>
                     </div>
                     <div class="form-group" style="padding-bottom: 2rem">
-                        <label for="acknow_status" class="col-sm-4 col-form-label allFontByCustomerEdit">Choose Status </label>
+                        <label for="acknow_status" class="col-sm-4 col-form-label allFontByCustomerEdit">Choose Next Action </label>
                         <div class="col-sm-6">
                             <select class="form-control-sm pull-right" id="statusack" style="width: 20rem;margin-right: 15rem;">
-                                <option value="" disabled selected>Select Status</option>
+                                <option value="" disabled selected>Select Action</option>
                                 <option value="payProcess">Payment Processing </option>
                                 <option value="fileped">File Pending </option>
                             </select>                                      
@@ -699,21 +699,16 @@
                         </div>
                     </div>
                     <div class="form-group" style="padding-bottom: 2rem">
-                        <label for="status" class="col-sm-4 col-form-label allFontByCustomerEdit">Choose Status </label>
+                        <label for="status" class="col-sm-4 col-form-label allFontByCustomerEdit">Choose Next Action </label>
                         <div class="col-sm-6">
                             <select class="form-control-sm pull-right" id="statusclr" style="width: 20rem;margin-right: 15rem;">
-                                <option value="" disabled selected>Select Status</option>
+                                <option value="" disabled selected>Select Action</option>
                                 <option value="approve">Undertaking Recommendation</option>
                                 <option value="cleared">Exceptions Cleared</option>
                             </select>
                         </div>
                     </div>
-                    <!--                    <div class="form-group" id="approve_section" style="display: none;">
-                                            <div class="col-sm-6">
-                                                <label for="reason">Approver<span class="text-danger">*</span></label>
-                                                <select class="form-control-sm pull-right" id="approver"></select> 
-                                            </div>
-                                        </div>-->
+
 
                     <div class="card-footer d-flex justify-content-end" style="background-color: white;">
                         <button id="saveBtnclr" class="btn btn-sm waves-effect waves-light btn-primary" style="margin-right: 10px"><i class="icon feather icon-save"></i>Save</button>
@@ -912,10 +907,10 @@
                     </div>
 
                     <div class="form-group" style="padding-bottom: 2rem">
-                        <label for="status" class="col-sm-4 col-form-label allFontByCustomerEdit">Choose Status </label>
+                        <label for="status" class="col-sm-4 col-form-label allFontByCustomerEdit">Choose Next Action </label>
                         <div class="col-sm-6">
                             <select class="form-control-sm pull-right" id="statusvoucher" style="width: 20rem;margin-right: 15rem;">
-                                <option value="" disabled selected>Select Status</option>
+                                <option value="" disabled selected>Select Action</option>
                                 <option value="completed">Completed</option>
 
                             </select>
@@ -999,10 +994,10 @@
 
                     </div>
                     <div class="form-group" style="padding-bottom: 2rem">
-                        <label for="status" class="col-sm-4 col-form-label allFontByCustomerEdit">Choose Status </label>
+                        <label for="status" class="col-sm-4 col-form-label allFontByCustomerEdit">Choose Next Action </label>
                         <div class="col-sm-6">
                             <select class="form-control-sm pull-right" id="statusvoucherun" style="width: 20rem;margin-right: 15rem;">
-                                <option value="" disabled selected>Select Status</option>
+                                <option value="" disabled selected>Select Action</option>
                                 <option value="completedun">Completed</option>
 
                             </select>
@@ -1173,6 +1168,34 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <script>
+
+
+            document.addEventListener('DOMContentLoaded', (event) => {
+                // Define an array of objects containing endpoint URLs and corresponding IDs
+                const endpoints = [
+                    {url: 'fmr/count-all', id: 'all'},
+                    {url: 'fmr/count-acknopen', id: 'acknowledgment'},
+                    {url: 'fmr/count-ackno', id: 'acknowledged'},
+                    {url: 'fmr/count-exception', id: 'filepending'},
+                    {url: 'fmr/count-undertaking', id: 'undertaking'},
+                    {url: 'fmr/count-payment', id: 'pay'},
+                    {url: 'fmr/count-completed', id: 'complt'},
+                    {url: 'fmr/count-rejected', id: 'reject'}
+                ];
+
+                // Loop through the endpoints array
+                endpoints.forEach(endpoint => {
+                    fetch(endpoint.url)
+                            .then(response => response.json())
+                            .then(data => {
+                                document.getElementById(endpoint.id).innerText = data;
+                            })
+                            .catch(error => console.error(`Error fetching count for ${endpoint.url}:`, error));
+                });
+            });
+
+
+
 
             document.addEventListener("DOMContentLoaded", function () {
                 var facilityStatusSelect = document.getElementById("statustype");
@@ -1630,7 +1653,7 @@
                     let action_td = document.createElement('td');
                     $(action_td).addClass('text-center');
 
-                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
+                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-list f-w-600 f-16 m-r-10 text-c-green"></i></a>');
 
                     $(row).append(action_td);
                     $(row).data('id', data['id']);
@@ -1681,7 +1704,7 @@
                     let action_td = document.createElement('td');
                     $(action_td).addClass('text-center');
 
-                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
+                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-list f-w-600 f-16 m-r-10 text-c-green"></i></a>');
 
                     $(row).append(action_td);
                     $(row).data('id', data['id']);
@@ -1732,7 +1755,7 @@
                     let action_td = document.createElement('td');
                     $(action_td).addClass('text-center');
 
-                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
+                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-list f-w-600 f-16 m-r-10 text-c-green"></i></a>');
 
                     $(row).append(action_td);
                     $(row).data('id', data['id']);
@@ -1783,7 +1806,7 @@
                     let action_td = document.createElement('td');
                     $(action_td).addClass('text-center');
 
-                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
+                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-list f-w-600 f-16 m-r-10 text-c-green"></i></a>');
 
                     $(row).append(action_td);
                     $(row).data('id', data['id']);
@@ -1815,6 +1838,10 @@
                                 $('#customer_nameack').val(obj.customer_name);
                                 $('#amountack').val(obj.amount);
                                 $('#productack').val(d1.product_txt);
+
+                                $('#ref_numbers').val(obj.ref_number);
+                                $('#customer_names').val(obj.customer_name);
+                                $('#amounts').val(obj.amount);
                                 console.log(d1.product_txt);
                                 console.log(d2.entered);
                                 $('#ent_by').val(d2.entered);
@@ -1893,7 +1920,7 @@
                                     // Create a delete button in the action cell
                                     var deleteButton = document.createElement('button');
                                     deleteButton.classList.add('btn', 'btn-sm', 'btn-danger');
-                                    deleteButton.textContent = 'Remove';
+                                    deleteButton.textContent = 'Received';
                                     deleteButton.name = 'dele';
 
                                     // Add a click event listener to the delete button
@@ -2109,7 +2136,7 @@
                                     // Create a delete button in the action cell
                                     var deleteButton = document.createElement('button');
                                     deleteButton.classList.add('btn', 'btn-sm', 'btn-danger');
-                                    deleteButton.textContent = 'Remove';
+                                    deleteButton.textContent = 'Received';
                                     deleteButton.name = 'dele';
 
                                     // Add a click event listener to the delete button
@@ -2273,7 +2300,7 @@
                 // Create a delete button in the action cell
                 var deleteButton = document.createElement('button');
                 deleteButton.classList.add('btn', 'btn-sm', 'btn-danger');
-                deleteButton.textContent = 'Remove';
+                deleteButton.textContent = 'Received';
                 deleteButton.name = 'dele';
 
                 // Add a click event listener to the delete button
@@ -2376,9 +2403,22 @@
             $(document).on('click', '.editrecfileclr', function () {
 
             });
+
+            function isTableEmpty() {
+                let tableRows = document.querySelectorAll('#tbladdAtts tbody tr');
+                return tableRows.length === 0;
+            }
+
             document.getElementById('saveBtnclr').addEventListener('click', function () {
                 let mode = $('#saveBtnclr').data('mode');
                 if (mode === 'update-fileclear') {
+                    // Check if the selected status is "cleared" and the table is not empty
+                    let statusclr = document.getElementById('statusclr').value;
+                    if (statusclr === 'cleared' && !isTableEmpty()) {
+                        Swal.fire('Error!', 'You cannot select "Exceptions Cleared" while there are pending files.', 'error');
+                        return;
+                    }
+
                     let id = $('#saveBtnclr').data('id');//
                     let deleteIds = handleAttachmentDeletion();
                     let tableRows = document.querySelectorAll('#tbladdAtts tbody tr');
@@ -2401,9 +2441,6 @@
                     formData.desclist = desclist;
                     formData.id = id;
                     formData.deleteIds = JSON.stringify(deleted);
-
-                    // Get the selected value of statusclr
-                    let statusclr = document.getElementById('statusclr').value;
 
                     // Add statusclr to formData
                     formData.statusclr = statusclr;
@@ -2492,13 +2529,24 @@
                 return deleteIds;
             }
 
+            function isTableEmpty() {
+                let tableRows = document.querySelectorAll('#tbladdAttpay tbody tr');
+                return tableRows.length === 0;
+            }
 
             document.getElementById('saveBtnppun').addEventListener('click', function () {
                 let mode = $('#saveBtnppun').data('mode');
                 if (mode === 'update-payunder') {
-                    let id = $('#saveBtnppun').data('id');//
+                    // Check if the selected status is "completedun" and the table is not empty
+                    let statusvoucherun = document.getElementById('statusvoucherun').value;
+                    if (statusvoucherun === 'completedun' && !isTableEmpty('tbladdAttpay')) {
+                        Swal.fire('Error!', 'You cannot select "Completed" while there are pending files.', 'error');
+                        return;
+                    }
+
+                    let id = $('#saveBtnppun').data('id'); //
                     let deleteIds = handleAttachmentDeletion();
-                    let tableRows = document.querySelectorAll('#tbladdAtts tbody tr');
+                    let tableRows = document.querySelectorAll('#tbladdAttpay tbody tr');
                     let attachmentData = [];
                     let formData = {};
 
@@ -2519,13 +2567,8 @@
                     formData.id = id;
                     formData.deleteIds = JSON.stringify(deleted);
 
-                    // Get the selected value of statusclr
-                    let statusvoucherun = document.getElementById('statusvoucherun').value;
-
-                    // Add statusclr to formData
+                    // Add statusvoucherun to formData
                     formData.statusvoucherun = statusvoucherun;
-
-
 
                     fetch('fmr/update-payment-undertaking', {
                         method: 'POST',

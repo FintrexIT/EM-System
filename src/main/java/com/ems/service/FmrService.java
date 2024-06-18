@@ -534,16 +534,36 @@ public class FmrService {
     }
 
     public Map<String, Object> getPayment(Integer id) throws Exception {
-        Fmr sys = repo.findById(id).get();
+        // Fetch the Fmr object
+        Fmr sys = repo.findById(id).orElseThrow(() -> new Exception("Fmr not found for id: " + id));
 
-        Map<String, Object> data = jdbc.queryForMap("SELECT `description` as product_txt FROM `loan`.`product`  WHERE `id` = ?", sys.getProduct());
-        sys.setProductTxt((String) data.get("product_txt"));
+        // Fetch product data
+        Map<String, Object> data;
+        try {
+            data = jdbc.queryForMap("SELECT `description` as product_txt FROM `loan`.`product` WHERE `id` = ?", sys.getProduct());
+            sys.setProductTxt((String) data.get("product_txt"));
+        } catch (EmptyResultDataAccessException e) {
+            // Handle the case where no product is found
+            data = new HashMap<>();
+            data.put("product_txt", "Product not found");
+            sys.setProductTxt("Product not found");
+        }
         System.out.println(data);
 
-        Map<String, Object> datas = jdbc.queryForMap("SELECT `name` as approvername FROM `users` WHERE `id` = ?", sys.getApprover());
-        sys.setApproverName((String) datas.get("approvername"));
+        // Fetch approver data
+        Map<String, Object> datas;
+        try {
+            datas = jdbc.queryForMap("SELECT `name` as approvername FROM `users` WHERE `id` = ?", sys.getApprover());
+            sys.setApproverName((String) datas.get("approvername"));
+        } catch (EmptyResultDataAccessException e) {
+            // Handle the case where no approver is found
+            datas = new HashMap<>();
+            datas.put("approvername", "Approver not found");
+            sys.setApproverName("Approver not found");
+        }
         System.out.println(datas);
 
+        // Combine the data into a single map
         Map<String, Object> combinedData = new HashMap<>();
         combinedData.put("d1", data);
         combinedData.put("d2", datas);
@@ -569,36 +589,35 @@ public class FmrService {
         return updatefmr;
     }
 
-//
-//    public Fmr deactivateFmrs(Integer id) throws Exception {
-//        Fmr syst = repo.findById(id).get();
-//        syst.setStatus("deactivate");
-//        syst = repo.save(syst);
-//        return syst;
-//    }
-//
-//    public Fmr reactivateFmrs(Integer id) throws Exception {
-//        Fmr systems = repo.findById(id).get();
-//        systems.setStatus("active");
-//        systems = repo.save(systems);
-//        return systems;
-//    }
-//
-//   
-//    public Fmr update(Integer id, String name, String type, MultipartFile file) throws Exception {
-//        Fmr system = repo.findById(id).get();
-//        system.setName(name);
-//        system.setType(type);
-//        if (file != null) {
-//            String[] split = file.getOriginalFilename().split("\\.");
-//            File des = new File("intranet\\Fmrs\\" + id + "." + split[split.length - 1]);
-//            file.transferTo(Path.of(des.getAbsolutePath()));
-//            system.setPath(des.getName());
-//        }
-//        return repo.save(system);
-//    }
-//
-//    public Iterable<Fmr> findAllActiveImages() {
-//        return repo.findByStatus("active");
-//    }
+    public Long countAllStatus() {
+        return repo.countByStatusAll();
+    }
+
+    public Long countAcknoPendStatus() {
+        return repo.countByStatusAcknoPe();
+    }
+
+    public Long countAcknoStatus() {
+        return repo.countByStatusAckno();
+    }
+
+    public Long countExceptionsStatus() {
+        return repo.countByStatusExceptions();
+    }
+
+    public Long countUndertakinStatus() {
+        return repo.countByStatusUnder();
+    }
+
+    public Long countPaymentStatus() {
+        return repo.countByStatusPayment();
+    }
+
+    public Long countCompletedStatus() {
+        return repo.countByStatusCompleted();
+    }
+
+    public Long countRejectedStatus() {
+        return repo.countByStatusRejected();
+    }
 }

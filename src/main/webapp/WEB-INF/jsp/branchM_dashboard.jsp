@@ -189,7 +189,7 @@
                     <div class="col" > 
                         <div class="cards bg-c-yellow text-white widget-visitor-card" id="acknoedcrd" style="height: 110px; background: linear-gradient(to right,#f2c71b, #f5d862);">
                             <div class="card-block-small text-center" >
-                                <h4 id="acknowledgment">0</h4>
+                                <h4 id="acknowledged">0</h4>
                                 <h6>Acknowledged</h6>
                                 <i class="feather ">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
@@ -1072,6 +1072,29 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <script>
+            document.addEventListener('DOMContentLoaded', (event) => {
+                // Define an array of objects containing endpoint URLs and corresponding IDs
+                const endpoints = [
+                    {url: 'fmr/count-all', id: 'all'},
+                    {url: 'fmr/count-acknopen', id: 'acknowledgment'},
+                    {url: 'fmr/count-ackno', id: 'acknowledged'},
+                    {url: 'fmr/count-exception', id: 'filepending'},
+                    {url: 'fmr/count-undertaking', id: 'undertaking'},
+                    {url: 'fmr/count-payment', id: 'pay'},
+                    {url: 'fmr/count-completed', id: 'complt'},
+                    {url: 'fmr/count-rejected', id: 'reject'}
+                ];
+
+                // Loop through the endpoints array
+                endpoints.forEach(endpoint => {
+                    fetch(endpoint.url)
+                            .then(response => response.json())
+                            .then(data => {
+                                document.getElementById(endpoint.id).innerText = data;
+                            })
+                            .catch(error => console.error(`Error fetching count for ${endpoint.url}:`, error));
+                });
+            });
 
 
             const formSection = document.getElementById('formSection');
@@ -2001,6 +2024,21 @@
                 }
 
             });
+            var approv = new SlimSelect(
+                    {select: '#approver',
+                        placeholder: "Select Approver",
+                        ajax: function (search, callback) {
+                            fetch('fmr/approver', {
+                                method: 'POST',
+                                body: new URLSearchParams({search: search || ''})
+                            }).then(res => res.json()).then((data) => {
+                                callback(data);
+                            });
+                        },
+                        allowDeselect: true,
+                        deselectLabel: '<span class="red">✖</span>'
+                    });
+
         </script>
 
 
