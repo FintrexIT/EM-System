@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -338,22 +339,43 @@ public class FmrService {
     public Object getClearance(Integer id) throws Exception {
         Fmr sys = repo.findById(id).orElseThrow(() -> new Exception("Fmr not found for id: " + id));
 
-        Map<String, Object> data = jdbc.queryForMap("SELECT `description` as product_txt FROM `loan`.`product` WHERE `id` = ?", sys.getProduct());
-        System.out.println(data);
-        sys.setProductTxt((String) data.get("product_txt"));
+        // Fetch product data
+        Map<String, Object> data;
+        try {
+            data = jdbc.queryForMap("SELECT `description` as product_txt FROM `loan`.`product` WHERE `id` = ?", sys.getProduct());
+            sys.setProductTxt((String) data.get("product_txt"));
+        } catch (EmptyResultDataAccessException e) {
+            // Handle the case where no product is found
+            data = new HashMap<>();
+            data.put("product_txt", "Product not found");
+            sys.setProductTxt("Product not found");
+        }
 
-        Map<String, Object> datas = jdbc.queryForMap("SELECT `name` as approvername FROM `users` WHERE `id` = ?", sys.getApprover());
-        System.out.println(datas);
-        sys.setApproverName((String) datas.get("approvername"));
+        // Fetch approver data
+        Map<String, Object> datas;
+        try {
+            datas = jdbc.queryForMap("SELECT `name` as approvername FROM `users` WHERE `id` = ?", sys.getApprover());
+            sys.setApproverName((String) datas.get("approvername"));
+        } catch (EmptyResultDataAccessException e) {
+            // Handle the case where no approver is found
+            datas = new HashMap<>();
+            datas.put("approvername", "Approver not found");
+            sys.setApproverName("Approver not found");
+        }
 
+        // Fetch content again to ensure it's up-to-date
         Fmr content = repo.findById(id).orElseThrow(() -> new Exception("Fmr not found for id: " + id));
         List<FilePendings> videos = fmrrepo.findByPendingsAndStatus(id, "active");
 
         for (FilePendings video : videos) {
-            Map<String, Object> name = jdbc.queryForMap("SELECT `name` as entered FROM `users` WHERE `id` = ?", video.getMod_by());
-            String enteredName = (String) name.get("entered");
-            System.out.println(name);
-            video.setModby(enteredName);
+            try {
+                Map<String, Object> name = jdbc.queryForMap("SELECT `name` as entered FROM `users` WHERE `id` = ?", video.getMod_by());
+                String enteredName = (String) name.get("entered");
+                video.setModby(enteredName);
+            } catch (EmptyResultDataAccessException e) {
+                // Handle the case where no user is found
+                video.setModby("User not found");
+            }
         }
 
         // Adding all the data to the return map
