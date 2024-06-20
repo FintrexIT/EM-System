@@ -1458,7 +1458,7 @@
                     let action_td = document.createElement('td');
                     $(action_td).addClass('text-center');
 
-                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
+                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-list f-w-600 f-16 m-r-10 text-c-green"></i></a>');
 
                     $(row).append(action_td);
                     $(row).data('id', data['id']);
@@ -1509,7 +1509,7 @@
                     let action_td = document.createElement('td');
                     $(action_td).addClass('text-center');
 
-                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
+                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-list f-w-600 f-16 m-r-10 text-c-green"></i></a>');
 
                     $(row).append(action_td);
                     $(row).data('id', data['id']);
@@ -1560,7 +1560,7 @@
                     let action_td = document.createElement('td');
                     $(action_td).addClass('text-center');
 
-                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
+                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-list f-w-600 f-16 m-r-10 text-c-green"></i></a>');
 
                     $(row).append(action_td);
                     $(row).data('id', data['id']);
@@ -1611,7 +1611,7 @@
                     let action_td = document.createElement('td');
                     $(action_td).addClass('text-center');
 
-                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-edit f-w-600 f-16 m-r-10 text-c-green"></i></a>');
+                    $(action_td).append('<a href="javascript:void(0)" id="update" class="editrec"><i class="icon feather icon-list f-w-600 f-16 m-r-10 text-c-green"></i></a>');
 
                     $(row).append(action_td);
                     $(row).data('id', data['id']);
@@ -2040,7 +2040,44 @@
                     });
 
         </script>
+        <script>
+            document.getElementById('saveBtnrec').addEventListener('click', function () {
+                let mode = $('#saveBtnrec').data('mode');
+                if (mode === 'update-Recommendation') {
+                    let id = $('#saveBtnrec').data('id');
 
+                    let approver = document.getElementById('approver').value;
+
+                    // Ensure formData is properly defined and initialized
+                    let formData = {
+                        id: id,
+                        approver: approver
+                    };
+
+                    fetch('fmr/update-recommendation', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: new URLSearchParams(formData)
+                    }).then(response => {
+                        if (!response.ok) {
+                            throw new Error(response.statusText);
+                        }
+                        return response.json(); // Move this line here to parse JSON
+                    }).then(data => {
+                        Swal.fire('Successful!', 'Pending File details updated successfully', 'success');
+//                        clearFormsf();
+                        $('#formSectionRecommendation').hide();
+                        $('#tableSection').fadeIn();
+                        dtable.ajax.reload();
+                    }).catch(error => {
+                        console.error('Error updating Pending File details:', error);
+                        Swal.fire('Error!', 'Failed to update Pending File details', 'error');
+                    });
+                }
+            });
+        </script>
 
 
 
