@@ -589,35 +589,48 @@ public class FmrService {
         return updatefmr;
     }
 
-    public Long countAllStatus() {
-        return repo.countByStatusAll();
+    public Map<String, Long> getStatusCounts() {
+        Map<String, Long> counts = new HashMap<>();
+        counts.put("countAll", repo.countByStatusAll());
+        counts.put("countAcknoPend", repo.countByStatusAcknoPe());
+        counts.put("countAckno", repo.countByStatusAckno());
+        counts.put("countExceptions", repo.countByStatusExceptions());
+        counts.put("countUndertaking", repo.countByStatusUnder());
+        counts.put("countPayment", repo.countByStatusPayment());
+        counts.put("countCompleted", repo.countByStatusCompleted());
+        counts.put("countRejected", repo.countByStatusRejected());
+        return counts;
     }
 
-    public Long countAcknoPendStatus() {
-        return repo.countByStatusAcknoPe();
-    }
-
-    public Long countAcknoStatus() {
-        return repo.countByStatusAckno();
-    }
-
-    public Long countExceptionsStatus() {
-        return repo.countByStatusExceptions();
-    }
-
-    public Long countUndertakinStatus() {
-        return repo.countByStatusUnder();
-    }
-
-    public Long countPaymentStatus() {
-        return repo.countByStatusPayment();
-    }
-
-    public Long countCompletedStatus() {
-        return repo.countByStatusCompleted();
-    }
-
-    public Long countRejectedStatus() {
-        return repo.countByStatusRejected();
-    }
+//    public Long countAllStatus() {
+//        return repo.countByStatusAll();
+//    }
+//
+//    public Long countAcknoPendStatus() {
+//        return repo.countByStatusAcknoPe();
+//    }
+//
+//    public Long countAcknoStatus() {
+//        return repo.countByStatusAckno();
+//    }
+//
+//    public Long countExceptionsStatus() {
+//        return repo.countByStatusExceptions();
+//    }
+//
+//    public Long countUndertakinStatus() {
+//        return repo.countByStatusUnder();
+//    }
+//
+//    public Long countPaymentStatus() {
+//        return repo.countByStatusPayment();
+//    }
+//
+//    public Long countCompletedStatus() {
+//        return repo.countByStatusCompleted();
+//    }
+//
+//    public Long countRejectedStatus() {
+//        return repo.countByStatusRejected();
+//    }
 }

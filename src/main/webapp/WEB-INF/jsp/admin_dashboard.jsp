@@ -156,7 +156,7 @@
 
         <div class="main" id="tableSection">
 
-            <section class="navi-card" style="padding: 0rem 2rem;">
+            <section class="navi-card" style="padding: 0rem 2rem;" id="cardSection">
                 <div class="row " style="margin-bottom: 1px;margin-top: 10px;">
                     <div class="col-12 card" style="padding-top: 2px" >
                         <h4>File Movement Register</h4>
@@ -1170,30 +1170,31 @@
         <script>
 
 
-            document.addEventListener('DOMContentLoaded', (event) => {
-                // Define an array of objects containing endpoint URLs and corresponding IDs
-                const endpoints = [
-                    {url: 'fmr/count-all', id: 'all'},
-                    {url: 'fmr/count-acknopen', id: 'acknowledgment'},
-                    {url: 'fmr/count-ackno', id: 'acknowledged'},
-                    {url: 'fmr/count-exception', id: 'filepending'},
-                    {url: 'fmr/count-undertaking', id: 'undertaking'},
-                    {url: 'fmr/count-payment', id: 'pay'},
-                    {url: 'fmr/count-completed', id: 'complt'},
-                    {url: 'fmr/count-rejected', id: 'reject'}
+            countCards();
+            function countCards() {
+
+                // Define an array of objects containing IDs and corresponding count keys
+                const countsMapping = [
+                    {key: 'countAll', id: 'all'},
+                    {key: 'countAcknoPend', id: 'acknowledgment'},
+                    {key: 'countAckno', id: 'acknowledged'},
+                    {key: 'countExceptions', id: 'filepending'},
+                    {key: 'countUndertaking', id: 'undertaking'},
+                    {key: 'countPayment', id: 'pay'},
+                    {key: 'countCompleted', id: 'complt'},
+                    {key: 'countRejected', id: 'reject'}
                 ];
 
-                // Loop through the endpoints array
-                endpoints.forEach(endpoint => {
-                    fetch(endpoint.url)
-                            .then(response => response.json())
-                            .then(data => {
-                                document.getElementById(endpoint.id).innerText = data;
-                            })
-                            .catch(error => console.error(`Error fetching count for ${endpoint.url}:`, error));
+                // Fetch all counts from the consolidated endpoint
+                $.get('fmr/counts', function (resp) {
+                    let data = resp;
+                    console.log(data);
+                    countsMapping.forEach(mapping => {
+                        document.getElementById(mapping.id).innerText = data[mapping.key];
+                    });
                 });
-            });
 
+            }
 
 
 
@@ -1403,6 +1404,7 @@
                     } else {
                         Swal.fire('Successfull!', 'FMR has been successfully saved');
                         clearForm();
+                        countCards();
                         $('#formSection').hide();
                         $('#tableSection').fadeIn();
                         dtable.ajax.reload();
@@ -1447,6 +1449,7 @@
                     } else {
                         Swal.fire('Successfull!', 'FMR has been successfully saved');
                         clearForm();
+                        countCards();
                         $('#formSectionInprogress').hide();
                         $('#tableSection').fadeIn();
                         dtable.ajax.reload();
@@ -2353,6 +2356,7 @@
                         } else {
                             Swal.fire('Successful!', 'Pending Files have been successfully saved', 'success');
                             clearForms();
+                            countCards();
                             $('#formSectionFilePending').hide();
                             $('#tableSection').fadeIn();
                             dtable.ajax.reload();
@@ -2454,6 +2458,7 @@
                         } else {
                             Swal.fire('Successful!', 'Pending File details updated successfully', 'success');
                             clearFormsf();
+                            countCards();
                             $('#formSectionFileClearance').hide();
                             $('#tableSection').fadeIn();
                             dtable.ajax.reload();
@@ -2498,6 +2503,7 @@
                         } else {
                             Swal.fire('Successful!', 'Payment Voucher Hand Over details updated successfully', 'success');
                             clearFormsu();
+                            countCards();
                             $('#formSectionPaymentVoucher').hide();
                             $('#tableSection').fadeIn();
                             dtable.ajax.reload();
@@ -2565,7 +2571,7 @@
 
                     formData.desclist = desclist;
                     formData.id = id;
-                    formData.deleteIds = JSON.stringify(deleted);
+                    formData.deleteIds = JSON.stringify(deleteIds);
 
                     // Add statusvoucherun to formData
                     formData.statusvoucherun = statusvoucherun;
@@ -2579,6 +2585,7 @@
                         } else {
                             Swal.fire('Successful!', 'Pending File details updated successfully', 'success');
                             clearFormsf();
+                            countCards();
                             $('#formSectionPaymentVoucherUnder').hide();
                             $('#tableSection').fadeIn();
                             dtable.ajax.reload();
@@ -2590,6 +2597,7 @@
                     });
                 }
             });
+
 
         </script>
 

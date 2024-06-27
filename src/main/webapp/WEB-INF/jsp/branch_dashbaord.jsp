@@ -157,12 +157,12 @@
         <div class="main" id="tableSection">
 
             <section class="navi-card" style="padding: 0rem 2rem;">
-                <div class="row " style="margin-bottom: 1px;margin-top: 10px;">  
+                <div class="row " style="margin-bottom: 1px;margin-top: 10px;">
                     <div class="col-12 card" style="padding-top: 2px" >
                         <h4>File Movement Register</h4>
                     </div>
                 </div>
-                <div class="row" style="padding: 0rem 2rem;margin-top: 1rem;">  
+                <div class="row" style="padding: 0rem 2rem;margin-top: 1rem;">
                     <div class="col">
                         <div class="cards bg-c-info  text-white widget-visitor-card cardActive" id="allcrd" style="height: 110px;background: linear-gradient(to right, #007bff, #5ba9fd);">
                             <div class="card-block-small text-center">
@@ -175,7 +175,7 @@
                         </div>
                     </div>
 
-                    <div class="col" > 
+                    <div class="col" >
                         <div class="cards bg-c-yellow text-white widget-visitor-card" id="ackncrd" style="height: 110px; background: linear-gradient(to right,#f2c71b, #f5d862);">
                             <div class="card-block-small text-center" >
                                 <h4 id="acknowledgment">0</h4>
@@ -186,7 +186,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col" > 
+                    <div class="col" >
                         <div class="cards bg-c-yellow text-white widget-visitor-card" id="acknoedcrd" style="height: 110px; background: linear-gradient(to right,#f2c71b, #f5d862);">
                             <div class="card-block-small text-center" >
                                 <h4 id="acknowledged">0</h4>
@@ -214,8 +214,8 @@
                 </div>
 
 
-                <div class="row" style="padding: 1rem 2rem;">  
-                    <div class="col" > 
+                <div class="row" style="padding: 1rem 2rem;">
+                    <div class="col" >
                         <div class="cards  bg-c-green text-white widget-visitor-card" id="apprvcrd" style="height: 110px;    background: linear-gradient(to right, #fe9365, #feb798);">
                             <div class="card-block-small text-center">
                                 <h4 id="undertaking">0</h4>
@@ -228,7 +228,7 @@
                     </div>
 
 
-                    <div class="col" > 
+                    <div class="col" >
                         <div class="cards   bg-c-lite-green text-white widget-visitor-card" id="paycrd" style="height: 110px;background: linear-gradient(to right, #01a9ac, #01dbdf);">
                             <div class="card-block-small text-center">
                                 <h4 id="pay">0</h4>
@@ -241,13 +241,13 @@
 
                     </div>
 
-                    <div class="col"> 
+                    <div class="col">
                         <div class="cards bg-c-yellow text-white widget-visitor-card" id="cmplcrd" style="height: 110px; background: linear-gradient(to right, #0ac282, #0df3a3);">
                             <div class="card-block-small text-center" >
                                 <h4 id="complt">0</h4>
                                 <h6>Completed</h6>
                                 <i class="feather ">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>    
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                                 </i>
                             </div>
                         </div>
@@ -259,7 +259,7 @@
                                 <h4 id="reject">0</h4>
                                 <h6>Rejected</h6>
                                 <i class="feather ">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-octagon"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>    
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-octagon"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
                                 </i>
                             </div>
                         </div>
@@ -270,10 +270,10 @@
                             <div class="row" style="margin-top: 2px;">
                                 <div class="col-3">
                                     <i class="icon feather icon-plus" style="font-size: 1.5rem;"></i>
-                                </div> 
+                                </div>
                                 <div class="col-9">
-                                    <h5>Add FMR</h5>  
-                                </div>   
+                                    <h5>Add FMR</h5>
+                                </div>
                             </div>
 
                         </button>
@@ -286,7 +286,7 @@
 
             </section>
 
-            <section class="tab-details"style="padding: 0rem 1rem;"> 
+            <section class="tab-details"style="padding: 0rem 1rem;">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card" id="tableCard">
@@ -302,9 +302,9 @@
                                                 <th>Reference Number</th>
                                                 <th>Customer Name</th>
                                                 <th>Product</th>
-                                                <th>Finance Amount</th>                                               
+                                                <th>Finance Amount</th>
                                                 <th>Branch</th>
-                                                <th>ENT Date</th>                                            
+                                                <th>ENT Date</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -445,7 +445,7 @@
                     <div class="form-group" style="padding-bottom: 2rem">
                         <label for="" class="col-sm-4 col-form-label allFontByCustomerEdit">Choose Product Type</label>
                         <div class="col-sm-6">
-                            <select class="form-control-sm pull-right" id="product">  </select>                                      
+                            <select class="form-control-sm pull-right" id="product">  </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -455,7 +455,7 @@
                     <div class="form-group" style="padding-bottom: 2rem">
                         <label for="" class="col-sm-4 col-form-label allFontByCustomerEdit">Choose Facility Type</label>
                         <div class="col-sm-6">
-                            <select class="form-control-sm pull-right" id="facility_status">  </select>                                      
+                            <select class="form-control-sm pull-right" id="facility_status">  </select>
                         </div>
                     </div>
 
@@ -533,7 +533,7 @@
                             <div class="form-group">
                                 <label for="ref_number">Agreement Number / Vehicle Number<span class="text-danger">*</span></label>
                                 <input id="ref_numberp" type="text" name="ref_number" class="form-control" required autocomplete="off" disabled="">
-                            </div>  
+                            </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
@@ -547,7 +547,7 @@
                             <div class="form-group">
                                 <label for="customer_name">Product<span class="text-danger">*</span></label>
                                 <input id="productp" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
-                            </div>  
+                            </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
@@ -581,7 +581,7 @@
                             <div class="form-group">
                                 <label for="ref_number">Agreement Number / Vehicle Number<span class="text-danger">*</span></label>
                                 <input id="ref_numberc" type="text" name="ref_number" class="form-control" required autocomplete="off" disabled="">
-                            </div>  
+                            </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
@@ -595,7 +595,7 @@
                             <div class="form-group">
                                 <label for="customer_name">Product<span class="text-danger">*</span></label>
                                 <input id="productc" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
-                            </div>  
+                            </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
@@ -656,7 +656,7 @@
                             <div class="form-group">
                                 <label for="ref_number">Agreement Number / Vehicle Number<span class="text-danger">*</span></label>
                                 <input id="ref_numberrec" type="text" name="ref_number" class="form-control" required autocomplete="off" disabled="">
-                            </div>  
+                            </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
@@ -670,7 +670,7 @@
                             <div class="form-group">
                                 <label for="customer_name">Product<span class="text-danger">*</span></label>
                                 <input id="productrec" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
-                            </div>  
+                            </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
@@ -730,7 +730,7 @@
                             <div class="form-group">
                                 <label for="ref_number">Agreement Number / Vehicle Number<span class="text-danger">*</span></label>
                                 <input id="ref_numberu" type="text" name="ref_number" class="form-control" required autocomplete="off" disabled="">
-                            </div>  
+                            </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
@@ -744,7 +744,7 @@
                             <div class="form-group">
                                 <label for="customer_name">Product<span class="text-danger">*</span></label>
                                 <input id="productu" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
-                            </div>  
+                            </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
@@ -758,7 +758,7 @@
                             <div class="form-group">
                                 <label for="customer_name">Assigned To Approve<span class="text-danger">*</span></label>
                                 <input id="appund" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
-                            </div>  
+                            </div>
                         </div>
                         <div class="col">
 
@@ -808,7 +808,7 @@
                             <div class="form-group">
                                 <label for="ref_number">Agreement Number / Vehicle Number<span class="text-danger">*</span></label>
                                 <input id="ref_numberpay" type="text" name="ref_number" class="form-control" required autocomplete="off" disabled="">
-                            </div>  
+                            </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
@@ -822,7 +822,7 @@
                             <div class="form-group">
                                 <label for="customer_name">Product<span class="text-danger">*</span></label>
                                 <input id="productpay" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
-                            </div>  
+                            </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
@@ -849,7 +849,7 @@
                             <div class="form-group">
                                 <label for="ref_number">Agreement Number / Vehicle Number<span class="text-danger">*</span></label>
                                 <input id="ref_numberppun" type="text" name="ref_number" class="form-control" required autocomplete="off" disabled="">
-                            </div>  
+                            </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
@@ -863,7 +863,7 @@
                             <div class="form-group">
                                 <label for="customer_name">Product<span class="text-danger">*</span></label>
                                 <input id="productppun" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
-                            </div>  
+                            </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
@@ -877,7 +877,7 @@
                             <div class="form-group">
                                 <label for="approver">Approved By<span class="text-danger">*</span></label>
                                 <input id="approvername" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
-                            </div>  
+                            </div>
                         </div>
                         <div class="col">
 
@@ -926,7 +926,7 @@
                             <div class="form-group">
                                 <label for="ref_number">Agreement Number / Vehicle Number<span class="text-danger">*</span></label>
                                 <input id="ref_numbercom" type="text" name="ref_number" class="form-control" required autocomplete="off" disabled="">
-                            </div>  
+                            </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
@@ -940,7 +940,7 @@
                             <div class="form-group">
                                 <label for="customer_name">Product<span class="text-danger">*</span></label>
                                 <input id="productcom" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
-                            </div>  
+                            </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
@@ -967,7 +967,7 @@
                             <div class="form-group">
                                 <label for="ref_number">Agreement Number / Vehicle Number<span class="text-danger">*</span></label>
                                 <input id="ref_numbercomund" type="text" name="ref_number" class="form-control" required autocomplete="off" disabled="">
-                            </div>  
+                            </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
@@ -981,7 +981,7 @@
                             <div class="form-group">
                                 <label for="customer_name">Product<span class="text-danger">*</span></label>
                                 <input id="productcomund" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
-                            </div>  
+                            </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
@@ -995,7 +995,7 @@
                             <div class="form-group">
                                 <label for="customer_name">Approved By<span class="text-danger">*</span></label>
                                 <input id="approvercomund" type="text" name="approver_name" class="form-control" required autocomplete="off" disabled="">
-                            </div>  
+                            </div>
                         </div>
                         <div class="col">
 
@@ -1018,7 +1018,7 @@
                             <div class="form-group">
                                 <label for="ref_number">Agreement Number / Vehicle Number<span class="text-danger">*</span></label>
                                 <input id="ref_numberrej" type="text" name="ref_number" class="form-control" required autocomplete="off" disabled="">
-                            </div>  
+                            </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
@@ -1032,7 +1032,7 @@
                             <div class="form-group">
                                 <label for="customer_name">Product<span class="text-danger">*</span></label>
                                 <input id="productrej" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled="">
-                            </div>  
+                            </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
@@ -1046,7 +1046,7 @@
                             <div class="form-group">
                                 <label for="customer_name">Rejected Reason<span class="text-danger">*</span></label>
                                 <textarea id="resonrej" type="text" name="customer_name" class="form-control" required autocomplete="off" disabled=""></textarea>
-                            </div>  
+                            </div>
                         </div>
 
                     </div>
@@ -1072,29 +1072,32 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <script>
-            document.addEventListener('DOMContentLoaded', (event) => {
-                // Define an array of objects containing endpoint URLs and corresponding IDs
-                const endpoints = [
-                    {url: 'fmr/count-all', id: 'all'},
-                    {url: 'fmr/count-acknopen', id: 'acknowledgment'},
-                    {url: 'fmr/count-ackno', id: 'acknowledged'},
-                    {url: 'fmr/count-exception', id: 'filepending'},
-                    {url: 'fmr/count-undertaking', id: 'undertaking'},
-                    {url: 'fmr/count-payment', id: 'pay'},
-                    {url: 'fmr/count-completed', id: 'complt'},
-                    {url: 'fmr/count-rejected', id: 'reject'}
+
+            countCards();
+            function countCards() {
+
+                // Define an array of objects containing IDs and corresponding count keys
+                const countsMapping = [
+                    {key: 'countAll', id: 'all'},
+                    {key: 'countAcknoPend', id: 'acknowledgment'},
+                    {key: 'countAckno', id: 'acknowledged'},
+                    {key: 'countExceptions', id: 'filepending'},
+                    {key: 'countUndertaking', id: 'undertaking'},
+                    {key: 'countPayment', id: 'pay'},
+                    {key: 'countCompleted', id: 'complt'},
+                    {key: 'countRejected', id: 'reject'}
                 ];
 
-                // Loop through the endpoints array
-                endpoints.forEach(endpoint => {
-                    fetch(endpoint.url)
-                            .then(response => response.json())
-                            .then(data => {
-                                document.getElementById(endpoint.id).innerText = data;
-                            })
-                            .catch(error => console.error(`Error fetching count for ${endpoint.url}:`, error));
+                // Fetch all counts from the consolidated endpoint
+                $.get('fmr/counts', function (resp) {
+                    let data = resp;
+                    console.log(data);
+                    countsMapping.forEach(mapping => {
+                        document.getElementById(mapping.id).innerText = data[mapping.key];
+                    });
                 });
-            });
+
+            }
 
 
 
@@ -1256,6 +1259,7 @@
                     } else {
                         Swal.fire('Successfull!', 'FMR has been successfully saved');
                         clearForm();
+                        countCards();
                         $('#formSection').hide();
                         $('#tableSection').fadeIn();
                         dtable.ajax.reload();
